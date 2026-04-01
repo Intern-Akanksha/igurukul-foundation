@@ -1,0 +1,197 @@
+import { useMemo, useState } from 'react'
+import Container from '../components/Container'
+import Reveal from '../components/Reveal'
+import { programs, site } from '../data/site'
+
+type FormState = {
+  fullName: string
+  email: string
+  program: string
+  message: string
+}
+
+export default function Registration() {
+  const programOptions = useMemo(
+    () => programs.map((p) => p.title),
+    [],
+  )
+
+  const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState<FormState>({
+    fullName: '',
+    email: '',
+    program: programOptions[0] ?? '',
+    message: '',
+  })
+
+  return (
+    <div className="py-20">
+      <Container>
+        <Reveal>
+          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
+            Registration
+          </h1>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
+            Register for classes and programs. If you have questions about
+            schedules or levels, send us a note and we’ll respond with next
+            steps.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <div className="igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+                <div className="font-heading text-xl font-extrabold text-igf-ink">
+                  Online registration form
+                </div>
+                <p className="mt-2 text-sm text-igf-gray">
+                  This form collects your information so our team can reach out
+                  with enrollment details.
+                </p>
+
+                {submitted ? (
+                  <div className="mt-6 rounded-2xl bg-white/50 p-5 ring-1 ring-black/5">
+                    <div className="text-sm font-semibold text-igf-ink">
+                      Thanks! We received your request.
+                    </div>
+                    <div className="mt-2 text-sm text-igf-gray">
+                      If you don’t hear back soon, email us at{' '}
+                      <a
+                        className="font-semibold text-igf-ink underline decoration-black/15 underline-offset-4 hover:decoration-igf-orange"
+                        href={`mailto:${site.email}`}
+                      >
+                        {site.email}
+                      </a>
+                      .
+                    </div>
+                  </div>
+                ) : (
+                  <form
+                    className="mt-6 grid gap-4"
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      setSubmitted(true)
+                    }}
+                  >
+                    <label className="grid gap-2">
+                      <span className="text-sm font-semibold text-igf-ink">
+                        Full name
+                      </span>
+                      <input
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        value={form.fullName}
+                        onChange={(e) =>
+                          setForm((s) => ({ ...s, fullName: e.target.value }))
+                        }
+                        placeholder="Your name"
+                        required
+                      />
+                    </label>
+
+                    <label className="grid gap-2">
+                      <span className="text-sm font-semibold text-igf-ink">
+                        Email
+                      </span>
+                      <input
+                        type="email"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm((s) => ({ ...s, email: e.target.value }))
+                        }
+                        placeholder="you@example.com"
+                        required
+                      />
+                    </label>
+
+                    <label className="grid gap-2">
+                      <span className="text-sm font-semibold text-igf-ink">
+                        Program of interest
+                      </span>
+                      <select
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 focus:ring-2"
+                        value={form.program}
+                        onChange={(e) =>
+                          setForm((s) => ({ ...s, program: e.target.value }))
+                        }
+                      >
+                        {programOptions.map((p) => (
+                          <option key={p} value={p}>
+                            {p}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
+                    <label className="grid gap-2">
+                      <span className="text-sm font-semibold text-igf-ink">
+                        Message (optional)
+                      </span>
+                      <textarea
+                        className="min-h-28 resize-y rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        value={form.message}
+                        onChange={(e) =>
+                          setForm((s) => ({ ...s, message: e.target.value }))
+                        }
+                        placeholder="Preferred schedule, learner age/level, or questions…"
+                      />
+                    </label>
+
+                    <button
+                      type="submit"
+                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-[#f07a4a] to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
+                    >
+                      Submit registration
+                    </button>
+                  </form>
+                )}
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-5">
+            <Reveal delayMs={140}>
+              <div className="rounded-3xl bg-igf-charcoal p-9 text-white shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
+                <div className="text-xs font-semibold uppercase tracking-wide text-white/85">
+                  Quick info
+                </div>
+                <div className="mt-3 font-heading text-2xl font-extrabold">
+                  Contact & privacy
+                </div>
+                <div className="mt-5 space-y-3 text-sm text-white/90">
+                  <div>
+                    Email:{' '}
+                    <a
+                      className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-white"
+                      href={`mailto:${site.email}`}
+                    >
+                      {site.email}
+                    </a>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
+                    <div className="font-semibold text-white">
+                      Privacy summary
+                    </div>
+                    <ul className="mt-3 list-disc space-y-2 pl-5">
+                      <li>
+                        We only use your information to respond about classes
+                        and registration.
+                      </li>
+                      <li>
+                        We do not sell or share personal data for marketing.
+                      </li>
+                      <li>
+                        You can request deletion by emailing {site.email}.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </div>
+  )
+}

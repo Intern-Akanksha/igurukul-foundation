@@ -1,0 +1,126 @@
+import { useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { navItems, site } from '../data/site'
+import { cn } from '../utils/cn'
+import Button from './Button'
+import Container from './Container'
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 6)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 6)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <header
+      className={cn(
+        'sticky top-0 z-50 border-b border-black/5 bg-igf-bg/70 backdrop-blur transition-shadow',
+        scrolled && 'shadow-[0_10px_30px_rgba(0,0,0,0.08)]',
+      )}
+    >
+      <Container className="flex h-16 items-center justify-between">
+        <Link to="/" className="flex items-center gap-3">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-b from-[#f07a4a] to-igf-orange text-sm font-extrabold text-white shadow-sm">
+            IGF
+          </span>
+          <span className="hidden text-sm font-semibold text-igf-charcoal sm:block">
+            {site.name}
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                cn(
+                  'rounded-full px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal',
+                  isActive && 'bg-white/70 text-igf-charcoal shadow-sm ring-1 ring-black/5',
+                )
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-2 md:flex">
+          <Link to="/donate">
+            <Button variant="secondary">Donate</Button>
+          </Link>
+          <Link to="/registration">
+            <Button attention>Register Now</Button>
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl ring-1 ring-black/10 transition hover:bg-white/60 md:hidden"
+          aria-label="Open menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="relative h-4 w-5">
+            <span
+              className={cn(
+                'absolute left-0 top-0 h-0.5 w-5 rounded bg-igf-charcoal transition',
+                open && 'top-1.5 rotate-45',
+              )}
+            />
+            <span
+              className={cn(
+                'absolute left-0 top-1.5 h-0.5 w-5 rounded bg-igf-charcoal transition',
+                open && 'opacity-0',
+              )}
+            />
+            <span
+              className={cn(
+                'absolute left-0 top-3 h-0.5 w-5 rounded bg-igf-charcoal transition',
+                open && 'top-1.5 -rotate-45',
+              )}
+            />
+          </span>
+        </button>
+      </Container>
+
+      {open ? (
+        <div className="border-t border-black/5 bg-igf-bg/95 backdrop-blur md:hidden">
+          <Container className="flex flex-col gap-2 py-3">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  cn(
+                    'rounded-xl px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal',
+                    isActive && 'bg-white/70 text-igf-charcoal ring-1 ring-black/5',
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            <div className="flex flex-col gap-2 pt-2">
+              <Link to="/registration" onClick={() => setOpen(false)}>
+                <Button className="w-full" attention>
+                  Register Now
+                </Button>
+              </Link>
+              <Link to="/contact" onClick={() => setOpen(false)}>
+                <Button className="w-full" variant="secondary">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </Container>
+        </div>
+      ) : null}
+    </header>
+  )
+}
