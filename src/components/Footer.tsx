@@ -3,10 +3,24 @@ import { navItems, quotes, site } from '../data/site'
 import Container from './Container'
 import SocialIcon from './SocialIcon'
 
+const logoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
+
 const socials = [
-  { label: 'Facebook', href: '#', kind: 'facebook' as const },
-  { label: 'YouTube', href: '#', kind: 'youtube' as const },
-  { label: 'Instagram', href: '#', kind: 'instagram' as const },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/search/top?q=igurukul%20foundation',
+    kind: 'facebook' as const,
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@iGurukulOdissi',
+    kind: 'youtube' as const,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/igurukulfoundation?igsh=NjZhYmZmNXc0c2ds',
+    kind: 'instagram' as const,
+  },
 ]
 
 export default function Footer() {
@@ -15,9 +29,13 @@ export default function Footer() {
       <Container className="grid gap-10 py-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-b from-[#f07a4a] to-igf-orange text-sm font-extrabold text-white shadow-sm">
-              IGF
-            </span>
+            <img
+              src={logoUrl}
+              alt="iGurukul Foundation logo"
+              loading="lazy"
+              decoding="async"
+              className="h-14 w-auto shrink-0 object-contain"
+            />
             <div>
               <div className="text-sm font-semibold text-white">
                 {site.name}
@@ -65,17 +83,6 @@ export default function Footer() {
                 href={`mailto:${site.email}`}
               >
                 {site.email}
-              </a>
-            </div>
-            <div>
-              Website:{' '}
-              <a
-                className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-igf-orange"
-                href={site.website}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {site.website}
               </a>
             </div>
             <div className="pt-2">

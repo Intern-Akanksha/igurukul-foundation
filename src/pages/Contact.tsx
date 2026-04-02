@@ -139,23 +139,12 @@ export default function Contact() {
                       {site.email}
                     </a>
                   </div>
-                  <div>
-                    Website:{' '}
-                    <a
-                      className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-white"
-                      href={site.website}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {site.website}
-                    </a>
-                  </div>
                   <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
                     <div className="font-semibold text-white">Social</div>
                     <div className="mt-3 flex gap-2">
                       <a
                         className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
-                        href="#"
+                        href="https://www.facebook.com/search/top?q=igurukul%20foundation"
                         aria-label="Facebook"
                       >
                         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
@@ -167,7 +156,7 @@ export default function Contact() {
                       </a>
                       <a
                         className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
-                        href="#"
+                        href="https://www.youtube.com/@iGurukulOdissi"
                         aria-label="YouTube"
                       >
                         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
@@ -179,7 +168,7 @@ export default function Contact() {
                       </a>
                       <a
                         className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
-                        href="#"
+                        href="https://www.instagram.com/igurukulfoundation?igsh=NjZhYmZmNXc0c2ds"
                         aria-label="Instagram"
                       >
                         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">

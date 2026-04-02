@@ -2,9 +2,9 @@ export const site = {
   name: 'iGurukul Foundation',
   shortName: 'IGF',
   tagline:
-    'International Gurukul: A Centre of Excellence in Learning & Human Development',
+    'International Gurukul: A Centre of Excellence in Learning',
   location: 'Immigrant community',
-  email: 'info@igurukul.org',
+  email: 'igurukulfoundation@gmail.com',
   website: 'https://igurukul.org',
 }
 
@@ -14,8 +14,7 @@ export const navItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Programs', to: '/programs' },
-  { label: 'Registration', to: '/registration' },
-  { label: 'News & Events', to: '/news-events' },
+  { label: 'Events', to: '/news-events' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -94,6 +93,7 @@ export type FeaturedEvent = {
   title: string
   flyerImageUrl: string
   flyerImageAlt: string
+  registerUrl: string
   venueName: string
   venueAddress: string
   date: string
@@ -105,6 +105,8 @@ export const featuredEvent: FeaturedEvent = {
   flyerImageUrl:
     'https://igurukulfoundation.org/wp-content/uploads/2026/03/igf2026flyer-768x994.jpeg',
   flyerImageAlt: 'iGurukul Foundation event flyer for 2026',
+  registerUrl:
+    'https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1',
   venueName: 'College of San Mateo Theater',
   venueAddress: '1700 W Hillsdale Blvd, San Mateo, CA 94402',
   date: 'Sunday, April 12, 2026',

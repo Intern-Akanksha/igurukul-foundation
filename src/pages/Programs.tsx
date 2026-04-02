@@ -71,7 +71,10 @@ export default function Programs() {
                   </Button>
                 </Link>
                 <Link to="/contact" className="w-full md:w-auto">
-                  <Button className="w-full md:w-auto" variant="secondary">
+                  <Button
+                    className="w-full md:w-auto bg-white/10 text-white ring-1 ring-white/15 hover:bg-white/15"
+                    variant="secondary"
+                  >
                     Contact Us
                   </Button>
                 </Link>

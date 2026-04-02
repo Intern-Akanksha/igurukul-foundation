@@ -1,12 +1,17 @@
-import type { ButtonHTMLAttributes } from 'react'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import { cn } from '../utils/cn'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonBaseProps = {
   variant?: ButtonVariant
   attention?: boolean
 }
+
+type ButtonAsButton = ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined }
+type ButtonAsLink = AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+
+type ButtonProps = ButtonBaseProps & (ButtonAsButton | ButtonAsLink)
 
 export default function Button({
   variant = 'primary',
@@ -25,9 +30,15 @@ export default function Button({
     ghost: 'bg-transparent text-igf-charcoal hover:bg-white/60',
   }
 
+  const cls = cn(base, variants[variant], attention && 'igf-cta-attention', className)
+
+  if ('href' in props && typeof props.href === 'string') {
+    return <a className={cls} {...props} />
+  }
+
   return (
     <button
-      className={cn(base, variants[variant], attention && 'igf-cta-attention', className)}
+      className={cls}
       {...props}
     />
   )

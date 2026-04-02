@@ -4,6 +4,8 @@ import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { featuredEvent, newsEvents, programs, quotes, site } from '../data/site'
 
+const heroImage = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
+
 function QuoteCard({ text, author }: { text: string; author: string }) {
   return (
     <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
@@ -19,9 +21,14 @@ export default function Home() {
   return (
     <div>
       <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-igf-bg/90 via-igf-bg/65 to-igf-bg/95" />
         <div className="igf-hero-gradient pointer-events-none absolute inset-0" />
         <div className="igf-pattern pointer-events-none absolute inset-0" />
-        <div className="igf-hero-rays pointer-events-none absolute inset-0 opacity-70" />
+        <div className="igf-hero-rays pointer-events-none absolute inset-0 opacity-45" />
         <Container className="relative py-20 sm:py-24">
           <div className="grid items-start gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7 lg:pt-6">
@@ -103,6 +110,98 @@ export default function Home() {
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <div>
+                <h2 className="font-heading text-2xl font-extrabold text-igf-ink">Events</h2>
+                <p className="mt-2 max-w-2xl text-base text-igf-gray">
+                  Upcoming gatherings, workshops, and cultural celebrations.
+                </p>
+              </div>
+              <Link to="/news-events">
+                <Button variant="secondary">See all events</Button>
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delayMs={120} from="left">
+            <div className="mt-10 igf-surface overflow-hidden rounded-3xl border border-black/5 shadow-[0_18px_46px_rgba(0,0,0,0.09)]">
+              <div className="grid gap-8 p-8 md:grid-cols-12 md:items-center">
+                <div className="md:col-span-5">
+                  <a
+                    href={featuredEvent.flyerImageUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block"
+                    aria-label="Open event flyer"
+                  >
+                    <div className="igf-float overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
+                      <img
+                        src={featuredEvent.flyerImageUrl}
+                        alt={featuredEvent.flyerImageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full transform-gpu transition duration-500 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </a>
+                </div>
+
+                <div className="md:col-span-7">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-xs font-semibold text-igf-gray ring-1 ring-black/5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-igf-orange" />
+                    Featured Event
+                  </div>
+                  <div className="mt-4 font-heading text-2xl font-extrabold text-igf-ink">
+                    {featuredEvent.title}
+                  </div>
+                  <div className="mt-4 grid gap-2 text-sm text-igf-gray">
+                    <div>
+                      <span className="font-semibold text-igf-ink">📍</span>{' '}
+                      <span className="font-semibold text-igf-ink">{featuredEvent.venueName}</span>
+                      <div className="pl-5">{featuredEvent.venueAddress}</div>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-igf-ink">📅</span> {featuredEvent.date}
+                    </div>
+                    <div>
+                      <span className="font-semibold text-igf-ink">⏰</span> {featuredEvent.time}
+                    </div>
+                  </div>
+
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <Button href={featuredEvent.registerUrl} attention>
+                      Register for Event
+                    </Button>
+                    <Link to="/news-events#featured-event" className="w-full sm:w-auto">
+                      <Button className="w-full sm:w-auto" variant="secondary">
+                        View Details
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {newsEvents.slice(0, 3).map((item, idx) => (
+              <Reveal key={item.title} delayMs={90 * idx}>
+                <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
+                  <div className="text-xs font-semibold text-igf-orange">{item.date}</div>
+                  <div className="mt-2 font-heading text-base font-extrabold text-igf-ink">
+                    {item.title}
+                  </div>
+                  <div className="mt-2 text-sm leading-relaxed text-igf-gray">{item.summary}</div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20">
+        <Container>
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+              <div>
                 <h2 className="font-heading text-2xl font-extrabold text-igf-ink">
                   Programs & Activities
                 </h2>
@@ -118,7 +217,7 @@ export default function Home() {
           </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {programs.slice(0, 6).map((p, idx) => (
+            {programs.slice(0, 3).map((p, idx) => (
               <Reveal key={p.title} delayMs={80 * idx}>
                 <div className="group igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
                   <div className="flex items-start gap-4">
@@ -208,124 +307,6 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-20">
-        <Container>
-          <Reveal>
-            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-              <div>
-                <h2 className="font-heading text-2xl font-extrabold text-igf-ink">
-                  News & Events
-                </h2>
-                <p className="mt-2 text-base text-igf-gray">
-                  Updates on workshops, seminars, and upcoming gatherings.
-                </p>
-              </div>
-              <Link to="/news-events">
-                <Button variant="secondary">See all updates</Button>
-              </Link>
-            </div>
-          </Reveal>
-
-          <Reveal delayMs={120} from="left">
-            <div className="mt-10 igf-surface overflow-hidden rounded-3xl border border-black/5 shadow-[0_18px_46px_rgba(0,0,0,0.09)]">
-              <div className="grid gap-8 p-8 md:grid-cols-12 md:items-center">
-                <div className="md:col-span-5">
-                  <a
-                    href={featuredEvent.flyerImageUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group block"
-                    aria-label="Open event flyer"
-                  >
-                    <div className="igf-float overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
-                      <img
-                        src={featuredEvent.flyerImageUrl}
-                        alt={featuredEvent.flyerImageAlt}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full transform-gpu transition duration-500 group-hover:scale-[1.02]"
-                      />
-                    </div>
-                  </a>
-                </div>
-
-                <div className="md:col-span-7">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-xs font-semibold text-igf-gray ring-1 ring-black/5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-igf-orange" />
-                    Featured Event
-                  </div>
-                  <div className="mt-4 font-heading text-2xl font-extrabold text-igf-ink">
-                    {featuredEvent.title}
-                  </div>
-                  <div className="mt-4 grid gap-2 text-sm text-igf-gray">
-                    <div>
-                      <span className="font-semibold text-igf-ink">📍</span>{' '}
-                      <span className="font-semibold text-igf-ink">
-                        {featuredEvent.venueName}
-                      </span>
-                      <div className="pl-5">{featuredEvent.venueAddress}</div>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-igf-ink">📅</span>{' '}
-                      {featuredEvent.date}
-                    </div>
-                    <div>
-                      <span className="font-semibold text-igf-ink">⏰</span>{' '}
-                      {featuredEvent.time}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {newsEvents.slice(0, 3).map((item, idx) => (
-              <Reveal key={item.title} delayMs={90 * idx}>
-                <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
-                  <div className="text-xs font-semibold text-igf-orange">
-                    {item.date}
-                  </div>
-                  <div className="mt-2 font-heading text-base font-extrabold text-igf-ink">
-                    {item.title}
-                  </div>
-                  <div className="mt-2 text-sm leading-relaxed text-igf-gray">
-                    {item.summary}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delayMs={220}>
-            <div className="mt-12 igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_18px_46px_rgba(0,0,0,0.09)]">
-              <div className="grid gap-6 md:grid-cols-12 md:items-center">
-                <div className="md:col-span-8">
-                  <div className="font-heading text-xl font-extrabold text-igf-ink">
-                    Ready to learn with us?
-                  </div>
-                  <div className="mt-2 text-base text-igf-gray">
-                    Register for classes or contact us to learn more about
-                    schedules and programs.
-                  </div>
-                </div>
-                <div className="flex flex-col gap-3 md:col-span-4 md:items-end">
-                  <Link to="/registration" className="w-full md:w-auto">
-                    <Button className="w-full md:w-auto" attention>
-                      Register Now
-                    </Button>
-                  </Link>
-                  <Link to="/contact" className="w-full md:w-auto">
-                    <Button className="w-full md:w-auto" variant="secondary">
-                      Contact Us
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
     </div>
   )
 }

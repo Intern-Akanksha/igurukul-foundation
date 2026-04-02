@@ -5,6 +5,8 @@ import { cn } from '../utils/cn'
 import Button from './Button'
 import Container from './Container'
 
+const logoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(() => window.scrollY > 6)
@@ -24,9 +26,13 @@ export default function Navbar() {
     >
       <Container className="flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-b from-[#f07a4a] to-igf-orange text-sm font-extrabold text-white shadow-sm">
-            IGF
-          </span>
+          <img
+            src={logoUrl}
+            alt="iGurukul Foundation logo"
+            loading="eager"
+            decoding="async"
+            className="h-12 w-auto shrink-0 object-contain"
+          />
           <span className="hidden text-sm font-semibold text-igf-charcoal sm:block">
             {site.name}
           </span>

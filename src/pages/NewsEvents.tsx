@@ -1,3 +1,4 @@
+import Button from '../components/Button'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { featuredEvent, newsEvents } from '../data/site'
@@ -8,11 +9,11 @@ export default function NewsEvents() {
       <Container>
         <Reveal>
           <h1 className="font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
-            News & Events
+            Events
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
-            Updates on workshops, seminars, and community celebrations. Check
-            back often for new announcements and highlights.
+            Workshops, seminars, and community celebrations. Check back often
+            for new announcements and highlights.
           </p>
         </Reveal>
 
@@ -72,7 +73,15 @@ export default function NewsEvents() {
                     </div>
                   </div>
 
-                  {/* No buttons requested for events */}
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <Button
+                      href={featuredEvent.registerUrl}
+                      className="bg-white text-igf-charcoal hover:bg-white/90"
+                      attention
+                    >
+                      Register for Event
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
