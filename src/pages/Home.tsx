@@ -48,7 +48,7 @@ export default function Home() {
               <Reveal delayMs={220}>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-igf-gray">
                   A professional, welcoming community space dedicated to social
-                  learning, human development, and preserving Oriya language and
+                  learning, human development, and preserving Odia language and
                   culture across generations.
                 </p>
               </Reveal>
@@ -246,7 +246,7 @@ export default function Home() {
             <div className="lg:col-span-7">
               <Reveal>
                 <h2 className="font-heading text-2xl font-extrabold text-igf-ink">
-                  Why Learn Oriya?
+                  Why Learn Odia?
                 </h2>
                 <p className="mt-2 text-base text-igf-gray">
                   Language is a bridge—between generations, stories, and a sense
@@ -283,7 +283,7 @@ export default function Home() {
                     Featured
                   </div>
                   <div className="mt-3 font-heading text-2xl font-extrabold">
-                    Oriya Literacy Centre
+                    Odia Literacy Centre
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-white/90">
                     Structured learning paths for reading and writing, designed

@@ -15,7 +15,7 @@ export default function Donate() {
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
             Your contribution supports cultural learning, community programs,
-            and preserving Oriya language and heritage.
+            and preserving Odia language and heritage.
           </p>
           <div className="mt-6 max-w-3xl">
             <div className="font-heading text-2xl font-extrabold text-igf-ink">
@@ -37,7 +37,7 @@ export default function Donate() {
                 </div>
                 <div className="mt-4 text-base text-igf-gray">
                   Your contribution supports cultural learning, community programs, and preserving
-                  Oriya language and heritage.
+                  Odia language and heritage.
                 </div>
                 <div className="mt-7">
                   <Button href={donateUrl} attention>

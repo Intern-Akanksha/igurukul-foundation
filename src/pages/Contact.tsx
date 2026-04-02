@@ -1,21 +1,97 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { site } from '../data/site'
 
 type ContactForm = {
-  name: string
+  firstName: string
+  lastName: string
   email: string
   message: string
 }
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: HTMLElement,
+        options: Record<string, unknown>,
+      ) => string | number
+      reset: (widgetId: string | number) => void
+    }
+  }
+}
+
+const contactFormEndpoint = 'https://wajooba-contactform-worker-prod.mark-2c2.workers.dev/'
+const contactFormDomainKey = 'igurukul-foundation-production.up.railway.app'
+
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [form, setForm] = useState<ContactForm>({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     message: '',
   })
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const widgetIdRef = useRef<string | number | null>(null)
+  const widgetRef = useRef<HTMLDivElement | null>(null)
+
+  const apiKey = import.meta.env.VITE_WAJOOBA_CONTACTFORM_API_KEY as string | undefined
+  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+
+  useEffect(() => {
+    if (!turnstileSiteKey) return
+    if (!widgetRef.current) return
+
+    let cancelled = false
+
+    const render = () => {
+      if (cancelled) return
+      if (!window.turnstile) return
+      if (!widgetRef.current) return
+      if (widgetIdRef.current != null) return
+
+      widgetIdRef.current = window.turnstile.render(widgetRef.current, {
+        sitekey: turnstileSiteKey,
+        callback: (token: unknown) => {
+          if (typeof token === 'string') setTurnstileToken(token)
+        },
+        'expired-callback': () => setTurnstileToken(''),
+        'error-callback': () => setTurnstileToken(''),
+      })
+    }
+
+    if (window.turnstile) {
+      render()
+      return () => {
+        cancelled = true
+      }
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"]',
+    )
+    if (existing) {
+      existing.addEventListener('load', render, { once: true })
+      return () => {
+        cancelled = true
+      }
+    }
+
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+    script.async = true
+    script.defer = true
+    script.addEventListener('load', render, { once: true })
+    document.head.appendChild(script)
+
+    return () => {
+      cancelled = true
+    }
+  }, [turnstileSiteKey])
 
   return (
     <div className="py-20">
@@ -44,38 +120,101 @@ export default function Contact() {
                 {sent ? (
                   <div className="mt-6 rounded-2xl bg-white/50 p-5 ring-1 ring-black/5">
                     <div className="text-sm font-semibold text-igf-ink">
-                      Message ready to send
+                      Message sent
                     </div>
                     <div className="mt-2 text-sm text-igf-gray">
-                      Please email{' '}
-                      <a
-                        className="font-semibold text-igf-ink underline decoration-black/15 underline-offset-4 hover:decoration-igf-orange"
-                        href={`mailto:${site.email}`}
-                      >
-                        {site.email}
-                      </a>{' '}
-                      and include your message.
+                      Thanks for reaching out. We’ll get back to you soon.
                     </div>
                   </div>
                 ) : (
                   <form
                     className="mt-6 grid gap-4"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault()
-                      setSent(true)
+                      setError(null)
+
+                      if (!apiKey) {
+                        setError('Contact form is not configured yet. Please try again later.')
+                        return
+                      }
+                      if (!turnstileSiteKey) {
+                        setError('Verification is not configured yet. Please try again later.')
+                        return
+                      }
+                      if (!turnstileToken) {
+                        setError('Please complete the verification step.')
+                        return
+                      }
+
+                      try {
+                        setSubmitting(true)
+                        const res = await fetch(contactFormEndpoint, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            apiKey,
+                            domainKey: contactFormDomainKey,
+                            cfTurnstileResponse: turnstileToken,
+                            email: form.email,
+                            firstName: form.firstName,
+                            lastName: form.lastName,
+                            message: form.message,
+                          }),
+                        })
+
+                        if (!res.ok) {
+                          const text = await res.text().catch(() => '')
+                          setError(text || 'Failed to submit. Please try again.')
+                          return
+                        }
+
+                        setSent(true)
+                        setForm({ firstName: '', lastName: '', email: '', message: '' })
+                        setTurnstileToken('')
+                        if (widgetIdRef.current != null) {
+                          window.turnstile?.reset(widgetIdRef.current)
+                        }
+                      } catch {
+                        setError('Failed to submit. Please try again.')
+                      } finally {
+                        setSubmitting(false)
+                      }
                     }}
                   >
+                    {error ? (
+                      <div className="rounded-2xl bg-white/60 p-4 text-sm font-semibold text-igf-charcoal ring-1 ring-black/10">
+                        {error}
+                      </div>
+                    ) : null}
+
                     <label className="grid gap-2">
                       <span className="text-sm font-semibold text-igf-ink">
-                        Name
+                        First name
                       </span>
                       <input
                         className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
-                        value={form.name}
+                        value={form.firstName}
                         onChange={(e) =>
-                          setForm((s) => ({ ...s, name: e.target.value }))
+                          setForm((s) => ({ ...s, firstName: e.target.value }))
                         }
-                        placeholder="Your name"
+                        placeholder="First name"
+                        autoComplete="given-name"
+                        required
+                      />
+                    </label>
+
+                    <label className="grid gap-2">
+                      <span className="text-sm font-semibold text-igf-ink">
+                        Last name
+                      </span>
+                      <input
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        value={form.lastName}
+                        onChange={(e) =>
+                          setForm((s) => ({ ...s, lastName: e.target.value }))
+                        }
+                        placeholder="Last name"
+                        autoComplete="family-name"
                         required
                       />
                     </label>
@@ -92,6 +231,7 @@ export default function Contact() {
                           setForm((s) => ({ ...s, email: e.target.value }))
                         }
                         placeholder="you@example.com"
+                        autoComplete="email"
                         required
                       />
                     </label>
@@ -111,11 +251,18 @@ export default function Contact() {
                       />
                     </label>
 
+                    {turnstileSiteKey ? (
+                      <div className="mt-1">
+                        <div ref={widgetRef} />
+                      </div>
+                    ) : null}
+
                     <button
                       type="submit"
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-[#f07a4a] to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
+                      disabled={submitting}
+                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-[#f07a4a] to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px disabled:opacity-70"
                     >
-                      Submit
+                      {submitting ? 'Submitting…' : 'Submit'}
                     </button>
                   </form>
                 )}

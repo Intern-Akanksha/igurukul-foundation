@@ -3,7 +3,7 @@ export const site = {
   shortName: 'IGF',
   tagline:
     'International Gurukul: A Centre of Excellence in Learning',
-  location: 'Immigrant community',
+  location: 'San Francisco Bay Area, California',
   email: 'igurukulfoundation@gmail.com',
   website: 'https://igurukul.org',
 }
@@ -45,10 +45,10 @@ export type Program = {
 
 export const programs: Program[] = [
   {
-    title: 'Oriya Literacy Centre',
+    title: 'Odia Literacy Centre',
     description:
       'Language classes that build reading, writing, and cultural confidence for youth and adults.',
-    emphasis: 'Why learn Oriya? Connect across generations and preserve identity.',
+    emphasis: 'Why learn Odia? Connect across generations and preserve identity.',
   },
   {
     title: 'Odissi Dance and Music',
@@ -115,7 +115,7 @@ export const featuredEvent: FeaturedEvent = {
 
 export const newsEvents: NewsEvent[] = [
   {
-    title: 'Oriya Literacy Workshop: Reading & Writing Essentials',
+    title: 'Odia Literacy Workshop: Reading & Writing Essentials',
     date: 'Upcoming',
     summary:
       'A practical session for learners and parents, focused on foundational scripts and pronunciation.',

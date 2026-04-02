@@ -13,7 +13,7 @@ export default function Programs() {
             Programs & Activities
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
-            Explore learning pathways that celebrate Oriya language and culture,
+            Explore learning pathways that celebrate Odia language and culture,
             support wellness, and strengthen community connection through shared
             experiences.
           </p>
@@ -37,7 +37,7 @@ export default function Programs() {
                     {p.emphasis ? (
                       <div className="mt-5 rounded-2xl bg-white/50 p-4 text-sm text-igf-gray ring-1 ring-black/5">
                         <span className="font-semibold text-igf-ink">
-                          Why Learn Oriya?
+                          Why Learn Odia?
                         </span>{' '}
                         {p.emphasis}
                       </div>

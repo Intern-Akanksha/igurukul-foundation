@@ -38,7 +38,7 @@ export default function About() {
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
             {site.name} ({site.shortName}) is a registered nonprofit cultural and
             educational organization focused on social learning, human
-            development, and preserving Oriya language and culture within the
+            development, and preserving Odia language and culture within the
             immigrant community.
           </p>
         </Reveal>
