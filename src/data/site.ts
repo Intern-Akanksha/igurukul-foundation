@@ -103,8 +103,8 @@ export type FeaturedEvent = {
 export const featuredEvent: FeaturedEvent = {
   title: 'IGF 2026 Cultural Program & Community Learning Day',
   flyerImageUrl:
-    'https://igurukulfoundation.org/wp-content/uploads/2026/03/igf2026flyer-768x994.jpeg',
-  flyerImageAlt: 'iGurukul Foundation event flyer for 2026',
+    'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(5).png',
+  flyerImageAlt: 'iGurukul Foundation event flyer',
   registerUrl:
     'https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1',
   venueName: 'College of San Mateo Theater',

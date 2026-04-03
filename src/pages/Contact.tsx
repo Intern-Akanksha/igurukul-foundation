@@ -24,6 +24,7 @@ declare global {
 
 const contactFormEndpoint = 'https://wajooba-contactform-worker-prod.mark-2c2.workers.dev/'
 const contactFormDomainKey = 'igurukul-foundation-production.up.railway.app'
+const fallbackTurnstileSiteKey = '0x4AAAAAABk4xyduLZeZJCMY'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
@@ -36,32 +37,38 @@ export default function Contact() {
     message: '',
   })
   const [turnstileToken, setTurnstileToken] = useState('')
+  const [turnstileLoadError, setTurnstileLoadError] = useState(false)
   const widgetIdRef = useRef<string | number | null>(null)
-  const widgetRef = useRef<HTMLDivElement | null>(null)
+  const [widgetEl, setWidgetEl] = useState<HTMLDivElement | null>(null)
 
   const apiKey = import.meta.env.VITE_WAJOOBA_CONTACTFORM_API_KEY as string | undefined
-  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+  const turnstileSiteKey =
+    (import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined) ?? fallbackTurnstileSiteKey
 
   useEffect(() => {
-    if (!turnstileSiteKey) return
-    if (!widgetRef.current) return
+    if (!widgetEl) return
 
     let cancelled = false
 
     const render = () => {
       if (cancelled) return
       if (!window.turnstile) return
-      if (!widgetRef.current) return
+      if (!widgetEl) return
       if (widgetIdRef.current != null) return
 
-      widgetIdRef.current = window.turnstile.render(widgetRef.current, {
+      widgetEl.innerHTML = ''
+      const id = window.turnstile.render(widgetEl, {
         sitekey: turnstileSiteKey,
+        theme: 'light',
+        size: 'flexible',
         callback: (token: unknown) => {
           if (typeof token === 'string') setTurnstileToken(token)
         },
         'expired-callback': () => setTurnstileToken(''),
         'error-callback': () => setTurnstileToken(''),
       })
+      widgetIdRef.current = id
+      setTurnstileLoadError(false)
     }
 
     if (window.turnstile) {
@@ -76,6 +83,13 @@ export default function Contact() {
     )
     if (existing) {
       existing.addEventListener('load', render, { once: true })
+      existing.addEventListener(
+        'error',
+        () => {
+          if (!cancelled) setTurnstileLoadError(true)
+        },
+        { once: true },
+      )
       return () => {
         cancelled = true
       }
@@ -86,12 +100,25 @@ export default function Contact() {
     script.async = true
     script.defer = true
     script.addEventListener('load', render, { once: true })
+    script.addEventListener(
+      'error',
+      () => {
+        if (!cancelled) setTurnstileLoadError(true)
+      },
+      { once: true },
+    )
     document.head.appendChild(script)
+
+    const timeoutId = window.setTimeout(() => {
+      if (!cancelled && widgetIdRef.current == null) setTurnstileLoadError(true)
+    }, 4500)
 
     return () => {
       cancelled = true
+      window.clearTimeout(timeoutId)
+      widgetIdRef.current = null
     }
-  }, [turnstileSiteKey])
+  }, [turnstileSiteKey, widgetEl])
 
   return (
     <div className="py-20">
@@ -135,10 +162,6 @@ export default function Contact() {
 
                       if (!apiKey) {
                         setError('Contact form is not configured yet. Please try again later.')
-                        return
-                      }
-                      if (!turnstileSiteKey) {
-                        setError('Verification is not configured yet. Please try again later.')
                         return
                       }
                       if (!turnstileToken) {
@@ -251,11 +274,28 @@ export default function Contact() {
                       />
                     </label>
 
-                    {turnstileSiteKey ? (
-                      <div className="mt-1">
-                        <div ref={widgetRef} />
+                    <div className="mt-2">
+                      <div className="igf-surface rounded-2xl border border-black/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                        <div className="text-center text-sm font-semibold text-igf-gray">
+                          Verification
+                        </div>
+                        <div className="mt-3 flex justify-center">
+                          <div className="max-w-full overflow-x-auto">
+                            <div
+                              ref={setWidgetEl}
+                              className="mx-auto"
+                              style={{ minHeight: 68 }}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    ) : null}
+                      {turnstileLoadError ? (
+                        <div className="mt-2 text-center text-sm font-semibold text-igf-gray">
+                          Verification didn&apos;t load. Please disable ad blockers / privacy
+                          shields and refresh.
+                        </div>
+                      ) : null}
+                    </div>
 
                     <button
                       type="submit"

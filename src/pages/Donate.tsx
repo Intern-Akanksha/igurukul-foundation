@@ -1,11 +1,17 @@
+import { useMemo, useState } from 'react'
 import Button from '../components/Button'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { site } from '../data/site'
 
 const donateUrl = 'https://igurukulfoundation.onwajooba.com/checkout/EjAP9eod9q'
+const presetAmounts = [16, 21, 50, 100, 300]
 
 export default function Donate() {
+  const [amount, setAmount] = useState<number>(presetAmounts[2] ?? 50)
+
+  const donateHref = useMemo(() => `${donateUrl}?amount=${amount}`, [amount])
+
   return (
     <div className="py-20">
       <Container>
@@ -40,7 +46,39 @@ export default function Donate() {
                   Odia language and heritage.
                 </div>
                 <div className="mt-7">
-                  <Button href={donateUrl} attention>
+                  <div className="text-sm font-semibold text-igf-ink">Choose an amount</div>
+                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
+                    {presetAmounts.map((v) => (
+                      <button
+                        key={v}
+                        type="button"
+                        onClick={() => setAmount(v)}
+                        className={[
+                          'h-11 rounded-2xl text-sm font-semibold transition ring-1',
+                          amount === v
+                            ? 'bg-igf-charcoal text-white ring-black/10'
+                            : 'bg-white/70 text-igf-ink ring-black/10 hover:bg-white',
+                        ].join(' ')}
+                      >
+                        ${v}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <label className="mt-6 grid gap-2">
+                  <span className="text-sm font-semibold text-igf-ink">Custom amount</span>
+                  <input
+                    type="number"
+                    min={1}
+                    step={1}
+                    value={amount}
+                    onChange={(e) => setAmount(Math.max(1, Number(e.target.value)))}
+                    className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 focus:ring-2"
+                  />
+                </label>
+                <div className="mt-7">
+                  <Button href={donateHref} attention>
                     Donate Now
                   </Button>
                 </div>

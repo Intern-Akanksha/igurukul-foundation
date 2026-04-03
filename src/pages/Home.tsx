@@ -168,7 +168,7 @@ export default function Home() {
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                     <Button href={featuredEvent.registerUrl} attention>
-                      Register for Event
+                      Buy ticket
                     </Button>
                     <Link to="/news-events#featured-event" className="w-full sm:w-auto">
                       <Button className="w-full sm:w-auto" variant="secondary">
@@ -301,6 +301,82 @@ export default function Home() {
                   </div>
                   </div>
                 </div>
+              </Reveal>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id="sponsor" className="bg-white/60 py-20">
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5">
+              <Reveal>
+                <div className="text-xs font-semibold uppercase tracking-wide text-igf-orange">
+                  Sponsor
+                </div>
+                <div className="mt-3 font-heading text-2xl font-extrabold text-igf-ink">
+                  Urban Momo
+                </div>
+                <div className="mt-3 text-base leading-relaxed text-igf-gray">
+                  Bay Area&apos;s Best Indo‑Chinese Cuisine.
+                </div>
+                <div className="mt-5 grid gap-2 text-sm text-igf-gray">
+                  <div>
+                    <span className="font-semibold text-igf-ink">Email:</span>{' '}
+                    <a
+                      className="font-semibold text-igf-ink underline decoration-black/15 underline-offset-4 hover:decoration-igf-orange"
+                      href="mailto:2urbanmomo@gmail.com"
+                    >
+                      2urbanmomo@gmail.com
+                    </a>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-igf-ink">Phone:</span>{' '}
+                    <a
+                      className="font-semibold text-igf-ink underline decoration-black/15 underline-offset-4 hover:decoration-igf-orange"
+                      href="tel:+14089711848"
+                    >
+                      (408) 971 1848
+                    </a>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-igf-ink">Location:</span>{' '}
+                    254 South B Street, San Mateo, 94401
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <a
+                    href="https://www.urbanmomos.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-igf-ink underline decoration-black/15 underline-offset-4 hover:decoration-igf-orange"
+                  >
+                    Click here
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-7">
+              <Reveal delayMs={120} from="right">
+                <a
+                  href="https://www.urbanmomos.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block"
+                  aria-label="Urban Momo sponsor"
+                >
+                  <div className="igf-surface overflow-hidden rounded-3xl border border-black/5 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
+                    <img
+                      src="https://wajweb.b-cdn.net/igurukul-foundation/Image%20(4).jpg"
+                      alt="Urban Momo"
+                      loading="lazy"
+                      decoding="async"
+                      className="mx-auto h-20 w-auto object-contain sm:h-24"
+                    />
+                  </div>
+                </a>
               </Reveal>
             </div>
           </div>

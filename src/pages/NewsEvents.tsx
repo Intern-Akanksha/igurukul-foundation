@@ -79,7 +79,7 @@ export default function NewsEvents() {
                       className="bg-white text-igf-charcoal hover:bg-white/90"
                       attention
                     >
-                      Register for Event
+                      Buy ticket
                     </Button>
                   </div>
                 </div>

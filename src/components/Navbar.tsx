@@ -53,6 +53,12 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
+          <NavLink
+            to="/#sponsor"
+            className="rounded-full px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal"
+          >
+            Sponsor
+          </NavLink>
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -112,6 +118,13 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
+            <NavLink
+              to="/#sponsor"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal"
+            >
+              Sponsor
+            </NavLink>
             <div className="flex flex-col gap-2 pt-2">
               <Link to="/registration" onClick={() => setOpen(false)}>
                 <Button className="w-full" attention>
