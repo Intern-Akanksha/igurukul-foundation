@@ -24,7 +24,7 @@ export default function Button({
 
   const variants: Record<ButtonVariant, string> = {
     primary:
-      'bg-gradient-to-b from-[#f07a4a] to-igf-orange text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md',
+      'bg-gradient-to-b from-igf-orange/90 to-igf-orange text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md',
     secondary:
       'bg-transparent text-igf-charcoal ring-1 ring-igf-silver/70 hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-sm',
     ghost: 'bg-transparent text-igf-charcoal hover:bg-white/60',

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-igf-orange: #e25822;
+  --color-saffron: #E8821A;
+  --color-igf-orange: var(--saffron);
   --color-igf-ink: #1f1f1f;
   --color-igf-charcoal: #2e2e2e;
   --color-igf-gray: #444444;
@@ -11,7 +12,8 @@
 }
 
 :root {
-  --igf-orange: #e25822;
+  --saffron: #E8821A;
+  --igf-orange: var(--saffron);
   --igf-ink: #1f1f1f;
   --igf-charcoal: #2e2e2e;
   --igf-gray: #444444;
@@ -57,8 +59,8 @@ body {
     linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5)),
     radial-gradient(
       circle at 20% 0%,
-      rgba(226, 88, 34, 0.14),
-      rgba(226, 88, 34, 0) 55%
+      rgba(232, 130, 26, 0.14),
+      rgba(232, 130, 26, 0) 55%
     );
   backdrop-filter: blur(10px);
 }
@@ -71,8 +73,8 @@ body {
   background:
     radial-gradient(
       circle at 20% 0%,
-      rgba(226, 88, 34, 0.24),
-      rgba(226, 88, 34, 0) 58%
+      rgba(232, 130, 26, 0.24),
+      rgba(232, 130, 26, 0) 58%
     ),
     radial-gradient(
       circle at 80% 10%,
@@ -81,9 +83,9 @@ body {
     ),
     repeating-conic-gradient(
       from 210deg at 35% 0%,
-      rgba(226, 88, 34, 0.18) 0deg,
-      rgba(226, 88, 34, 0.03) 10deg,
-      rgba(226, 88, 34, 0) 20deg
+      rgba(232, 130, 26, 0.18) 0deg,
+      rgba(232, 130, 26, 0.03) 10deg,
+      rgba(232, 130, 26, 0) 20deg
     );
   mask-image: radial-gradient(circle at 35% 0%, black 0%, transparent 70%);
   transform-origin: 35% 0%;
@@ -95,8 +97,8 @@ body {
   background:
     radial-gradient(
       circle at 25% 0%,
-      rgba(226, 88, 34, 0.25),
-      rgba(226, 88, 34, 0) 55%
+      rgba(232, 130, 26, 0.25),
+      rgba(232, 130, 26, 0) 55%
     ),
     radial-gradient(
       circle at 80% 30%,
@@ -145,9 +147,50 @@ body {
 @keyframes igf-cta-glow {
   0%,
   100% {
-    box-shadow: 0 10px 26px rgba(226, 88, 34, 0.18);
+    box-shadow: 0 10px 26px rgba(232, 130, 26, 0.18);
   }
   50% {
-    box-shadow: 0 14px 34px rgba(226, 88, 34, 0.28);
+    box-shadow: 0 14px 34px rgba(232, 130, 26, 0.28);
+  }
+}
+
+.igf-gallery-strip {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.igf-gallery-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: igf-gallery-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.igf-gallery-img {
+  height: 240px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  filter: brightness(0.9) saturate(1.02);
+  transition: filter 240ms ease;
+}
+
+.igf-gallery-img:hover {
+  filter: brightness(1) saturate(1.05);
+}
+
+@keyframes igf-gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .igf-gallery-track {
+    animation: none;
   }
 }

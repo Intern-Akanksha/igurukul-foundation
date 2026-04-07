@@ -140,7 +140,7 @@ export default function Registration() {
 
                     <button
                       type="submit"
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-[#f07a4a] to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
+                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
                     >
                       Submit registration
                     </button>

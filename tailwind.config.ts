@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'igf-orange': '#E25822',
+        'igf-orange': '#E8821A',
         'igf-ink': '#1F1F1F',
         'igf-charcoal': '#2E2E2E',
         'igf-gray': '#444444',

@@ -1,11 +1,10 @@
 export const site = {
   name: 'iGurukul Foundation',
   shortName: 'IGF',
-  tagline:
-    'International Gurukul: A Centre of Excellence in Learning',
+  tagline: 'Rooted in Heritage · Rising Together',
   location: 'San Francisco Bay Area, California',
   email: 'igurukulfoundation@gmail.com',
-  website: 'https://igurukul.org',
+  website: 'https://igurukulfoundation.org',
 }
 
 export type NavItem = { label: string; to: string }
@@ -30,10 +29,6 @@ export const quotes = {
   huxley: {
     text: 'That men do not learn very much from the lessons of history is the most important of all the lessons of history.',
     author: 'Julian Huxley',
-  },
-  footer: {
-    text: 'There are only two lasting bequests we can give our children: one is roots, the other is wings.',
-    author: 'Hodding Carter',
   },
 }
 

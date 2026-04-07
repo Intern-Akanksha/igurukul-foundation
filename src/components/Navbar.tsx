@@ -24,7 +24,7 @@ export default function Navbar() {
         scrolled && 'shadow-[0_10px_30px_rgba(0,0,0,0.08)]',
       )}
     >
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-16 items-center gap-6">
         <Link to="/" className="flex items-center gap-3">
           <img
             src={logoUrl}
@@ -33,12 +33,17 @@ export default function Navbar() {
             decoding="async"
             className="h-12 w-auto shrink-0 object-contain"
           />
-          <span className="hidden text-sm font-semibold text-igf-charcoal sm:block">
-            {site.name}
-          </span>
+          <div className="hidden leading-tight sm:block">
+            <div className="text-xs font-extrabold tracking-[0.22em] text-igf-charcoal">
+              {site.name.toUpperCase()}
+            </div>
+            <div className="mt-0.5 text-[11px] font-semibold tracking-[0.18em] text-igf-gray">
+              {site.tagline.toUpperCase()}
+            </div>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="ml-auto hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -53,20 +58,11 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
-          <NavLink
-            to="/#sponsor"
-            className="rounded-full px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal"
-          >
-            Sponsor
-          </NavLink>
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
           <Link to="/donate">
             <Button variant="secondary">Donate</Button>
-          </Link>
-          <Link to="/registration">
-            <Button attention>Register Now</Button>
           </Link>
         </div>
 
@@ -118,19 +114,7 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <NavLink
-              to="/#sponsor"
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-2 text-sm font-semibold text-igf-gray transition hover:bg-white/60 hover:text-igf-charcoal"
-            >
-              Sponsor
-            </NavLink>
             <div className="flex flex-col gap-2 pt-2">
-              <Link to="/registration" onClick={() => setOpen(false)}>
-                <Button className="w-full" attention>
-                  Register Now
-                </Button>
-              </Link>
               <Link to="/contact" onClick={() => setOpen(false)}>
                 <Button className="w-full" variant="secondary">
                   Contact Us
