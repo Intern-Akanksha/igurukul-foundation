@@ -3,7 +3,6 @@ import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { featuredEvent, site } from '../data/site'
 import { Calendar, Car, Clock, MapPin, Ticket } from 'lucide-react'
-import { useState } from 'react'
 
 const heroImage = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
 const chakrasBgImage = 'https://wajweb.b-cdn.net/igurukul-foundation/annual26%20flyer.png'
@@ -145,9 +144,6 @@ const programCategories: ProgramCategory[] = [
 ]
 
 export default function Home() {
-  const [subscriberEmail, setSubscriberEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
   return (
     <div>
       <section id="events" className="relative overflow-hidden bg-igf-charcoal py-24 text-white">
@@ -664,60 +660,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </Container>
-      </section>
-
-      <section className="relative overflow-hidden bg-igf-charcoal py-24 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-35">
-          <div className="igf-hero-rays absolute -inset-24 opacity-100" />
-        </div>
-        <Container className="relative">
-          <Reveal>
-            <div className="text-center">
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/80">
-                Stay Connected
-              </div>
-              <h2 className="mt-3 font-heading text-4xl font-extrabold sm:text-5xl">
-                Join Our Community
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75">
-                Receive event updates, cultural insights, volunteer opportunities, and youth leadership announcements.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delayMs={120}>
-            <div className="mx-auto mt-10 max-w-2xl">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  setSubscribed(true)
-                  setSubscriberEmail('')
-                }}
-                className="flex flex-col gap-3 sm:flex-row"
-              >
-                <input
-                  type="email"
-                  value={subscriberEmail}
-                  onChange={(e) => {
-                    setSubscriberEmail(e.target.value)
-                    setSubscribed(false)
-                  }}
-                  required
-                  placeholder="Your email address"
-                  className="h-12 w-full rounded-full bg-white/10 px-5 text-sm text-white placeholder:text-white/55 ring-1 ring-white/15 focus:outline-none focus:ring-2 focus:ring-igf-orange/35"
-                />
-                <Button attention type="submit" className="h-12 px-8">
-                  Subscribe
-                </Button>
-              </form>
-              {subscribed ? (
-                <div className="mt-4 text-center text-sm text-white/80">
-                  Thanks — you’re subscribed.
-                </div>
-              ) : null}
-            </div>
-          </Reveal>
         </Container>
       </section>
 

@@ -83,7 +83,7 @@ export default function Donate() {
                   </Button>
                 </div>
                 <div className="mt-4 text-sm text-igf-gray">
-                  iGurukul Foundation - 501 (c)(3) Non-profit Tx ID #45-294347
+                  iGurukul Foundation - 501 (c)(3) Non-profit Tx ID #45-2943477
                 </div>
               </div>
             </Reveal>

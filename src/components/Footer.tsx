@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { navItems, site } from '../data/site'
+import Button from './Button'
 import Container from './Container'
 import SocialIcon from './SocialIcon'
 
@@ -47,7 +48,7 @@ export default function Footer() {
           </div>
           <div className="mt-6 space-y-2 text-sm text-white/85">
             <div className="font-semibold text-white">iGurukul Foundation — 26 Glorious Years</div>
-            <div>501(c)(3) Nonprofit Organization • Tax ID #45-294347</div>
+            <div>501(c)(3) Nonprofit Organization • Tax ID #45-2943477</div>
             {/* <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <a
                 href={site.website}
@@ -110,6 +111,13 @@ export default function Footer() {
                 ))}
               </div>
             </div>
+            <div className="pt-4">
+              <Link to="/subscribe">
+                <Button attention className="w-full justify-center">
+                  Subscribe Now
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </Container>
@@ -119,19 +127,15 @@ export default function Footer() {
           <div>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </div>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/registration"
-              className="font-semibold text-white hover:text-igf-orange"
-            >
-              Register
-            </Link>
-            <Link
-              to="/contact"
-              className="font-semibold text-white hover:text-igf-orange"
-            >
-              Contact
-            </Link>
+          <div className="flex items-center gap-2 text-xs text-white/70">
+            <span>Powered by</span>
+            <img
+              src="https://www.kalaawishkar.com/lovable-uploads/a7abffa8-d100-4852-8b1a-258625020bbd.png"
+              alt="Wajooba"
+              loading="lazy"
+              decoding="async"
+              className="h-4 w-auto opacity-90"
+            />
           </div>
         </Container>
       </div>

@@ -16,6 +16,7 @@ export default function Layout() {
       '/news-events': `Events | ${base}`,
       '/contact': `Contact | ${base}`,
       '/donate': `Donate | ${base}`,
+      '/subscribe': `Subscribe | ${base}`,
     }
     document.title = map[pathname] ?? base
   }, [pathname])
