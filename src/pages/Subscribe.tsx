@@ -130,7 +130,7 @@ export default function Subscribe() {
 
         <div className="mx-auto mt-12 max-w-2xl">
           <Reveal>
-            <div className="igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+            <div className="igf-surface rounded-3xl border border-black/5 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.08)] sm:p-9">
               {sent ? (
                 <div className="rounded-2xl bg-white/60 p-6 ring-1 ring-black/5">
                   <div className="text-sm font-semibold text-igf-ink">Subscribed</div>
@@ -225,8 +225,10 @@ export default function Subscribe() {
                   </label>
 
                   <div className="mt-2 flex justify-center">
-                    <div className="flex min-h-[70px] items-center justify-center">
-                      <div ref={setWidgetEl} />
+                    <div className="max-w-full overflow-x-auto">
+                      <div className="flex min-h-[70px] items-center justify-center">
+                        <div ref={setWidgetEl} />
+                      </div>
                     </div>
                   </div>
 

@@ -7,8 +7,7 @@ export default function NewsEvents() {
   return (
     <div className="py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <section className="mt-6 rounded-3xl bg-igf-bg p-1">
-          <div className="mx-auto max-w-7xl px-6 py-12">
+        <section className="mt-6 rounded-3xl bg-igf-bg px-6 py-12">
             <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
               <Reveal from="left">
                 <div className="group overflow-hidden rounded-2xl shadow-xl">
@@ -75,7 +74,6 @@ export default function NewsEvents() {
                 </div>
               </Reveal>
             </div>
-          </div>
         </section>
 
       </div>

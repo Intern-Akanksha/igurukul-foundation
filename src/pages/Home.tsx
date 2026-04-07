@@ -5,6 +5,7 @@ import { featuredEvent, site } from '../data/site'
 import { Calendar, Car, Clock, MapPin, Ticket } from 'lucide-react'
 
 const heroImage = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
+const heroBgVideoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4'
 const chakrasBgImage = 'https://wajweb.b-cdn.net/igurukul-foundation/annual26%20flyer.png'
 const odissiHighlightPoster = 'https://wajweb.b-cdn.net/igurukul-foundation/Chakras%20background.jpeg'
 const odissiHighlightVideoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/Odissi%20Highlights%202025.mp4'
@@ -147,7 +148,17 @@ export default function Home() {
   return (
     <div>
       <section id="events" className="relative overflow-hidden bg-igf-charcoal py-24 text-white">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroImage})` }} />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={heroBgVideoUrl}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={heroImage}
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-igf-charcoal/65 via-igf-charcoal/75 to-igf-charcoal/90" />
         <div className="pointer-events-none absolute inset-0 opacity-35">
           <div className="igf-hero-rays absolute -inset-24 opacity-100" />
@@ -418,7 +429,7 @@ export default function Home() {
               <Reveal key={card.title} delayMs={70 * idx}>
                 <div className="overflow-hidden rounded-3xl border border-black/5 bg-white/50 shadow-[0_16px_40px_rgba(0,0,0,0.08)] ring-1 ring-black/5">
                   <img
-                    src={galleryImages[idx % galleryImages.length]}
+                    src={galleryImages.length ? galleryImages[idx % galleryImages.length] : ''}
                     alt={card.title}
                     className="h-72 w-full object-cover transition duration-500 hover:scale-[1.02]"
                     loading="lazy"

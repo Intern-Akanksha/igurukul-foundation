@@ -4,7 +4,7 @@ import ScrollManager from './components/ScrollManager'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Donate from './pages/Donate'
-import Home from './pages/Home'
+import LandingReplica from './pages/LandingReplica'
 import NewsEvents from './pages/NewsEvents'
 import NotFound from './pages/NotFound'
 import Programs from './pages/Programs'
@@ -17,7 +17,7 @@ export default function App() {
       <ScrollManager />
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingReplica />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/donate" element={<Donate />} />

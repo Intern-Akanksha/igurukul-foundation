@@ -21,6 +21,10 @@ export default function Layout() {
     document.title = map[pathname] ?? base
   }, [pathname])
 
+  if (pathname === '/') {
+    return <Outlet />
+  }
+
   return (
     <div className="min-h-dvh bg-igf-bg text-igf-charcoal">
       <Navbar />

@@ -136,7 +136,7 @@ export default function Contact() {
         <div className="mt-12 grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+              <div className="igf-surface rounded-3xl border border-black/5 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.08)] sm:p-9">
                 <div className="font-heading text-xl font-extrabold text-igf-ink">
                   Send a message
                 </div>
@@ -312,7 +312,7 @@ export default function Contact() {
 
           <div className="lg:col-span-5">
             <Reveal delayMs={140}>
-              <div className="rounded-3xl bg-igf-charcoal p-9 text-white shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
+              <div className="rounded-3xl bg-igf-charcoal p-6 text-white shadow-[0_18px_50px_rgba(0,0,0,0.18)] sm:p-9">
                 <div className="text-xs font-semibold uppercase tracking-wide text-white/85">
                   Contact details
                 </div>
@@ -328,7 +328,7 @@ export default function Contact() {
                   </div>
                   <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
                     <div className="font-semibold text-white">Social</div>
-                    <div className="mt-3 flex gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2">
                       <a
                         className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
                         href="https://www.facebook.com/search/top?q=igurukul%20foundation"
