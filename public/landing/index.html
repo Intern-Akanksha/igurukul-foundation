@@ -23,6 +23,9 @@
     }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
+    :root { --anim-play: running; }
+    .cv { content-visibility: auto; contain-intrinsic-size: 900px; }
+    .gallery-strip { content-visibility: auto; contain-intrinsic-size: 260px; }
 
     /* ─── TOKENS ────────────────────────────────────────────────── */
     :root {
@@ -112,25 +115,30 @@
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 5px 0; transition: 0.3s; }
 
     @media (max-width: 900px) {
+      #nav { padding: 0.8rem 1.25rem; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: block; }
       #nav.open .nav-links {
-        display: flex; flex-direction: column; position: absolute;
-        top: 100%; left: 0; right: 0; background: rgba(10,7,4,0.95);
-        padding: 1.5rem 2.5rem; gap: 1rem; border-bottom: 1px solid var(--border);
+        display: flex; flex-direction: column; position: static;
+        width: 100%;
+        padding: 1.25rem 0 0;
+        gap: 1rem;
+        border-top: 1px solid var(--border);
+        margin-top: 0.75rem;
       }
       #nav.open .nav-cta {
-        display: flex; position: absolute; top: calc(100% + 200px);
-        left: 0; right: 0; padding: 0 2.5rem 1.5rem;
-        background: rgba(10,7,4,0.95);
+        display: flex; position: static;
+        width: 100%;
+        padding: 1rem 0 1.25rem;
       }
+      #nav.open { align-items: flex-start; flex-wrap: wrap; background: rgba(10,7,4,0.95); }
     }
 
     /* ═══════════════════════════════════════════════════════════════
        VIDEO HERO
     ═══════════════════════════════════════════════════════════════ */
     .video-hero {
-      position: relative; width: 100%; height: 100vh; min-height: 600px;
+      position: relative; width: 100%; height: 100svh; min-height: 560px;
       overflow: hidden; display: flex; align-items: center; justify-content: center;
     }
     .video-hero video {
@@ -138,6 +146,10 @@
       min-width: 100%; min-height: 100%;
       transform: translate(-50%, -50%);
       object-fit: cover;
+    }
+    body.no-hero-video .video-hero video { display: none; }
+    body.no-hero-video .video-hero {
+      background: url('assets/PicSlideShow/iGurukul_2025_0045.jpeg') center/cover no-repeat;
     }
     .video-hero::after {
       content: ''; position: absolute; inset: 0;
@@ -180,6 +192,12 @@
     }
     .hero-chip .icon { font-size: 1.1rem; }
     .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 520px) {
+      .video-hero { min-height: 520px; }
+      .hero-content { padding: 1.25rem; }
+      .hero-buttons { gap: 0.75rem; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+    }
 
     /* ═══════════════════════════════════════════════════════════════
        EVENT INFO BAR
@@ -201,8 +219,13 @@
     ═══════════════════════════════════════════════════════════════ */
     .parallax-section {
       position: relative; padding: 6rem 2rem;
-      background-attachment: fixed; background-size: cover;
+      background-attachment: scroll; background-size: cover;
       background-position: center; background-repeat: no-repeat;
+    }
+    #program.parallax-section {
+      background-size: contain;
+      background-position: center top;
+      background-repeat: no-repeat;
     }
     .parallax-section::before {
       content: ''; position: absolute; inset: 0;
@@ -212,6 +235,7 @@
 
     @media (max-width: 768px) {
       .parallax-section { background-attachment: scroll; }
+      .parallax-section { padding: 4.5rem 1.25rem; }
     }
 
     /* ═══════════════════════════════════════════════════════════════
@@ -252,6 +276,10 @@
       display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.2rem;
     }
+    @media (max-width: 680px) {
+      .program-grid { grid-template-columns: 1fr; }
+      .program-card { padding: 1.1rem; }
+    }
     .program-card {
       background: rgba(255,255,255,0.03); border: 1px solid var(--border);
       border-radius: 8px; padding: 1.2rem 1.5rem; transition: all 0.3s;
@@ -285,6 +313,10 @@
       display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem; max-width: 1100px; margin: 0 auto;
     }
+    @media (max-width: 680px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .featured-card img { height: 280px; }
+    }
     .featured-card {
       border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
       background: var(--dark-mid); transition: all 0.3s;
@@ -307,8 +339,8 @@
     ═══════════════════════════════════════════════════════════════ */
     .chakras-hero {
       position: relative; padding: 8rem 2rem; text-align: center;
-      background: url('assets/KonarkWheel-Edited.jpg') center 55%/cover no-repeat;
-      background-attachment: fixed;
+      background: url('assets/Chakras background.jpeg') center/cover no-repeat;
+      background-attachment: scroll;
       min-height: 70vh; display: flex; align-items: center; justify-content: center;
     }
     .chakras-hero::before {
@@ -355,6 +387,9 @@
     .gallery-track {
       display: flex; animation: scrollGallery 60s linear infinite;
       gap: 0;
+      will-change: transform;
+      transform: translateZ(0);
+      animation-play-state: var(--anim-play);
     }
     .gallery-track img {
       height: 250px; width: auto; object-fit: cover; flex-shrink: 0;
@@ -365,6 +400,14 @@
     @keyframes scrollGallery {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      .gallery-track { animation: none !important; }
+      #nav { backdrop-filter: none; }
+      .chakras-content { backdrop-filter: none; }
     }
 
     /* ═══════════════════════════════════════════════════════════════
@@ -538,8 +581,8 @@
 
 <!-- ═══════════════ VIDEO HERO ═══════════════ -->
 <section class="video-hero">
-  <video autoplay muted loop playsinline>
-    <source src="assets/iGF2026Promo.mp4" type="video/mp4" />
+  <video autoplay muted loop playsinline preload="metadata" poster="assets/PicSlideShow/iGurukul_2025_0045.jpeg">
+    <source src="https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4" type="video/mp4" />
   </video>
   <div class="hero-content">
     <div class="hero-badge cinzel">26 Glorious Years</div>
@@ -567,7 +610,7 @@
 </div>
 
 <!-- ═══════════════ ABOUT ═══════════════ -->
-<section id="about" class="about-section">
+<section id="about" class="about-section cv">
   <span class="section-label reveal">Our Legacy</span>
   <h2 class="section-title reveal">Celebrating 26 Years of Heritage & Culture</h2>
   <p class="section-sub reveal">
@@ -587,40 +630,40 @@
 <!-- ═══════════════ PHOTO GALLERY STRIP ═══════════════ -->
 <div class="gallery-strip">
   <div class="gallery-track">
-    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" />
-    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" />
-    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" />
-    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" />
-    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" />
-    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" />
-    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" />
-    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" />
+    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" loading="lazy" decoding="async" fetchpriority="low" />
     <!-- Duplicate set for seamless loop -->
-    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" />
-    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" />
-    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" />
-    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" />
-    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" />
-    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" />
-    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" />
-    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" />
+    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" loading="lazy" decoding="async" fetchpriority="low" />
   </div>
 </div>
 
 <!-- ═══════════════ PROGRAM ═══════════════ -->
-<section id="program" class="parallax-section" style="background-image: url('assets/PicSlideShow/RKPH3898.jpg');">
+<section id="program" class="parallax-section cv" style="background-image: url('assets/PicSlideShow/RKPH3898.jpg');">
   <div style="text-align:center;">
     <span class="section-label reveal">The Journey</span>
     <h2 class="section-title reveal">Program Lineup</h2>
@@ -841,49 +884,49 @@
 </section>
 
 <!-- ═══════════════ FEATURED PERFORMANCES ═══════════════ -->
-<section id="featured" class="flyer-showcase">
+<section id="featured" class="flyer-showcase cv">
   <span class="section-label reveal">Spotlight</span>
   <h2 class="section-title reveal">Featured Performances</h2>
   <p class="section-sub reveal">Highlights from our most anticipated acts</p>
 
   <div class="featured-grid">
     <div class="featured-card reveal">
-      <img src="assets/EchoesOfKathak_igf26.jpg" alt="In Sync Kathak" />
+      <img src="assets/EchoesOfKathak_igf26.jpg" alt="In Sync Kathak" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>In Sync Kathak</h4>
         <p>Students of Smt. Anupama Srivastava present a beautiful journey through rhythm, expression, and India's timeless heritage.</p>
       </div>
     </div>
     <div class="featured-card reveal">
-      <img src="assets/GuruSanjibJi_igf26.jpg" alt="Guru Sanjib Bhattacharya" />
+      <img src="assets/GuruSanjibJi_igf26.jpg" alt="Guru Sanjib Bhattacharya" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>Movement in Motion</h4>
         <p>President's Award-winning Guru Sanjib Bhattacharya and his students present captivating Manipuri and contemporary performances.</p>
       </div>
     </div>
     <div class="featured-card reveal">
-      <img src="assets/KanchAbhijan_igf26.jpg" alt="Kanchi Abhijan" />
+      <img src="assets/KanchAbhijan_igf26.jpg" alt="Kanchi Abhijan" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>Kanchi Abhijan — Odia Drama</h4>
         <p>A powerful Odia drama bringing alive a story of valor, devotion, and divine grace. Directed by Kuku Das.</p>
       </div>
     </div>
     <div class="featured-card reveal">
-      <img src="assets/NSA_OdiaSong_igf26.jpg" alt="Nritya Sangeetham Academy" />
+      <img src="assets/NSA_OdiaSong_igf26.jpg" alt="Nritya Sangeetham Academy" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>Nritya Sangeetham Academy</h4>
         <p>Young stars take the stage with soulful Odia melodies, guided by Aryashree Mohapatra and composed by Guru Pradipta Kishore Swain.</p>
       </div>
     </div>
     <div class="featured-card reveal">
-      <img src="assets/AsaktiFlyer.jpeg" alt="Ashakti Drama" />
+      <img src="assets/AsaktiFlyer.jpeg" alt="Ashakti Drama" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>Ashakti (Addiction) — Odia Drama</h4>
         <p>Bay Area Natua Gosthi (BANG) presents a thought-provoking production that resonates deeply with today's world.</p>
       </div>
     </div>
     <div class="featured-card reveal">
-      <img src="assets/igf_Flyer26.jpg" alt="iGurukul Cultural Extravaganza 2026 Flyer" />
+      <img src="assets/igf_Flyer26.jpg" alt="iGurukul Cultural Extravaganza 2026 Flyer" loading="lazy" decoding="async" />
       <div class="card-body">
         <h4>Event Overview</h4>
         <p>250+ artists, 15+ academies, 500+ attendees. A joyful day of music, movement, food, and cultural connection.</p>
@@ -895,38 +938,38 @@
 <!-- ═══════════════ SECOND GALLERY STRIP ═══════════════ -->
 <div class="gallery-strip">
   <div class="gallery-track" style="animation-direction: reverse;">
-    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" />
-    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" />
-    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" />
-    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" loading="lazy" decoding="async" fetchpriority="low" />
     <!-- Duplicate for seamless loop -->
-    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" />
-    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" />
-    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" />
-    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" />
-    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" loading="lazy" decoding="async" fetchpriority="low" />
   </div>
 </div>
 
 <!-- ═══════════════ GRAND FINALE — THE CHAKRAS ═══════════════ -->
-<section id="finale" class="chakras-hero">
+<section id="finale" class="chakras-hero cv">
   <div class="chakras-content">
     <span class="section-label reveal" style="color: #F0C060;">🕉️ Grand Finale</span>
     <h2 class="reveal">The Chakras</h2>
@@ -945,7 +988,7 @@
 </section>
 
 <!-- ═══════════════ ODISSI VIDEO HIGHLIGHT ═══════════════ -->
-<section style="padding: 5rem 2rem; text-align: center; background: var(--dark-mid);">
+<section class="cv" style="padding: 5rem 2rem; text-align: center; background: var(--dark-mid);">
   <span class="section-label reveal">From Last Year</span>
   <h2 class="section-title reveal">Odissi Highlights 2025</h2>
   <p class="section-sub reveal">A glimpse into the beauty, grace, and devotion of classical Odissi — as performed at our 25th anniversary celebration.</p>
@@ -959,7 +1002,7 @@
 </section>
 
 <!-- ═══════════════ TICKETS CTA ═══════════════ -->
-<section id="tickets" class="tickets-cta">
+<section id="tickets" class="tickets-cta cv">
   <span class="section-label reveal">Join Us</span>
   <h2 class="reveal">Secure Your Tickets</h2>
   <div class="ornament"><div class="ornament-diamond"></div></div>
@@ -987,7 +1030,7 @@
 </section>
 
 <!-- ═══════════════ SPONSORSHIP ═══════════════ -->
-<section class="parallax-section" style="background-image: url('assets/PicSlideShow/iGurukul_2025_0045.jpeg'); text-align: center;">
+<section class="parallax-section cv" style="background-image: url('assets/PicSlideShow/iGurukul_2025_0045.jpeg'); text-align: center;">
   <span class="section-label reveal">Support the Arts</span>
   <h2 class="section-title reveal">Sponsorship Opportunities</h2>
   <p class="section-sub reveal">Help us celebrate and preserve Indian classical arts for the next generation</p>
@@ -1032,24 +1075,24 @@
 </section>
 
 <!-- ═══════════════ SPONSORS / PARTNERS ═══════════════ -->
-<section id="sponsors" class="sponsors-section">
+<section id="sponsors" class="sponsors-section cv">
   <span class="section-label reveal" style="color: var(--indigo);">Our Partners</span>
   <h2 class="section-title reveal">Partnering Organizations</h2>
   <p class="section-sub reveal">Proudly supported by these amazing organizations</p>
   <div class="sponsor-logos reveal">
-    <img src="assets/Sponsors_igf26/KRIPA Logo.jpeg" alt="KRIPA — Kala Roopa Institute of Performing Arts" title="KRIPA" />
-    <img src="assets/Sponsors_igf26/LogoInSyncKathak.jpg" alt="In Sync Kathak" title="In Sync Kathak" />
-    <img src="assets/Sponsors_igf26/Movements in Motion_logo final-01.png" alt="Movement in Motion" title="Movement in Motion" />
-    <img src="assets/Sponsors_igf26/JKM-color-logo.jpg" alt="Jyoti Kala Mandir" title="Jyoti Kala Mandir" />
-    <img src="assets/Sponsors_igf26/CNDA_LOGO.jpg" alt="California Nupur Dance Academy" title="California Nupur Dance Academy" />
-    <img src="assets/Sponsors_igf26/iGO-Logo-Black.png" alt="iGurukul Odissi" title="iGurukul Odissi" />
-    <img src="assets/Sponsors_igf26/igachieverlogo.jpeg" alt="iG Achiever" title="iG Achiever" />
-    <img src="assets/Sponsors_igf26/Urban MoMo Logo.jpg" alt="Urban MoMo" title="Urban MoMo" />
+    <img src="assets/Sponsors_igf26/KRIPA Logo.jpeg" alt="KRIPA — Kala Roopa Institute of Performing Arts" title="KRIPA" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/LogoInSyncKathak.jpg" alt="In Sync Kathak" title="In Sync Kathak" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/Movements in Motion_logo final-01.png" alt="Movement in Motion" title="Movement in Motion" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/JKM-color-logo.jpg" alt="Jyoti Kala Mandir" title="Jyoti Kala Mandir" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/CNDA_LOGO.jpg" alt="California Nupur Dance Academy" title="California Nupur Dance Academy" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/iGO-Logo-Black.png" alt="iGurukul Odissi" title="iGurukul Odissi" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/igachieverlogo.jpeg" alt="iG Achiever" title="iG Achiever" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/Urban MoMo Logo.jpg" alt="Urban MoMo" title="Urban MoMo" loading="lazy" decoding="async" />
   </div>
 </section>
 
 <!-- ═══════════════ VENUE ═══════════════ -->
-<section id="venue" class="venue-section">
+<section id="venue" class="venue-section cv">
   <div style="text-align:center;">
     <span class="section-label reveal">Location</span>
     <h2 class="section-title reveal">Venue & Directions</h2>
@@ -1103,6 +1146,8 @@
     <a href="https://igurukulfoundation.org" target="_blank">igurukulfoundation.org</a>
     &nbsp;•&nbsp;
     <a href="mailto:igurukulfoundation@gmail.com">igurukulfoundation@gmail.com</a>
+    &nbsp;•&nbsp;
+    <a href="tel:+15103644163">+1-5103644163</a>
   </p>
   <div class="footer-socials">
     <a href="https://www.facebook.com/search/top?q=igurukul%20foundation" target="_blank" rel="noreferrer" aria-label="Facebook">
@@ -1129,6 +1174,26 @@
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(connection && connection.saveData);
+  const effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : '';
+  const slowConnection = effectiveType === 'slow-2g' || effectiveType === '2g';
+
+  if (prefersReducedMotion || saveData || slowConnection) {
+    document.documentElement.style.setProperty('--anim-play', 'paused');
+    document.body.classList.add('no-hero-video');
+    const heroVideo = document.querySelector('.video-hero video');
+    if (heroVideo) {
+      try { heroVideo.pause(); } catch (e) {}
+      heroVideo.removeAttribute('autoplay');
+    }
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    document.documentElement.style.setProperty('--anim-play', document.hidden ? 'paused' : 'running');
+  });
+
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
@@ -1147,7 +1212,7 @@
     a.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
       // Close mobile menu
       document.getElementById('nav').classList.remove('open');
     });
