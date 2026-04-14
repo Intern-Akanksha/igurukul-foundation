@@ -596,6 +596,7 @@
     <div class="hero-buttons reveal">
       <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" class="btn btn-primary">🎟️ Get Tickets — $15</a>
       <a href="#program" class="btn btn-outline">View Program</a>
+      <a href="https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf" class="btn btn-outline" onclick="downloadBrochure(event)">Download Brochure</a>
     </div>
   </div>
 </section>
@@ -1174,6 +1175,28 @@
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
+  const brochureUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf';
+  const brochureFilename = 'iGurukul-Cultural-Extravaganza-2026-Brochure.pdf';
+
+  async function downloadBrochure(event) {
+    if (event) event.preventDefault();
+    try {
+      const response = await fetch(brochureUrl, { mode: 'cors' });
+      if (!response.ok) throw new Error('download_failed');
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = brochureFilename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch (e) {
+      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const saveData = !!(connection && connection.saveData);
