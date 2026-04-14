@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iGurukul Cultural Extravaganza 2026 — 26 Glorious Years</title>
+  <meta name="description" content="Join 250+ artists from 15+ Bay Area dance and music institutions for a joyful day of music, movement, food, and cultural connection. Sunday, April 12, 2026 at College of San Mateo Theater." />
+  <base href="https://wajweb.b-cdn.net/igurukul-foundation/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0704;
+      color: #f0e8d8;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    :root { --anim-play: running; }
+    .cv { content-visibility: auto; contain-intrinsic-size: 900px; }
+    .gallery-strip { content-visibility: auto; contain-intrinsic-size: 260px; }
+
+    /* ─── TOKENS ────────────────────────────────────────────────── */
+    :root {
+      --saffron: #E8821A;
+      --gold: #C9943A;
+      --gold-lt: #F0C060;
+      --indigo: #2A3590;
+      --indigo-lt: #3D4EAA;
+      --cream: #FDF6ED;
+      --cream-dim: #F5E8D0;
+      --dark: #0a0704;
+      --dark-mid: #150E07;
+      --dark-warm: #1E1409;
+      --text-dim: #B8A080;
+      --border: rgba(201,148,58,0.25);
+    }
+
+    /* ─── TYPOGRAPHY ────────────────────────────────────────────── */
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.2; }
+    .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.12em; }
+    .section-label {
+      font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block;
+    }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--cream); margin-bottom: 1rem; }
+    .section-sub { font-size: 1.05rem; color: var(--text-dim); max-width: 640px; margin: 0 auto 2rem; }
+
+    /* ─── BUTTONS ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 3px;
+      font-family: 'Cinzel', serif; font-size: 0.82rem;
+      letter-spacing: 0.12em; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      color: #fff; box-shadow: 0 4px 20px rgba(232,130,26,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,130,26,0.5); }
+    .btn-outline {
+      background: transparent; color: var(--gold-lt);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-outline:hover { background: rgba(201,148,58,0.12); transform: translateY(-2px); }
+    .btn-white {
+      background: #fff; color: var(--dark-warm);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+
+    /* ─── ORNAMENT ──────────────────────────────────────────────── */
+    .ornament {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem auto; width: fit-content;
+    }
+    .ornament::before, .ornament::after {
+      content: ''; display: block; width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .ornament::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    .ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0.8rem 2.5rem;
+      background: rgba(10,7,4,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-logo span { font-family: 'Cinzel', serif; font-size: 0.9rem; letter-spacing: 0.1em; color: var(--gold-lt); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-dim); transition: color 0.3s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+    .nav-cta .btn { padding: 0.6rem 1.4rem; font-size: 0.72rem; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 5px 0; transition: 0.3s; }
+
+    @media (max-width: 900px) {
+      #nav { padding: 0.8rem 1.25rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      #nav.open .nav-links {
+        display: flex; flex-direction: column; position: static;
+        width: 100%;
+        padding: 1.25rem 0 0;
+        gap: 1rem;
+        border-top: 1px solid var(--border);
+        margin-top: 0.75rem;
+      }
+      #nav.open .nav-cta {
+        display: flex; position: static;
+        width: 100%;
+        padding: 1rem 0 1.25rem;
+      }
+      #nav.open { align-items: flex-start; flex-wrap: wrap; background: rgba(10,7,4,0.95); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       VIDEO HERO
+    ═══════════════════════════════════════════════════════════════ */
+    .video-hero {
+      position: relative; width: 100%; height: 100svh; min-height: 560px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .video-hero video {
+      position: absolute; top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+    body.no-hero-video .video-hero video { display: none; }
+    body.no-hero-video .video-hero {
+      background: url('assets/PicSlideShow/iGurukul_2025_0045.jpeg') center/cover no-repeat;
+    }
+    .video-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,7,4,0.3) 0%,
+        rgba(10,7,4,0.1) 40%,
+        rgba(10,7,4,0.5) 70%,
+        rgba(10,7,4,0.95) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center;
+      padding: 2rem; max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-block; padding: 0.5rem 1.5rem; border: 1px solid var(--gold);
+      border-radius: 50px; font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.2em; color: var(--gold-lt); margin-bottom: 1.5rem;
+      background: rgba(201,148,58,0.08);
+    }
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); color: #fff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.7); margin-bottom: 1rem;
+    }
+    .hero-content h1 em { color: var(--saffron); font-style: normal; }
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.3rem); color: var(--cream-dim);
+      margin-bottom: 0.5rem; font-weight: 300;
+    }
+    .hero-details {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .hero-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; border-radius: 50px;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+      font-size: 0.85rem; color: var(--cream);
+    }
+    .hero-chip .icon { font-size: 1.1rem; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 520px) {
+      .video-hero { min-height: 520px; }
+      .hero-content { padding: 1.25rem; }
+      .hero-buttons { gap: 0.75rem; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       EVENT INFO BAR
+    ═══════════════════════════════════════════════════════════════ */
+    .info-bar {
+      background: linear-gradient(135deg, var(--indigo), #1a2470);
+      padding: 2rem 2rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem 3rem;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: #fff; font-size: 0.95rem;
+    }
+    .info-item .icon { font-size: 1.4rem; }
+    .info-item strong { color: var(--gold-lt); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       PARALLAX SECTION
+    ═══════════════════════════════════════════════════════════════ */
+    .parallax-section {
+      position: relative; padding: 6rem 2rem;
+      background-attachment: scroll; background-size: cover;
+      background-position: center; background-repeat: no-repeat;
+    }
+    #program.parallax-section {
+      background-size: contain;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+    .parallax-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(10,7,4,0.82);
+    }
+    .parallax-section > * { position: relative; z-index: 2; }
+
+    @media (max-width: 768px) {
+      .parallax-section { background-attachment: scroll; }
+      .parallax-section { padding: 4.5rem 1.25rem; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       ABOUT / STATS
+    ═══════════════════════════════════════════════════════════════ */
+    .about-section { padding: 5rem 2rem; text-align: center; background: var(--dark-mid); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem; max-width: 800px; margin: 3rem auto 0;
+    }
+    .stat-card {
+      padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;
+      background: rgba(201,148,58,0.04);
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif; font-size: 2.5rem;
+      color: var(--saffron); font-weight: 700;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.3rem; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       PROGRAM SECTIONS
+    ═══════════════════════════════════════════════════════════════ */
+    .program-section { max-width: 1100px; margin: 0 auto; }
+    .program-category {
+      margin-bottom: 3rem;
+    }
+    .category-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem; border-bottom: 1px solid var(--border);
+    }
+    .category-icon { font-size: 1.8rem; }
+    .category-title {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      color: var(--cream);
+    }
+    .program-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    @media (max-width: 680px) {
+      .program-grid { grid-template-columns: 1fr; }
+      .program-card { padding: 1.1rem; }
+    }
+    .program-card {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem 1.5rem; transition: all 0.3s;
+    }
+    .program-card:hover {
+      background: rgba(201,148,58,0.06);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .program-card .num {
+      font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.15em;
+      color: var(--saffron); margin-bottom: 0.3rem;
+    }
+    .program-card h4 {
+      font-size: 1.05rem; color: var(--cream); margin-bottom: 0.3rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+    }
+    .program-card .artist {
+      font-size: 0.88rem; color: var(--text-dim); font-style: italic;
+    }
+    .program-card .flyer-badge {
+      display: inline-block; margin-top: 0.5rem; padding: 0.15rem 0.6rem;
+      background: rgba(232,130,26,0.15); border-radius: 3px;
+      font-size: 0.7rem; color: var(--saffron); letter-spacing: 0.05em;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FEATURED PERFORMANCES (FLYER CARDS)
+    ═══════════════════════════════════════════════════════════════ */
+    .featured-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 680px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .featured-card img { height: 280px; }
+    }
+    .featured-card {
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+      background: var(--dark-mid); transition: all 0.3s;
+    }
+    .featured-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .featured-card img {
+      width: 100%; height: 320px; object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .featured-card:hover img { transform: scale(1.03); }
+    .featured-card .card-body { padding: 1.2rem; }
+    .featured-card h4 {
+      font-size: 1.1rem; color: var(--cream); margin-bottom: 0.3rem;
+      font-family: 'Inter', sans-serif; font-weight: 600;
+    }
+    .featured-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       GRAND FINALE / CHAKRAS
+    ═══════════════════════════════════════════════════════════════ */
+    .chakras-hero {
+      position: relative; padding: 8rem 2rem; text-align: center;
+      background: url('assets/Chakras background.jpeg') center/cover no-repeat;
+      background-attachment: scroll;
+      min-height: 70vh; display: flex; align-items: center; justify-content: center;
+    }
+    .chakras-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(10,7,4,0.25) 0%, rgba(10,7,4,0.92) 100%),
+        linear-gradient(to bottom, rgba(10,7,4,0.55) 0%, rgba(10,7,4,0.35) 35%, rgba(10,7,4,0.95) 100%);
+    }
+    .chakras-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,7,4,0.95) 0%, rgba(10,7,4,0) 18%, rgba(10,7,4,0) 82%, rgba(10,7,4,0.95) 100%);
+      pointer-events: none;
+    }
+    .chakras-hero > * { position: relative; z-index: 2; }
+    .chakras-content {
+      max-width: 900px;
+      padding: 2.5rem 2.25rem;
+      border: 1px solid rgba(201,148,58,0.35);
+      border-radius: 14px;
+      background: rgba(10,7,4,0.74);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+    }
+    .chakras-content h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem); color: #fff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    }
+    .chakras-content .subtitle {
+      font-size: 1.2rem; color: var(--gold-lt); margin: 1rem 0;
+      font-style: italic;
+    }
+    .chakras-content p { max-width: 600px; margin: 0 auto; color: var(--cream-dim); }
+    @media (max-width: 680px) {
+      .chakras-hero { padding: 6.5rem 1.25rem; min-height: 72vh; background-attachment: scroll; }
+      .chakras-content { padding: 2rem 1.5rem; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       SLIDESHOW GALLERY
+    ═══════════════════════════════════════════════════════════════ */
+    .gallery-strip {
+      display: flex; overflow: hidden; position: relative; padding: 0;
+    }
+    .gallery-track {
+      display: flex; animation: scrollGallery 60s linear infinite;
+      gap: 0;
+      will-change: transform;
+      transform: translateZ(0);
+      animation-play-state: var(--anim-play);
+    }
+    .gallery-track img {
+      height: 250px; width: auto; object-fit: cover; flex-shrink: 0;
+      filter: brightness(0.8);
+      transition: filter 0.3s;
+    }
+    .gallery-track img:hover { filter: brightness(1); }
+    @keyframes scrollGallery {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      .gallery-track { animation: none !important; }
+      #nav { backdrop-filter: none; }
+      .chakras-content { backdrop-filter: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       SPONSORS
+    ═══════════════════════════════════════════════════════════════ */
+    .sponsors-section { padding: 5rem 2rem; text-align: center; background: var(--cream); }
+    .sponsors-section .section-title { color: var(--dark); }
+    .sponsors-section .section-sub { color: #666; }
+    .sponsor-logos {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 2.5rem; max-width: 900px; margin: 2rem auto 0;
+    }
+    .sponsor-logos img {
+      height: 70px; width: auto; object-fit: contain;
+      filter: grayscale(30%); transition: all 0.3s;
+      opacity: 0.85;
+    }
+    .sponsor-logos img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.08); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       SPONSORSHIP TIERS
+    ═══════════════════════════════════════════════════════════════ */
+    .tiers-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 2.5rem auto 0;
+    }
+    .tier-card {
+      padding: 2rem 1.5rem; border-radius: 10px; text-align: center;
+      transition: transform 0.3s;
+    }
+    .tier-card:hover { transform: translateY(-4px); }
+    .tier-gold { background: linear-gradient(135deg, #C9943A, #E8821A); color: #fff; }
+    .tier-silver { background: linear-gradient(135deg, #8E8E8E, #B0B0B0); color: #fff; }
+    .tier-bronze { background: linear-gradient(135deg, #B87333, #CD853F); color: #fff; }
+    .tier-popular { background: linear-gradient(135deg, var(--indigo), var(--indigo-lt)); color: #fff; }
+    .tier-card h4 { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .tier-card .price {
+      font-family: 'Playfair Display', serif; font-size: 2rem;
+      font-weight: 700; margin: 0.5rem 0;
+    }
+    .tier-card ul {
+      list-style: none; font-size: 0.85rem; line-height: 2;
+      text-align: left; padding-left: 0;
+    }
+    .tier-card li::before { content: '✓ '; font-weight: 700; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       VENUE / MAP
+    ═══════════════════════════════════════════════════════════════ */
+    .venue-section {
+      padding: 5rem 2rem; background: var(--dark-mid);
+    }
+    .venue-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      max-width: 1000px; margin: 2rem auto 0; align-items: center;
+    }
+    .venue-info h3 { font-size: 1.5rem; color: var(--cream); margin-bottom: 1rem; }
+    .venue-detail {
+      display: flex; gap: 0.8rem; margin-bottom: 1rem; color: var(--text-dim);
+      font-size: 0.95rem; align-items: flex-start;
+    }
+    .venue-detail .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .venue-map {
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+    }
+    .venue-map iframe { width: 100%; height: 100%; border: none; }
+    @media (max-width: 768px) {
+      .venue-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       TICKETS CTA
+    ═══════════════════════════════════════════════════════════════ */
+    .tickets-cta {
+      padding: 5rem 2rem; text-align: center;
+      background: linear-gradient(135deg, var(--dark-warm), var(--dark));
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .tickets-cta h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--cream); margin-bottom: 0.5rem; }
+    .ticket-prices {
+      display: flex; justify-content: center; gap: 2rem; margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .ticket-box {
+      padding: 1.5rem 2.5rem; border: 2px solid var(--gold);
+      border-radius: 10px; text-align: center;
+      background: rgba(201,148,58,0.05);
+    }
+    .ticket-box .label { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+    .ticket-box .price {
+      font-family: 'Playfair Display', serif; font-size: 2.5rem;
+      color: var(--saffron); font-weight: 700;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════ */
+    footer {
+      padding: 3rem 2rem; text-align: center;
+      background: var(--dark); border-top: 1px solid var(--border);
+    }
+    footer img { height: 50px; margin: 0 auto 1rem; }
+    footer p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.3rem; }
+    footer a { color: var(--gold); }
+    footer a:hover { color: var(--gold-lt); }
+    .footer-socials {
+      display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .footer-socials a {
+      width: 40px; height: 40px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      background: rgba(201,148,58,0.06);
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .footer-socials a:hover { transform: translateY(-2px); background: rgba(201,148,58,0.12); border-color: rgba(201,148,58,0.45); }
+    .footer-socials svg { width: 18px; height: 18px; fill: var(--gold-lt); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       INTERMISSION DIVIDER
+    ═══════════════════════════════════════════════════════════════ */
+    .intermission {
+      padding: 2rem; text-align: center;
+      background: linear-gradient(135deg, rgba(201,148,58,0.1), rgba(201,148,58,0.03));
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .intermission span {
+      font-family: 'Cinzel', serif; font-size: 0.9rem; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ═══════════════════════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── FLYER SECTION ─────────────────────────────────────────── */
+    .flyer-showcase {
+      padding: 5rem 2rem; background: var(--dark); text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav id="nav">
+  <div class="nav-logo">
+    <img src="assets/Sponsors_igf26/igurukul_foundation_26years.png" alt="iGurukul Foundation 26 Years" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#featured">Featured</a></li>
+    <li><a href="#finale">Grand Finale</a></li>
+    <li><a href="#sponsors">Partners</a></li>
+    <li><a href="#venue">Venue</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" class="btn btn-primary">Get Tickets</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════ VIDEO HERO ═══════════════ -->
+<section class="video-hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="assets/PicSlideShow/iGurukul_2025_0045.jpeg">
+    <source src="https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-content">
+    <div class="hero-badge cinzel">26 Glorious Years</div>
+    <h1 class="reveal">iGurukul<br><em>Cultural Extravaganza</em><br>2026</h1>
+    <p class="hero-tagline reveal">A vibrant celebration bringing together 250+ artists from 15+ Bay Area dance and music institutions</p>
+    <div class="hero-details reveal">
+      <span class="hero-chip"><span class="icon">📅</span> Sunday, April 12, 2026</span>
+      <span class="hero-chip"><span class="icon">⏰</span> 10 AM – 7 PM</span>
+      <span class="hero-chip"><span class="icon">📍</span> College of San Mateo Theater</span>
+    </div>
+    <div class="hero-buttons reveal">
+      <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" class="btn btn-primary">🎟️ Get Tickets — $15</a>
+      <a href="#program" class="btn btn-outline">View Program</a>
+      <a href="https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf" class="btn btn-outline" onclick="downloadBrochure(event)">Download Brochure</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ INFO BAR ═══════════════ -->
+<div class="info-bar">
+  <div class="info-item"><span class="icon">🎭</span> <strong>250+</strong> Artists</div>
+  <div class="info-item"><span class="icon">🏛️</span> <strong>15+</strong> Academies</div>
+  <div class="info-item"><span class="icon">👥</span> <strong>500+</strong> Attendees</div>
+  <div class="info-item"><span class="icon">🎪</span> <strong>27</strong> Performances</div>
+  <div class="info-item"><span class="icon">🕐</span> <strong>9</strong> Hours of Culture</div>
+</div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about" class="about-section cv">
+  <span class="section-label reveal">Our Legacy</span>
+  <h2 class="section-title reveal">Celebrating 26 Years of Heritage & Culture</h2>
+  <p class="section-sub reveal">
+    For over a quarter century, iGurukul Foundation has been a beacon for Indian classical arts,
+    cultural preservation, and community connection in the Bay Area. This year's Cultural Extravaganza
+    promises to be our most spectacular yet — welcoming 500+ attendees for a joyful day of music,
+    movement, food, and cultural connection.
+  </p>
+  <div class="stats-grid">
+    <div class="stat-card reveal"><div class="stat-number">26</div><div class="stat-label">Years of Heritage</div></div>
+    <div class="stat-card reveal"><div class="stat-number">250+</div><div class="stat-label">Performing Artists</div></div>
+    <div class="stat-card reveal"><div class="stat-number">15+</div><div class="stat-label">Dance & Music Academies</div></div>
+    <div class="stat-card reveal"><div class="stat-number">27</div><div class="stat-label">Live Performances</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ PHOTO GALLERY STRIP ═══════════════ -->
+<div class="gallery-strip">
+  <div class="gallery-track">
+    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" loading="lazy" decoding="async" fetchpriority="low" />
+    <!-- Duplicate set for seamless loop -->
+    <img src="assets/PicSlideShow/RKPH3865.jpg" alt="Performance 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3886.jpg" alt="Performance 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0026.jpeg" alt="Performance 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3897.jpg" alt="Performance 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0035.jpeg" alt="Performance 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3906.jpg" alt="Performance 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0045.jpeg" alt="Performance 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3907.jpg" alt="Performance 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0081.jpeg" alt="Performance 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3915.jpg" alt="Performance 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0088.jpeg" alt="Performance 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3919.jpg" alt="Performance 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0100.jpeg" alt="Performance 13" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3922.jpg" alt="Performance 14" loading="lazy" decoding="async" fetchpriority="low" />
+  </div>
+</div>
+
+<!-- ═══════════════ PROGRAM ═══════════════ -->
+<section id="program" class="parallax-section cv" style="background-image: url('assets/PicSlideShow/RKPH3898.jpg');">
+  <div style="text-align:center;">
+    <span class="section-label reveal">The Journey</span>
+    <h2 class="section-title reveal">Program Lineup</h2>
+    <p class="section-sub reveal">An immersive cultural journey from invocation to grand finale</p>
+  </div>
+  <div class="program-section">
+
+    <!-- Opening & Invocation -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🪔</span>
+        <span class="category-title">Opening & Invocation</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">01</div>
+          <h4>Emcee</h4>
+          <div class="artist">Archana Panda</div>
+        </div>
+        <div class="program-card">
+          <div class="num">02</div>
+          <h4>Lighting of the Lamp</h4>
+        </div>
+        <div class="program-card">
+          <div class="num">03</div>
+          <h4>American National Anthem</h4>
+        </div>
+        <div class="program-card">
+          <div class="num">04</div>
+          <h4>Indian National Anthem</h4>
+        </div>
+        <div class="program-card">
+          <div class="num">05</div>
+          <h4>Chanting, Guvani & OM Shanti Om / I Am Peaceful Soul</h4>
+          <div class="artist">Kuku Das</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Classical & Cultural Excellence -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🎼</span>
+        <span class="category-title">Classical & Cultural Excellence</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">06</div>
+          <h4>KRIPA — Kala Roopa Institute of Performing Arts</h4>
+          <div class="artist">Guru Kalamandalam Supriya Sudhakar</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">10</div>
+          <h4>Laya Dhwani Academy of Performing Arts</h4>
+          <div class="artist">Guru Snigdha Venkatramani</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">12</div>
+          <h4>Nritya Sangeetham Academy — Group Song</h4>
+          <div class="artist">Aryashree Mohapatra</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">16</div>
+          <h4>In Sync Kathak</h4>
+          <div class="artist">Guru Anupama Srivastava</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">17</div>
+          <h4>Manipuri — Lasya (Movement in Motion)</h4>
+          <div class="artist">Guru Sanjib Bhattacharya</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">18</div>
+          <h4>Odissi — Megh Pallavi (Lasy Kreation)</h4>
+          <div class="artist">Guru Kaveri Mishra</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">20</div>
+          <h4>Anand Bhairav Pallavi — Jyoti Kala Mandir</h4>
+          <div class="artist">Guru Jyoti Routi</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">26</div>
+          <h4>California Nupur Dance Academy</h4>
+          <div class="artist">Guru Dipanwita Sengupta</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fusion & Global Expressions -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🌍</span>
+        <span class="category-title">Fusion & Global Expressions</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">07</div>
+          <h4>Koko de la Isla Flamenco</h4>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">08</div>
+          <h4>Yoga & Breathing Session</h4>
+          <div class="artist">Manoj Joshi</div>
+        </div>
+        <div class="program-card">
+          <div class="num">11</div>
+          <h4>Sun Flower Magic</h4>
+          <div class="artist">Archana Panda</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theatrical & Drama -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🎬</span>
+        <span class="category-title">Theatrical & Drama Presentations</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">09</div>
+          <h4>Musical Drama — Hanuman</h4>
+          <div class="artist">Kuku Das</div>
+          <span class="flyer-badge">⭐ Major Highlight</span>
+        </div>
+        <div class="program-card">
+          <div class="num">15</div>
+          <h4>Hindi Drama — AI</h4>
+          <div class="artist">Pranab Panda</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">19</div>
+          <h4>Odia Drama — Kanchi Abhijan</h4>
+          <div class="artist">Kuku Das</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+        <div class="program-card">
+          <div class="num">23</div>
+          <h4>Odia Drama — Ashakti (Addiction)</h4>
+          <div class="artist">Bay Area Natua Gosthi (BANG) / Dilip Praharaj</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Youth & Bollywood -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">💃</span>
+        <span class="category-title">Youth & Bollywood Energy</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">13</div>
+          <h4>Bollywood — Junior</h4>
+          <div class="artist">Kuku Das</div>
+        </div>
+        <div class="program-card">
+          <div class="num">14</div>
+          <h4>Bollywood — Senior</h4>
+          <div class="artist">Kuku Das</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Segments -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🌟</span>
+        <span class="category-title">Special Segments</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">21</div>
+          <h4>iGurukul Foundation / Dignitaries</h4>
+        </div>
+        <div class="program-card">
+          <div class="num">24</div>
+          <h4>Awake and Arise</h4>
+        </div>
+        <div class="program-card">
+          <div class="num">25</div>
+          <h4>Fashion Show</h4>
+          <div class="artist">Arundhati Dash Mishra</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power Performance -->
+    <div class="program-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🔥</span>
+        <span class="category-title">Tandav & Power Performance</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="num">22</div>
+          <h4>Anga Shudhi Tandav — Movement in Motion</h4>
+          <div class="artist">Guru Sanjib Bhattacharya</div>
+          <span class="flyer-badge">⭐ Featured</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ FEATURED PERFORMANCES ═══════════════ -->
+<section id="featured" class="flyer-showcase cv">
+  <span class="section-label reveal">Spotlight</span>
+  <h2 class="section-title reveal">Featured Performances</h2>
+  <p class="section-sub reveal">Highlights from our most anticipated acts</p>
+
+  <div class="featured-grid">
+    <div class="featured-card reveal">
+      <img src="assets/EchoesOfKathak_igf26.jpg" alt="In Sync Kathak" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>In Sync Kathak</h4>
+        <p>Students of Smt. Anupama Srivastava present a beautiful journey through rhythm, expression, and India's timeless heritage.</p>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <img src="assets/GuruSanjibJi_igf26.jpg" alt="Guru Sanjib Bhattacharya" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>Movement in Motion</h4>
+        <p>President's Award-winning Guru Sanjib Bhattacharya and his students present captivating Manipuri and contemporary performances.</p>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <img src="assets/KanchAbhijan_igf26.jpg" alt="Kanchi Abhijan" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>Kanchi Abhijan — Odia Drama</h4>
+        <p>A powerful Odia drama bringing alive a story of valor, devotion, and divine grace. Directed by Kuku Das.</p>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <img src="assets/NSA_OdiaSong_igf26.jpg" alt="Nritya Sangeetham Academy" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>Nritya Sangeetham Academy</h4>
+        <p>Young stars take the stage with soulful Odia melodies, guided by Aryashree Mohapatra and composed by Guru Pradipta Kishore Swain.</p>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <img src="assets/AsaktiFlyer.jpeg" alt="Ashakti Drama" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>Ashakti (Addiction) — Odia Drama</h4>
+        <p>Bay Area Natua Gosthi (BANG) presents a thought-provoking production that resonates deeply with today's world.</p>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <img src="assets/igf_Flyer26.jpg" alt="iGurukul Cultural Extravaganza 2026 Flyer" loading="lazy" decoding="async" />
+      <div class="card-body">
+        <h4>Event Overview</h4>
+        <p>250+ artists, 15+ academies, 500+ attendees. A joyful day of music, movement, food, and cultural connection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECOND GALLERY STRIP ═══════════════ -->
+<div class="gallery-strip">
+  <div class="gallery-track" style="animation-direction: reverse;">
+    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" loading="lazy" decoding="async" fetchpriority="low" />
+    <!-- Duplicate for seamless loop -->
+    <img src="assets/PicSlideShow/iGurukul_2025_0016a.jpeg" alt="Gallery 1" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3903.jpg" alt="Gallery 2" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016b.jpeg" alt="Gallery 3" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3908.jpg" alt="Gallery 4" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0016c.jpeg" alt="Gallery 5" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0039.jpeg" alt="Gallery 6" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/RKPH3924.jpg" alt="Gallery 7" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0041.jpeg" alt="Gallery 8" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0089.jpeg" alt="Gallery 9" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0104.jpeg" alt="Gallery 10" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0116.jpeg" alt="Gallery 11" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0126.jpeg" alt="Gallery 12" loading="lazy" decoding="async" fetchpriority="low" />
+    <img src="assets/PicSlideShow/iGurukul_2025_0027.jpeg" alt="Gallery 13" loading="lazy" decoding="async" fetchpriority="low" />
+  </div>
+</div>
+
+<!-- ═══════════════ GRAND FINALE — THE CHAKRAS ═══════════════ -->
+<section id="finale" class="chakras-hero cv">
+  <div class="chakras-content">
+    <span class="section-label reveal" style="color: #F0C060;">🕉️ Grand Finale</span>
+    <h2 class="reveal">The Chakras</h2>
+    <p class="subtitle reveal">A Journey Through Human Consciousness</p>
+    <p class="reveal" style="margin-bottom: 2rem;">
+      The Odissi Dance Production — the crowning jewel of the evening.
+      Experience the ancient wisdom of the seven chakras brought to life through
+      the grace and devotion of classical Odissi dance.
+    </p>
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="hero-chip" style="display:inline-flex; margin:0.3rem;"><span class="icon">🕐</span> 5:00 PM – 7:00 PM</span>
+      <span class="hero-chip" style="display:inline-flex; margin:0.3rem;"><span class="icon">🎫</span> $15 General / $20 Day-of</span>
+    </div>
+    <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" class="btn btn-primary reveal">🎟️ Reserve Your Seat</a>
+  </div>
+</section>
+
+<!-- ═══════════════ ODISSI VIDEO HIGHLIGHT ═══════════════ -->
+<section class="cv" style="padding: 5rem 2rem; text-align: center; background: var(--dark-mid);">
+  <span class="section-label reveal">From Last Year</span>
+  <h2 class="section-title reveal">Odissi Highlights 2025</h2>
+  <p class="section-sub reveal">A glimpse into the beauty, grace, and devotion of classical Odissi — as performed at our 25th anniversary celebration.</p>
+  <div style="max-width: 800px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);" class="reveal">
+    <video controls poster="assets/Chakras background.jpeg" style="width:100%; display:block;"
+           preload="metadata">
+      <source src="assets/Odissi Highlights 2025.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+<!-- ═══════════════ TICKETS CTA ═══════════════ -->
+<section id="tickets" class="tickets-cta cv">
+  <span class="section-label reveal">Join Us</span>
+  <h2 class="reveal">Secure Your Tickets</h2>
+  <div class="ornament"><div class="ornament-diamond"></div></div>
+  <div class="ticket-prices reveal">
+    <div class="ticket-box">
+      <div class="label">Advance</div>
+      <div class="price">$15</div>
+      <div style="font-size: 0.8rem; color: var(--text-dim);">Online Only</div>
+    </div>
+    <div class="ticket-box">
+      <div class="label">Day Of Event</div>
+      <div class="price">$20</div>
+      <div style="font-size: 0.8rem; color: var(--text-dim);">No tickets at door</div>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top: 1.5rem;">
+    <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" target="_blank" class="btn btn-primary" style="font-size:0.9rem; padding: 1rem 3rem;">
+      🎟️ Buy Tickets
+    </a>
+  </div>
+  <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-dim);" class="reveal">
+    Zelle / Contact: <a href="mailto:igurukulfoundation@gmail.com" style="color: var(--gold);">igurukulfoundation@gmail.com</a>
+    &nbsp;•&nbsp; Donate: <a href="https://igurukulfoundation.onwajooba.com/checkout/EjAP9eod9q" style="color: var(--gold);">Donate</a>
+  </p>
+</section>
+
+<!-- ═══════════════ SPONSORSHIP ═══════════════ -->
+<section class="parallax-section cv" style="background-image: url('assets/PicSlideShow/iGurukul_2025_0045.jpeg'); text-align: center;">
+  <span class="section-label reveal">Support the Arts</span>
+  <h2 class="section-title reveal">Sponsorship Opportunities</h2>
+  <p class="section-sub reveal">Help us celebrate and preserve Indian classical arts for the next generation</p>
+
+  <div class="tiers-grid">
+    <div class="tier-card tier-gold reveal">
+      <h4>Gold Sponsor</h4>
+      <div class="price">$1,000</div>
+      <ul>
+        <li>Featured video clips & stage announcement</li>
+        <li>Booth space at the event</li>
+        <li>Complimentary family tickets</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-silver reveal">
+      <h4>Silver Sponsor</h4>
+      <div class="price">$500</div>
+      <ul>
+        <li>Stage announcement or booth space</li>
+        <li>Complimentary family tickets</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-bronze reveal">
+      <h4>Bronze Sponsor</h4>
+      <div class="price">$300</div>
+      <ul>
+        <li>Booth space at the event</li>
+        <li>Complimentary family tickets</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-popular reveal">
+      <h4>Popular Sponsor</h4>
+      <div class="price">$100</div>
+      <ul>
+        <li>Complimentary family tickets</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top: 2.25rem;">
+    <a href="https://igurukulfoundation.onwajooba.com/checkout/EjAP9eod9q" class="btn btn-white">Donate</a>
+  </div>
+</section>
+
+<!-- ═══════════════ SPONSORS / PARTNERS ═══════════════ -->
+<section id="sponsors" class="sponsors-section cv">
+  <span class="section-label reveal" style="color: var(--indigo);">Our Partners</span>
+  <h2 class="section-title reveal">Partnering Organizations</h2>
+  <p class="section-sub reveal">Proudly supported by these amazing organizations</p>
+  <div class="sponsor-logos reveal">
+    <img src="assets/Sponsors_igf26/KRIPA Logo.jpeg" alt="KRIPA — Kala Roopa Institute of Performing Arts" title="KRIPA" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/LogoInSyncKathak.jpg" alt="In Sync Kathak" title="In Sync Kathak" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/Movements in Motion_logo final-01.png" alt="Movement in Motion" title="Movement in Motion" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/JKM-color-logo.jpg" alt="Jyoti Kala Mandir" title="Jyoti Kala Mandir" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/CNDA_LOGO.jpg" alt="California Nupur Dance Academy" title="California Nupur Dance Academy" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/iGO-Logo-Black.png" alt="iGurukul Odissi" title="iGurukul Odissi" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/igachieverlogo.jpeg" alt="iG Achiever" title="iG Achiever" loading="lazy" decoding="async" />
+    <img src="assets/Sponsors_igf26/Urban MoMo Logo.jpg" alt="Urban MoMo" title="Urban MoMo" loading="lazy" decoding="async" />
+  </div>
+</section>
+
+<!-- ═══════════════ VENUE ═══════════════ -->
+<section id="venue" class="venue-section cv">
+  <div style="text-align:center;">
+    <span class="section-label reveal">Location</span>
+    <h2 class="section-title reveal">Venue & Directions</h2>
+  </div>
+  <div class="venue-grid">
+    <div class="venue-info reveal">
+      <h3>College of San Mateo Theater</h3>
+      <div class="venue-detail">
+        <span class="icon">📍</span>
+        <div>1700 W Hillsdale Blvd<br>San Mateo, CA 94402</div>
+      </div>
+      <div class="venue-detail">
+        <span class="icon">📅</span>
+        <div><strong>Sunday, April 12, 2026</strong></div>
+      </div>
+      <div class="venue-detail">
+        <span class="icon">⏰</span>
+        <div>10:00 AM – 7:00 PM<br><span style="color: var(--gold);">Dramas from 2 PM onwards</span></div>
+      </div>
+      <div class="venue-detail">
+        <span class="icon">🅿️</span>
+        <div>
+          <strong style="color: var(--cream);">Parking Information</strong><br>
+          General Parking: <strong>Lot A (FREE)</strong><br>
+          Loading/Unloading (Performers): <strong>Lot U (Temporary)</strong><br>
+          <span style="font-size:0.85rem; color: var(--text-dim);">Please allow extra minutes to park and walk to the theater.</span>
+        </div>
+      </div>
+      <div class="venue-detail">
+        <span class="icon">🚗</span>
+        <div>Enter from W Hillsdale Blvd and follow signs toward the Theater. Event signage will guide you to the venue.</div>
+      </div>
+    </div>
+    <div class="venue-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.5!2d-122.45!3d37.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f9e1a29249cb3%3A0x8c21f6f4c82f0f3d!2sCollege%20of%20San%20Mateo%20Theatre!5e0!3m2!1sen!2sus!4v1700000000000"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <img src="assets/Sponsors_igf26/igurukul_foundation_26years.png" alt="iGurukul Foundation — 26 Glorious Years" />
+  <p style="font-size: 0.95rem; color: var(--cream); margin-bottom: 0.5rem;">
+    iGurukul Foundation — <em>Rooted in Heritage. Rising Together.</em>
+  </p>
+  <p>501(c)(3) Nonprofit Organization &nbsp;•&nbsp; Tax ID 845-294347</p>
+  <p>
+    <a href="https://igurukulfoundation.org" target="_blank">igurukulfoundation.org</a>
+    &nbsp;•&nbsp;
+    <a href="mailto:igurukulfoundation@gmail.com">igurukulfoundation@gmail.com</a>
+    &nbsp;•&nbsp;
+    <a href="tel:+15103644163">+1-5103644163</a>
+  </p>
+  <div class="footer-socials">
+    <a href="https://www.facebook.com/search/top?q=igurukul%20foundation" target="_blank" rel="noreferrer" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.3V11H7.6v3h2.7v8h3.2z"/>
+      </svg>
+    </a>
+    <a href="https://www.youtube.com/@iGurukulOdissi" target="_blank" rel="noreferrer" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.6A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12c0 1.6.2 3.2.4 4.8a3 3 0 0 0 2.1 2.1c1.8.6 7.5.6 7.5.6s5.7 0 7.5-.6a3 3 0 0 0 2.1-2.1c.2-1.6.4-3.2.4-4.8 0-1.6-.2-3.2-.4-4.8ZM10 15.5V8.5L16 12l-6 3.5Z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/igurukulfoundation?igsh=NjZhYmZmNXc0c2ds" target="_blank" rel="noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4A3.8 3.8 0 0 0 20 16.2V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.7A4.3 4.3 0 1 1 7.7 12 4.3 4.3 0 0 1 12 7.7Zm0 2A2.3 2.3 0 1 0 14.3 12 2.3 2.3 0 0 0 12 9.7ZM17.6 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>
+      </svg>
+    </a>
+  </div>
+  <div class="ornament" style="margin-top: 1.5rem;"><div class="ornament-diamond"></div></div>
+  <p style="font-size: 0.75rem; color: #555; margin-top: 0.5rem;">
+    &copy; 2026 iGurukul Foundation. All rights reserved. Program order subject to change.
+  </p>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+  const brochureUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf';
+  const brochureFilename = 'iGurukul-Cultural-Extravaganza-2026-Brochure.pdf';
+
+  async function downloadBrochure(event) {
+    if (event) event.preventDefault();
+    try {
+      const response = await fetch(brochureUrl, { mode: 'cors' });
+      if (!response.ok) throw new Error('download_failed');
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = brochureFilename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch (e) {
+      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(connection && connection.saveData);
+  const effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : '';
+  const slowConnection = effectiveType === 'slow-2g' || effectiveType === '2g';
+
+  if (prefersReducedMotion || saveData || slowConnection) {
+    document.documentElement.style.setProperty('--anim-play', 'paused');
+    document.body.classList.add('no-hero-video');
+    const heroVideo = document.querySelector('.video-hero video');
+    if (heroVideo) {
+      try { heroVideo.pause(); } catch (e) {}
+      heroVideo.removeAttribute('autoplay');
+    }
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    document.documentElement.style.setProperty('--anim-play', document.hidden ? 'paused' : 'running');
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Sticky nav background
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    nav.style.background = window.scrollY > 100
+      ? 'rgba(10,7,4,0.95)' : 'rgba(10,7,4,0.85)';
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      // Close mobile menu
+      document.getElementById('nav').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

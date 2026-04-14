@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@theme {
+  --color-saffron: #E8821A;
+  --color-igf-orange: var(--saffron);
+  --color-igf-ink: #1f1f1f;
+  --color-igf-charcoal: #2e2e2e;
+  --color-igf-gray: #444444;
+  --color-igf-silver: #b0b0b0;
+  --color-igf-silver2: #d8d8d8;
+  --color-igf-bg: #f9f6f2;
+}
+
+:root {
+  --saffron: #E8821A;
+  --igf-orange: var(--saffron);
+  --igf-ink: #1f1f1f;
+  --igf-charcoal: #2e2e2e;
+  --igf-gray: #444444;
+  --igf-silver: #b0b0b0;
+  --igf-silver2: #d8d8d8;
+  --igf-bg: #f9f6f2;
+
+  --font-heading: 'Playfair Display', ui-serif, Georgia, Cambria,
+    'Times New Roman', Times, serif;
+  --font-body: 'Lato', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, 'Noto Sans', 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --font-quote: 'Merriweather', ui-serif, Georgia, Cambria, 'Times New Roman',
+    Times, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--igf-bg);
+  color: var(--igf-charcoal);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-quote {
+  font-family: var(--font-quote);
+}
+
+.igf-surface {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5)),
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(232, 130, 26, 0.14),
+      rgba(232, 130, 26, 0) 55%
+    );
+  backdrop-filter: blur(10px);
+}
+
+.igf-metal {
+  background: linear-gradient(135deg, var(--igf-silver2), var(--igf-silver));
+}
+
+.igf-hero-rays {
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(232, 130, 26, 0.24),
+      rgba(232, 130, 26, 0) 58%
+    ),
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0) 60%
+    ),
+    repeating-conic-gradient(
+      from 210deg at 35% 0%,
+      rgba(232, 130, 26, 0.18) 0deg,
+      rgba(232, 130, 26, 0.03) 10deg,
+      rgba(232, 130, 26, 0) 20deg
+    );
+  mask-image: radial-gradient(circle at 35% 0%, black 0%, transparent 70%);
+  transform-origin: 35% 0%;
+  animation: igf-rays-spin 44s linear infinite;
+  will-change: transform;
+}
+
+.igf-hero-gradient {
+  background:
+    radial-gradient(
+      circle at 25% 0%,
+      rgba(232, 130, 26, 0.25),
+      rgba(232, 130, 26, 0) 55%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(0, 0, 0, 0.06),
+      rgba(0, 0, 0, 0) 60%
+    );
+}
+
+.igf-pattern {
+  background-image:
+    linear-gradient(transparent, transparent),
+    radial-gradient(circle at 1px 1px, rgba(46, 46, 46, 0.12) 1px, transparent 0);
+  background-size: 16px 16px;
+  opacity: 0.12;
+  mask-image: radial-gradient(circle at 50% 25%, black 0%, transparent 72%);
+}
+
+.igf-cta-attention {
+  animation: igf-cta-glow 2.8s ease-in-out infinite;
+}
+
+.igf-float {
+  animation: igf-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes igf-rays-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes igf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes igf-cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 10px 26px rgba(232, 130, 26, 0.18);
+  }
+  50% {
+    box-shadow: 0 14px 34px rgba(232, 130, 26, 0.28);
+  }
+}
+
+.igf-gallery-strip {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.igf-gallery-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: igf-gallery-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.igf-gallery-img {
+  height: 240px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  filter: brightness(0.9) saturate(1.02);
+  transition: filter 240ms ease;
+}
+
+.igf-gallery-img:hover {
+  filter: brightness(1) saturate(1.05);
+}
+
+@keyframes igf-gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .igf-gallery-track {
+    animation: none;
+  }
+}
