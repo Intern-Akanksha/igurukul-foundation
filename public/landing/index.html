@@ -1178,23 +1178,31 @@
   const brochureUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure_0417.pdf';
   const brochureFilename = 'iGurukul-Cultural-Extravaganza-2026-Brochure.pdf';
 
-  async function downloadBrochure(event) {
+  function downloadBrochure(event) {
     if (event) event.preventDefault();
-    try {
-      const response = await fetch(brochureUrl, { mode: 'cors' });
-      if (!response.ok) throw new Error('download_failed');
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = objectUrl;
-      link.download = brochureFilename;
+
+    const ua = navigator.userAgent.toLowerCase();
+    const isSafari = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('chromium') && !ua.includes('android');
+    const isIOS = /iphone|ipad|ipod/.test(ua);
+
+    const link = document.createElement('a');
+    link.href = brochureUrl;
+    link.rel = 'noopener noreferrer';
+
+    // Safari/iOS do not reliably honor programmatic downloads for cross-origin PDFs.
+    // Open the file directly so users can still access/save it in every browser.
+    if (isSafari || isIOS) {
+      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
       link.remove();
-      URL.revokeObjectURL(objectUrl);
-    } catch (e) {
-      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
+      return;
     }
+
+    link.download = brochureFilename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   }
 
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
