@@ -12,18 +12,18 @@ export default function Layout() {
       '/': base,
       '/about': `About | ${base}`,
       '/programs': `Programs | ${base}`,
+      '/gallery': `Gallery | ${base}`,
       '/registration': `Registration | ${base}`,
-      '/news-events': `Events | ${base}`,
+      '/partner-with-us': `Partner With Us | ${base}`,
+      '/events': `Past Events | ${base}`,
+      '/news-events': `Past Events | ${base}`,
+      '/event-2026': `Upcoming Event 2026 | ${base}`,
       '/contact': `Contact | ${base}`,
       '/donate': `Donate | ${base}`,
       '/subscribe': `Subscribe | ${base}`,
     }
     document.title = map[pathname] ?? base
   }, [pathname])
-
-  if (pathname === '/') {
-    return <Outlet />
-  }
 
   return (
     <div className="min-h-dvh bg-igf-bg text-igf-charcoal">

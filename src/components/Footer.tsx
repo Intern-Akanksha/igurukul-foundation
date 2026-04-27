@@ -48,8 +48,10 @@ export default function Footer() {
           </div>
           <div className="mt-6 space-y-2 text-sm text-white/85">
             <div className="font-semibold text-white">iGurukul Foundation — 26 Glorious Years</div>
+            <div>Rooted in heritage, rising together through language, arts, and community.</div>
             <div>501(c)(3) Nonprofit Organization • Tax ID #45-2943477</div>
-            {/* <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <div>San Francisco Bay Area, California</div>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <a
                 href={site.website}
                 target="_blank"
@@ -65,7 +67,7 @@ export default function Footer() {
               >
                 {site.email}
               </a>
-            </div> */}
+            </div>
           </div>
         </div>
 

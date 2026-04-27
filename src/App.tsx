@@ -4,6 +4,8 @@ import ScrollManager from './components/ScrollManager'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Donate from './pages/Donate'
+import Gallery from './pages/Gallery'
+import Home from './pages/Home'
 import LandingReplica from './pages/LandingReplica'
 import NewsEvents from './pages/NewsEvents'
 import NotFound from './pages/NotFound'
@@ -16,13 +18,17 @@ export default function App() {
     <BrowserRouter>
       <ScrollManager />
       <Routes>
+        <Route path="/event-2026" element={<LandingReplica />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<LandingReplica />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/registration" element={<Registration />} />
+          <Route path="/partner-with-us" element={<Registration />} />
+          <Route path="/events" element={<NewsEvents />} />
           <Route path="/news-events" element={<NewsEvents />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

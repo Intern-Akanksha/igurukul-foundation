@@ -89,7 +89,7 @@ export default function Programs() {
         <div className="mt-10 grid gap-6">
           {programCategories.map((cat, idx) => (
             <Reveal key={cat.title} delayMs={90 * idx}>
-              <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+              <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)]">
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/60 ring-1 ring-black/5">
                     <span className="text-lg">{cat.icon}</span>
@@ -99,7 +99,7 @@ export default function Programs() {
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {cat.items.map((it) => (
-                    <div key={`${cat.title}-${it.num}`} className="rounded-2xl bg-white/55 p-5 ring-1 ring-black/5">
+                    <div key={`${cat.title}-${it.num}`} className="rounded-2xl bg-white/55 p-5 ring-1 ring-black/5 transition hover:bg-white/80">
                       <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-orange">
                         {it.num}
                       </div>

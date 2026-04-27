@@ -29,12 +29,11 @@ export default function Registration() {
       <Container>
         <Reveal>
           <h1 className="font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
-            Registration
+            Partner With Us
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
-            Register for classes and programs. If you have questions about
-            schedules or levels, send us a note and we’ll respond with next
-            steps.
+            Share your interest in collaborating with iGurukul Foundation through sponsorship,
+            volunteering, workshops, or educational partnerships.
           </p>
         </Reveal>
 
@@ -43,11 +42,10 @@ export default function Registration() {
             <Reveal>
               <div className="igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
                 <div className="font-heading text-xl font-extrabold text-igf-ink">
-                  Online registration form
+                  Partnership interest form
                 </div>
                 <p className="mt-2 text-sm text-igf-gray">
-                  This form collects your information so our team can reach out
-                  with enrollment details.
+                  This form collects your details so our team can follow up with collaboration options.
                 </p>
 
                 {submitted ? (
@@ -106,9 +104,7 @@ export default function Registration() {
                     </label>
 
                     <label className="grid gap-2">
-                      <span className="text-sm font-semibold text-igf-ink">
-                        Program of interest
-                      </span>
+                      <span className="text-sm font-semibold text-igf-ink">Area of interest</span>
                       <select
                         className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 focus:ring-2"
                         value={form.program}
@@ -134,7 +130,7 @@ export default function Registration() {
                         onChange={(e) =>
                           setForm((s) => ({ ...s, message: e.target.value }))
                         }
-                        placeholder="Preferred schedule, learner age/level, or questions…"
+                        placeholder="Sponsorship, volunteering, event support, learning programs, or other details…"
                       />
                     </label>
 
@@ -142,7 +138,7 @@ export default function Registration() {
                       type="submit"
                       className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
                     >
-                      Submit registration
+                      Submit request
                     </button>
                   </form>
                 )}

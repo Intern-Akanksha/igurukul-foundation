@@ -12,9 +12,11 @@ export type NavItem = { label: string; to: string }
 export const navItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Programs', to: '/programs' },
-  { label: 'Events', to: '/news-events' },
-  { label: 'Contact', to: '/contact' },
+  // { label: 'Programs', to: '/programs' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Events', to: '/events' },
+  { label: 'Event 2026', to: '/event-2026' },
+  { label: 'Contact Us', to: '/contact' },
 ]
 
 export const quotes = {
@@ -111,19 +113,19 @@ export const featuredEvent: FeaturedEvent = {
 export const newsEvents: NewsEvent[] = [
   {
     title: 'Odia Literacy Workshop: Reading & Writing Essentials',
-    date: 'Upcoming',
+    date: 'Past Event',
     summary:
-      'A practical session for learners and parents, focused on foundational scripts and pronunciation.',
+      'A practical workshop for learners and parents focused on foundational scripts and pronunciation.',
   },
   {
     title: 'Odissi Showcase & Community Gathering',
-    date: 'Upcoming',
+    date: 'Past Event',
     summary:
       'An evening of dance, music, and community celebration featuring students and mentors.',
   },
   {
     title: 'Yoga for Everyday Balance',
-    date: 'Ongoing',
+    date: 'Past Series',
     summary:
       'Weekly sessions designed to support posture, breath, and calm focus for all experience levels.',
   },

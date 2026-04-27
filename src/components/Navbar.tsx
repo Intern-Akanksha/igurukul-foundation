@@ -60,9 +60,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center md:flex">
           <Link to="/donate">
-            <Button variant="secondary">Donate</Button>
+            <Button attention className="px-6">
+              Donate Now
+            </Button>
           </Link>
         </div>
 
@@ -115,9 +117,9 @@ export default function Navbar() {
               </NavLink>
             ))}
             <div className="flex flex-col gap-2 pt-2">
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                <Button className="w-full" variant="secondary">
-                  Contact Us
+              <Link to="/donate" onClick={() => setOpen(false)}>
+                <Button className="w-full justify-center" attention>
+                  Donate Now
                 </Button>
               </Link>
             </div>
