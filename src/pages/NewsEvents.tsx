@@ -7,7 +7,7 @@ import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react'
 
 export default function NewsEvents() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 via-transparent to-transparent"
         aria-hidden
@@ -34,7 +34,7 @@ export default function NewsEvents() {
               <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
                 <Reveal from="left">
                   <div className="group relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/10">
-                    <div className="absolute -inset-1 bg-gradient-to-tr from-igf-orange/40 via-igf-magenta/30 to-igf-indigo/40 opacity-60 blur-xl transition duration-700 group-hover:opacity-90" />
+                    <div className="absolute -inset-1 bg-gradient-to-tr from-igf-indigo/35 via-igf-magenta/30 to-igf-indigo/40 opacity-60 blur-xl transition duration-700 group-hover:opacity-90" />
                     <img
                       src={featuredEvent.flyerImageUrl}
                       alt={featuredEvent.flyerImageAlt}
@@ -47,7 +47,7 @@ export default function NewsEvents() {
 
                 <Reveal from="scale">
                   <div>
-                    <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-igf-orange/15 to-igf-magenta/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-igf-orange ring-1 ring-igf-orange/25">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-igf-indigo/12 to-violet-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-igf-indigo ring-1 ring-igf-indigo/25">
                       <Sparkles className="h-4 w-4" aria-hidden />
                       Highlighted Event
                     </div>
@@ -61,7 +61,7 @@ export default function NewsEvents() {
 
                     <div className="mt-8 grid gap-4">
                       <div className="igf-glass-card flex gap-4 p-5 sm:p-6">
-                        <MapPin className="mt-0.5 h-6 w-6 shrink-0 text-igf-orange" aria-hidden />
+                        <MapPin className="mt-0.5 h-6 w-6 shrink-0 text-igf-indigo" aria-hidden />
                         <div>
                           <div className="text-sm font-semibold text-igf-ink">Venue</div>
                           <div className="mt-1 text-sm text-igf-gray">{featuredEvent.venueName}</div>
@@ -69,14 +69,14 @@ export default function NewsEvents() {
                         </div>
                       </div>
                       <div className="igf-glass-card flex gap-4 p-5 sm:p-6">
-                        <Calendar className="mt-0.5 h-6 w-6 shrink-0 text-igf-orange" aria-hidden />
+                        <Calendar className="mt-0.5 h-6 w-6 shrink-0 text-igf-indigo" aria-hidden />
                         <div>
                           <div className="text-sm font-semibold text-igf-ink">Date</div>
                           <div className="mt-1 text-sm text-igf-gray">{featuredEvent.date}</div>
                         </div>
                       </div>
                       <div className="igf-glass-card flex gap-4 p-5 sm:p-6">
-                        <Clock className="mt-0.5 h-6 w-6 shrink-0 text-igf-orange" aria-hidden />
+                        <Clock className="mt-0.5 h-6 w-6 shrink-0 text-igf-indigo" aria-hidden />
                         <div>
                           <div className="text-sm font-semibold text-igf-ink">Time</div>
                           <div className="mt-1 text-sm text-igf-gray">{featuredEvent.time}</div>
@@ -100,13 +100,13 @@ export default function NewsEvents() {
         <section className="mt-16 sm:mt-20">
           <Reveal>
             <h3 className="font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">Past Events</h3>
-            <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-igf-orange to-igf-magenta" />
+            <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-igf-indigo to-cyan-600" />
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {newsEvents.map((event, idx) => (
               <Reveal key={event.title} delayMs={80 * idx} from="scale">
                 <div className="igf-glass-card h-full p-6 sm:p-7">
-                  <div className="text-xs font-bold uppercase tracking-[0.2em] text-igf-orange">{event.date}</div>
+                  <div className="text-xs font-bold uppercase tracking-[0.2em] text-igf-indigo">{event.date}</div>
                   <div className="mt-3 text-lg font-bold text-igf-ink">{event.title}</div>
                   <p className="mt-3 text-sm leading-relaxed text-igf-gray">{event.summary}</p>
                 </div>

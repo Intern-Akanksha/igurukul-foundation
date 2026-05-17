@@ -7,20 +7,22 @@ type RevealProps = {
   children: ReactNode
   className?: string
   delayMs?: number
-  from?: 'up' | 'left' | 'right' | 'scale'
+  from?: 'up' | 'left' | 'right' | 'scale' | 'fade'
 }
 
 const offsets = {
-  up: { x: 0, y: 36, scale: 1 },
-  left: { x: -40, y: 0, scale: 1 },
-  right: { x: 40, y: 0, scale: 1 },
-  scale: { x: 0, y: 24, scale: 0.94 },
+  up: { x: 0, y: 32, scale: 1 },
+  left: { x: -36, y: 0, scale: 1 },
+  right: { x: 36, y: 0, scale: 1 },
+  scale: { x: 0, y: 20, scale: 0.96 },
+  fade: { x: 0, y: 0, scale: 1 },
 }
 
 export default function Reveal({ children, className, delayMs = 0, from = 'up' }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null)
-  const inView = useInView(ref, { once: true, margin: '-8% 0px -8% 0px', amount: 0.15 })
+  const inView = useInView(ref, { once: true, margin: '-6% 0px -6% 0px', amount: 0.12 })
   const offset = offsets[from]
+  const useSpring = from === 'scale'
 
   return (
     <motion.div
@@ -31,12 +33,21 @@ export default function Reveal({ children, className, delayMs = 0, from = 'up' }
           ? { opacity: 1, x: 0, y: 0, scale: 1 }
           : { opacity: 0, x: offset.x, y: offset.y, scale: offset.scale }
       }
-      transition={{
-        duration: 0.75,
-        delay: delayMs / 1000,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={cn('transform-gpu', className)}
+      transition={
+        useSpring
+          ? {
+              type: 'spring',
+              stiffness: 100,
+              damping: 20,
+              delay: delayMs / 1000,
+            }
+          : {
+              duration: 0.7,
+              delay: delayMs / 1000,
+              ease: [0.22, 1, 0.36, 1],
+            }
+      }
+      className={cn('transform-gpu will-change-transform', className)}
     >
       {children}
     </motion.div>

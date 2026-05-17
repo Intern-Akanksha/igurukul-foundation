@@ -1,8 +1,10 @@
+import { AnimatePresence } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import EventBackdrop from './EventBackdrop'
 import Footer from './Footer'
 import Navbar from './Navbar'
+import PageTransition from './PageTransition'
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -33,7 +35,11 @@ export default function Layout() {
       <EventBackdrop />
       <Navbar />
       <main className="relative z-10 min-h-[calc(100dvh-4rem)]">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <PageTransition key={pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

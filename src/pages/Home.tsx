@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
-import TribalPattern from '../components/TribalPattern'
+import GeometricDecor from '../components/GeometricDecor'
 import { site } from '../data/site'
+import { cn } from '../utils/cn'
 
 const heroBgVideoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4'
 const heroPoster = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
@@ -24,13 +25,16 @@ const programPreview = [
   { title: 'Intergenerational Learning Forums', icon: UsersRound },
 ]
 
+const statMods = ['igf-mod-cyan', 'igf-mod-magenta', 'igf-mod-purple', 'igf-mod-orange'] as const
+const programMods = ['igf-mod-cyan', 'igf-mod-purple', 'igf-mod-orange', 'igf-mod-magenta'] as const
+
 export default function Home() {
   const { scrollY } = useScroll()
   const videoY = useTransform(scrollY, [0, 600], [0, 100])
 
   return (
     <motion.div className="relative">
-      <section className="relative min-h-[85vh] overflow-hidden py-28 text-white sm:py-36">
+      <section className="relative min-h-[78vh] overflow-hidden py-20 text-white sm:py-28">
         <motion.video
           style={{ y: videoY }}
           className="absolute inset-0 h-[110%] w-full object-cover"
@@ -43,19 +47,16 @@ export default function Home() {
           poster={heroPoster}
           aria-hidden="true"
         />
-        <div className="igf-festival-hero-overlay absolute inset-0" aria-hidden />
-        <TribalPattern />
-        <div className="igf-grain absolute inset-0 opacity-20" aria-hidden />
-        <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-igf-gold/25 blur-[100px] igf-float-slow" aria-hidden />
+        <div className="igf-exhibit-hero-overlay absolute inset-0" aria-hidden />
+        <GeometricDecor />
+        <div className="igf-grain absolute inset-0 opacity-15" aria-hidden />
+        <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-[100px] igf-float-slow" aria-hidden />
         <div
-          className="absolute -right-16 bottom-32 h-96 w-96 rounded-full bg-igf-orange/30 blur-[110px] igf-float-slow"
+          className="absolute -right-16 bottom-32 h-96 w-96 rounded-full bg-violet-500/25 blur-[110px] igf-float-slow"
           style={{ animationDelay: '-3s' }}
           aria-hidden
         />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(232,184,74,0.32),transparent)]"
-          aria-hidden
-        />
+        
 
         <Container className="relative z-10">
           <Reveal>
@@ -65,14 +66,16 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="igf-hero-glow-ring mx-auto inline-flex items-center gap-2 rounded-full border border-igf-gold/35 bg-igf-maroon/40 px-5 py-2 backdrop-blur-md">
-                <Sparkles className="h-4 w-4 text-igf-gold" aria-hidden />
+              <div className="mx-auto inline-flex items-center gap-2 rounded-sm border border-white/25 bg-white/10 px-5 py-2 backdrop-blur-md">
+                <Sparkles className="h-4 w-4 text-cyan-300" aria-hidden />
                 <span className="font-display text-[10px] font-bold uppercase tracking-[0.28em] text-igf-cream/95 sm:text-xs">
                   Cultural celebration · Bay Area
                 </span>
               </div>
-              <h1 className="igf-festival-heading mt-8 font-heading text-4xl font-extrabold uppercase leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
-                <span className="igf-shimmer-heading">Rooted in Heritage</span>
+              <h1 className="igf-heading-exhibit mt-6 text-4xl uppercase sm:mt-8 sm:text-6xl md:text-7xl">
+                <span className="bg-gradient-to-r from-cyan-200 via-white to-violet-200 bg-clip-text text-transparent">
+                  Rooted in Heritage
+                </span>
                 <br />
                 <span className="text-igf-cream">Rising Together</span>
               </h1>
@@ -82,16 +85,13 @@ export default function Home() {
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
                 <Link to="/event-2026">
-                  <Button attention className="igf-btn-shimmer px-7 py-3 text-sm shadow-lg shadow-orange-900/30">
+                  <Button attention className="px-7 py-3 text-sm">
                     <Calendar className="h-4 w-4" aria-hidden />
                     Cultural Extravaganza 2026
                   </Button>
                 </Link>
                 <Link to="/about">
-                  <Button
-                    variant="secondary"
-                    className="border border-igf-gold/30 bg-white/10 px-7 py-3 text-sm text-white ring-igf-gold/25 backdrop-blur-md hover:bg-white/20"
-                  >
+                  <Button variant="outline" className="px-7 py-3 text-sm">
                     Explore Our Mission
                   </Button>
                 </Link>
@@ -102,17 +102,14 @@ export default function Home() {
         <div className="igf-wave-divider absolute bottom-0 left-0 right-0 z-10" aria-hidden />
       </section>
 
-      <section className="relative py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-orange/40 to-transparent" aria-hidden />
+      <section className="igf-section-dark relative py-14 sm:py-16">
         <Container>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {impactStats.map((stat, idx) => (
               <Reveal key={stat.label} delayMs={80 * idx}>
-                <div className="igf-glass-card p-8 text-center">
-                  <div className="bg-gradient-to-br from-igf-orange to-amber-500 bg-clip-text font-heading text-4xl font-extrabold text-transparent sm:text-5xl">
-                    {stat.value}
-                  </div>
-                  <div className="mt-3 text-sm font-semibold text-igf-gray">{stat.label}</div>
+                <div className={cn('igf-exhibit-block relative p-6 text-center sm:p-7', statMods[idx])}>
+                  <div className="relative font-heading text-4xl font-extrabold sm:text-5xl">{stat.value}</div>
+                  <div className="relative mt-2 text-sm font-semibold text-white/90">{stat.label}</div>
                 </div>
               </Reveal>
             ))}
@@ -120,14 +117,14 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative py-16 sm:py-20">
+      <section className="igf-section-light relative py-12 sm:py-16">
         <Container>
           <Reveal>
-            <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.12)]">
-              <div className="igf-gradient-border-inner p-8 sm:p-12">
+            <div className="igf-exhibit-card shadow-[0_24px_60px_rgba(15,39,68,0.1)]">
+              <div className="p-8 sm:p-12">
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">About</p>
+                    <p className="igf-eyebrow-exhibit">About</p>
                     <h2 className="mt-4 font-heading text-3xl font-extrabold text-igf-ink sm:text-4xl md:text-5xl">
                       Cultural continuity for future generations
                     </h2>
@@ -136,14 +133,14 @@ export default function Home() {
                       through year-round educational and cultural initiatives.
                     </p>
                     <Link to="/about" className="mt-8 inline-flex">
-                      <Button attention className="igf-btn-shimmer">
+                      <Button attention>
                         Read Our Story
                       </Button>
                     </Link>
                   </div>
                   <div className="relative">
-                    <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-igf-orange/20 via-igf-magenta/15 to-igf-indigo/20 blur-2xl" aria-hidden />
-                    <div className="relative overflow-hidden rounded-3xl ring-1 ring-black/10">
+                    <div className="absolute -inset-4 rounded-sm bg-gradient-to-tr from-cyan-500/15 via-violet-500/15 to-igf-indigo/20 blur-2xl" aria-hidden />
+                    <div className="igf-exhibit-media relative overflow-hidden">
                       <img
                         src={heroPoster}
                         alt="iGurukul Foundation community celebration"
@@ -164,13 +161,11 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative py-16 sm:py-24">
+      <section className="igf-section-muted relative py-12 sm:py-16">
         <Container>
           <Reveal>
             <div className="text-center">
-              <p className="igf-page-eyebrow justify-center">
-                <span className="tracking-[0.22em]">Programs</span>
-              </p>
+              <p className="igf-eyebrow-exhibit">Programs</p>
               <h2 className="mx-auto mt-4 max-w-3xl font-heading text-3xl font-extrabold text-igf-ink sm:text-4xl md:text-5xl">
                 Learning and community programs
               </h2>
@@ -185,13 +180,18 @@ export default function Home() {
               const Icon = item.icon
               return (
                 <Reveal key={item.title} delayMs={80 * idx}>
-                  <div className="group igf-glass-card flex items-start gap-5 p-6 sm:p-7">
-                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-igf-orange/20 to-igf-magenta/20 ring-1 ring-igf-orange/25 transition duration-500 group-hover:scale-110 group-hover:from-igf-orange/35 group-hover:to-igf-indigo/25">
-                      <Icon className="h-7 w-7 text-igf-orange" aria-hidden />
+                  <div
+                    className={cn(
+                      'group igf-exhibit-card igf-exhibit-card-accent flex items-start gap-5 p-6 sm:p-7',
+                      programMods[idx],
+                    )}
+                  >
+                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-sm bg-igf-indigo/10 ring-1 ring-igf-indigo/15 transition duration-500 group-hover:scale-110">
+                      <Icon className="h-7 w-7 text-igf-indigo" aria-hidden />
                     </div>
                     <div>
                       <div className="font-heading text-lg font-bold text-igf-ink sm:text-xl">{item.title}</div>
-                      <div className="mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-igf-orange to-igf-magenta transition-all duration-500 group-hover:w-24" />
+                      <div className="igf-geometric-line mt-3 transition-all duration-500 group-hover:w-16" />
                     </div>
                   </div>
                 </Reveal>
@@ -201,54 +201,49 @@ export default function Home() {
           <Reveal delayMs={220}>
             <div className="mt-10 text-center">
               <Link to="/programs">
-                <Button className="igf-btn-shimmer px-8">View All Programs</Button>
+                <Button className="px-8">View All Programs</Button>
               </Link>
             </div>
           </Reveal>
         </Container>
       </section>
 
-      <section className="relative py-20 sm:py-24">
-        <div className="igf-cta-spectrum relative overflow-hidden rounded-none px-4 py-16 text-white sm:px-6 sm:py-20">
+      <section className="relative py-12 sm:py-16">
+        <div className="igf-exhibit-cta-band relative overflow-hidden rounded-none px-4 py-16 text-white sm:px-6 sm:py-20">
           <div className="pointer-events-none absolute inset-0 opacity-30 mix-blend-overlay">
             <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-white blur-3xl" />
-            <div className="absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-amber-300 blur-3xl" />
+            <div className="absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-cyan-400/40 blur-3xl" />
           </div>
           <Container className="relative">
             <Reveal>
               <div className="grid gap-10 text-center md:grid-cols-3 md:gap-8 md:text-left">
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-white/30 hover:bg-white/15">
+                <div className="igf-exhibit-cta-panel rounded-sm p-8">
                   <h3 className="font-heading text-2xl font-extrabold">Partner with us</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/85">
                     Support programs, sponsor events, and help us scale community impact.
                   </p>
                   <Link to="/partner-with-us" className="mt-6 inline-flex">
-                    <Button className="border-0 bg-white text-igf-indigo hover:bg-amber-50">Get Involved</Button>
+                    <Button variant="inverse">Get Involved</Button>
                   </Link>
                 </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-amber-200/40 hover:bg-white/15">
+                <div className="igf-exhibit-cta-panel rounded-sm p-8">
                   <h3 className="font-heading text-2xl font-extrabold">Donate today</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/85">
                     Your contribution keeps language and arts education accessible.
                   </p>
                   <Link to="/donate" className="mt-6 inline-flex">
-                    <Button attention className="igf-btn-shimmer shadow-lg shadow-black/20">
+                    <Button variant="inverse" attention>
                       Donate Now
                     </Button>
                   </Link>
                 </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-white/30 hover:bg-white/15">
+                <div className="igf-exhibit-cta-panel rounded-sm p-8">
                   <h3 className="font-heading text-2xl font-extrabold">Stay connected</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/85">
                     Reach our team for volunteering, participation, or collaboration ideas.
                   </p>
                   <Link to="/contact" className="mt-6 inline-flex">
-                    <Button
-                      variant="secondary"
-                      className="border-white/40 bg-transparent text-white ring-white/30 hover:bg-white/15"
-                    >
-                      Contact Us
-                    </Button>
+                    <Button variant="outline">Contact Us</Button>
                   </Link>
                 </div>
               </div>

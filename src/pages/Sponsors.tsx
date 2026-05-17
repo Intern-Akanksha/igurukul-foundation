@@ -24,7 +24,7 @@ function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; d
       <div className="igf-glass-card group flex h-full flex-col items-center p-6 text-center sm:p-8">
         <div className="relative flex h-28 w-full items-center justify-center sm:h-32">
           <div
-            className="absolute inset-4 rounded-2xl bg-gradient-to-br from-igf-orange/10 to-igf-indigo/5 opacity-0 transition duration-500 group-hover:opacity-100"
+            className="absolute inset-4 rounded-2xl bg-gradient-to-br from-igf-indigo/10 to-igf-indigo/5 opacity-0 transition duration-500 group-hover:opacity-100"
             aria-hidden
           />
           <img
@@ -39,7 +39,7 @@ function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; d
           {partner.name}
         </h3>
         {partner.shortName && !partner.name.startsWith(partner.shortName) ? (
-          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-igf-orange">
+          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-igf-indigo">
             {partner.shortName}
           </p>
         ) : null}
@@ -53,7 +53,7 @@ function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; d
 
 export default function Sponsors() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-indigo/10 to-transparent"
         aria-hidden
@@ -104,7 +104,7 @@ export default function Sponsors() {
         <section className="mt-20 sm:mt-24">
           <Reveal>
             <div className="text-center">
-              <Handshake className="mx-auto h-10 w-10 text-igf-orange" aria-hidden />
+              <Handshake className="mx-auto h-10 w-10 text-igf-indigo" aria-hidden />
               <h2 className="mt-4 font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
                 Sponsorship Opportunities
               </h2>
@@ -123,11 +123,11 @@ export default function Sponsors() {
                   )}
                 >
                   <h3 className="font-heading text-lg font-bold text-igf-ink">{tier.name}</h3>
-                  <p className="mt-2 font-heading text-3xl font-extrabold text-igf-orange">{tier.amount}</p>
+                  <p className="mt-2 font-heading text-3xl font-extrabold text-igf-indigo">{tier.amount}</p>
                   <ul className="mt-4 flex-1 space-y-2 text-sm text-igf-gray">
                     {tier.benefits.map((benefit) => (
                       <li key={benefit} className="flex gap-2">
-                        <span className="text-igf-orange" aria-hidden>
+                        <span className="text-igf-indigo" aria-hidden>
                           •
                         </span>
                         <span>{benefit}</span>

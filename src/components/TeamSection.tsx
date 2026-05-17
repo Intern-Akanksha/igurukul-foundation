@@ -5,8 +5,8 @@ import { teamMembers, type TeamMember } from '../data/team'
 
 function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <article className="igf-glass-card igf-torn-paper flex h-full flex-col overflow-hidden text-center">
-      <div className="relative mx-auto mt-6 aspect-square w-36 overflow-hidden rounded-2xl ring-2 ring-igf-gold/30 sm:w-40">
+    <article className="igf-exhibit-card flex h-full flex-col overflow-hidden text-center">
+      <div className="relative mx-auto mt-6 aspect-square w-36 overflow-hidden rounded-sm ring-2 ring-igf-indigo/20 sm:w-40">
         {member.photoUrl ? (
           <img
             src={member.photoUrl}
@@ -16,14 +16,14 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
             className="h-full w-full object-cover transition duration-500 hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-igf-orange/15 to-igf-gold/20">
-            <User className="h-14 w-14 text-igf-orange/50" aria-hidden />
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-igf-indigo/10 to-cyan-500/15">
+            <User className="h-14 w-14 text-igf-indigo/40" aria-hidden />
           </div>
         )}
       </div>
       <div className="flex flex-1 flex-col p-6 pt-5">
         <h3 className="font-heading text-xl font-bold text-igf-ink">{member.name}</h3>
-        <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-igf-orange">
+        <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-igf-indigo">
           {member.role}
         </p>
         {member.bio ? (
@@ -32,7 +32,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
         {member.email ? (
           <a
             href={`mailto:${member.email}`}
-            className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-igf-charcoal transition hover:text-igf-orange"
+            className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-igf-charcoal transition hover:text-igf-indigo"
           >
             <Mail className="h-4 w-4" aria-hidden />
             {member.email}
@@ -47,7 +47,7 @@ export default function TeamSection() {
   const hasMembers = teamMembers.length > 0
 
   return (
-    <section id="team" className="relative border-t border-igf-gold/15 py-20 sm:py-28">
+    <section id="team" className="igf-section-muted relative border-t border-igf-indigo/10 py-14 sm:py-16">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-gold/40 to-transparent"
         aria-hidden
@@ -77,10 +77,9 @@ export default function TeamSection() {
           </div>
         ) : (
           <Reveal delayMs={120}>
-            <div className="igf-gradient-border-wrap mx-auto mt-14 max-w-2xl">
-              <div className="igf-gradient-border-inner px-8 py-12 text-center sm:px-12 sm:py-14">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-igf-orange/10 ring-1 ring-igf-gold/25">
-                  <User className="h-8 w-8 text-igf-orange/70" aria-hidden />
+            <div className="igf-exhibit-card mx-auto mt-14 max-w-2xl px-8 py-12 text-center sm:px-12 sm:py-14">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-sm bg-igf-indigo/10 ring-1 ring-igf-indigo/20">
+                  <User className="h-8 w-8 text-igf-indigo/60" aria-hidden />
                 </div>
                 <p className="mt-6 font-heading text-lg font-bold text-igf-ink">
                   Team profiles coming soon
@@ -88,7 +87,6 @@ export default function TeamSection() {
                 <p className="mt-2 text-sm text-igf-gray">
                   Photos and member details will be added here.
                 </p>
-              </div>
             </div>
           </Reveal>
         )}

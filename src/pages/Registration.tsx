@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import Button from '../components/Button'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { programs, site } from '../data/site'
@@ -25,14 +26,14 @@ export default function Registration() {
   })
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-orange/10 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-indigo/10 to-transparent"
         aria-hidden
       />
       <Container className="relative">
         <Reveal from="scale">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Collaborate</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-indigo">Collaborate</p>
           <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
             Partner With Us
           </h1>
@@ -83,7 +84,7 @@ export default function Registration() {
                         Full name
                       </span>
                       <input
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.fullName}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, fullName: e.target.value }))
@@ -99,7 +100,7 @@ export default function Registration() {
                       </span>
                       <input
                         type="email"
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.email}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, email: e.target.value }))
@@ -112,7 +113,7 @@ export default function Registration() {
                     <label className="grid gap-2">
                       <span className="text-sm font-semibold text-igf-ink">Area of interest</span>
                       <select
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 focus:ring-2"
                         value={form.program}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, program: e.target.value }))
@@ -131,7 +132,7 @@ export default function Registration() {
                         Message (optional)
                       </span>
                       <textarea
-                        className="min-h-28 resize-y rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="min-h-28 resize-y rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.message}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, message: e.target.value }))
@@ -140,12 +141,9 @@ export default function Registration() {
                       />
                     </label>
 
-                    <button
-                      type="submit"
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
-                    >
+                    <Button type="submit" attention className="mt-2 w-full sm:w-auto">
                       Submit request
-                    </button>
+                    </Button>
                   </form>
                 )}
                 </div>

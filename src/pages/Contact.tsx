@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Button from '../components/Button'
 import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { site } from '../data/site'
@@ -121,14 +122,14 @@ export default function Contact() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-indigo/12 to-transparent"
         aria-hidden
       />
       <Container className="relative">
         <Reveal from="scale">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Connect</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-indigo">Connect</p>
           <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
             Contact Us
           </h1>
@@ -220,7 +221,7 @@ export default function Contact() {
                         First name
                       </span>
                       <input
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.firstName}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, firstName: e.target.value }))
@@ -236,7 +237,7 @@ export default function Contact() {
                         Last name
                       </span>
                       <input
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.lastName}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, lastName: e.target.value }))
@@ -253,7 +254,7 @@ export default function Contact() {
                       </span>
                       <input
                         type="email"
-                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.email}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, email: e.target.value }))
@@ -269,7 +270,7 @@ export default function Contact() {
                         Message
                       </span>
                       <textarea
-                        className="min-h-36 resize-y rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                        className="min-h-36 resize-y rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                         value={form.message}
                         onChange={(e) =>
                           setForm((s) => ({ ...s, message: e.target.value }))
@@ -302,13 +303,9 @@ export default function Contact() {
                       ) : null}
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px disabled:opacity-70"
-                    >
+                    <Button type="submit" attention disabled={submitting} className="mt-2 w-full sm:w-auto">
                       {submitting ? 'Submitting…' : 'Submit'}
-                    </button>
+                    </Button>
                   </form>
                 )}
               </div>
@@ -320,7 +317,7 @@ export default function Contact() {
             <Reveal delayMs={140}>
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-igf-indigo via-igf-charcoal to-black p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/15 sm:p-9">
                 <div
-                  className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-igf-orange/25 blur-[80px]"
+                  className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-cyan-500/20 blur-[80px]"
                   aria-hidden
                 />
                 <div

@@ -112,7 +112,7 @@ export default function Subscribe() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/12 to-transparent"
         aria-hidden
@@ -205,7 +205,7 @@ export default function Subscribe() {
                   <label className="grid gap-2">
                     <span className="text-sm font-semibold text-igf-ink">Name</span>
                     <input
-                      className="h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                      className="h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
@@ -219,7 +219,7 @@ export default function Subscribe() {
                     <span className="text-sm font-semibold text-igf-ink">Email</span>
                     <input
                       type="email"
-                      className="h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 placeholder:text-igf-gray/60 focus:ring-2"
+                      className="h-12 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 placeholder:text-igf-gray/60 focus:ring-2"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"

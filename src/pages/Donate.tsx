@@ -13,14 +13,14 @@ export default function Donate() {
   const donateHref = useMemo(() => `${donateUrl}?amount=${amount}`, [amount])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-igf-orange/12 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-igf-indigo/10 to-transparent"
         aria-hidden
       />
       <Container className="relative">
         <Reveal from="scale">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Give</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-indigo">Give</p>
           <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
             Donate
           </h1>
@@ -28,7 +28,7 @@ export default function Donate() {
             Your contribution supports cultural learning, community programs,
             and preserving Odia language and heritage.
           </p>
-          <div className="mt-8 max-w-3xl rounded-2xl border border-igf-orange/15 bg-gradient-to-r from-igf-orange/8 to-igf-magenta/8 p-6 backdrop-blur-sm">
+          <div className="mt-8 max-w-3xl rounded-2xl border border-igf-indigo/15 bg-gradient-to-r from-igf-indigo/8 to-igf-magenta/8 p-6 backdrop-blur-sm">
             <div className="font-heading text-xl font-extrabold text-igf-ink sm:text-2xl">
               Support Language and Culture Advocacy
             </div>
@@ -44,7 +44,7 @@ export default function Donate() {
             <Reveal delayMs={120}>
               <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">
                 <div className="igf-gradient-border-inner p-9">
-                <div className="text-xs font-semibold uppercase tracking-wide text-igf-orange">
+                <div className="text-xs font-semibold uppercase tracking-wide text-igf-indigo">
                   Donate
                 </div>
                 <div className="mt-4 text-base text-igf-gray">
@@ -60,10 +60,8 @@ export default function Donate() {
                         type="button"
                         onClick={() => setAmount(v)}
                         className={[
-                          'h-11 rounded-2xl text-sm font-semibold transition ring-1',
-                          amount === v
-                            ? 'bg-gradient-to-br from-igf-orange to-amber-600 text-white shadow-lg shadow-orange-500/25 ring-0'
-                            : 'bg-white/80 text-igf-ink ring-black/10 hover:bg-white hover:ring-igf-orange/20',
+                          'igf-amount-chip',
+                          amount === v ? 'igf-amount-chip-active' : '',
                         ].join(' ')}
                       >
                         ${v}
@@ -80,7 +78,7 @@ export default function Donate() {
                     step={1}
                     value={amount}
                     onChange={(e) => setAmount(Math.max(1, Number(e.target.value)))}
-                    className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-orange/30 focus:ring-2"
+                    className="h-11 rounded-2xl border border-black/10 bg-white/70 px-4 text-sm text-igf-ink outline-none ring-igf-indigo/30 focus:ring-2"
                   />
                 </label>
                 <div className="mt-7">
@@ -100,7 +98,7 @@ export default function Donate() {
             <Reveal delayMs={160}>
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-igf-indigo via-igf-charcoal to-black p-9 text-white shadow-[0_24px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
                 <div
-                  className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-igf-orange/30 blur-[72px]"
+                  className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-cyan-500/20 blur-[72px]"
                   aria-hidden
                 />
                 <div className="relative text-xs font-semibold uppercase tracking-wider text-amber-200/90">

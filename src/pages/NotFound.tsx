@@ -8,15 +8,15 @@ export default function NotFound() {
   return (
     <div className="relative flex min-h-[calc(100dvh-12rem)] items-center py-20">
       <div
-        className="pointer-events-none absolute inset-x-0 top-1/4 h-64 bg-gradient-to-b from-igf-orange/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-1/4 h-64 bg-gradient-to-b from-igf-indigo/12 to-transparent"
         aria-hidden
       />
       <Container className="relative w-full">
         <Reveal from="scale">
           <div className="igf-gradient-border-wrap mx-auto max-w-xl shadow-[0_28px_70px_rgba(61,43,107,0.15)]">
             <div className="igf-gradient-border-inner px-8 py-12 text-center sm:px-12 sm:py-14">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-igf-orange/20 to-igf-magenta/20 ring-1 ring-igf-orange/25">
-                <Sparkles className="h-7 w-7 text-igf-orange" aria-hidden />
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-igf-indigo/15 to-violet-500/15 ring-1 ring-igf-indigo/25">
+                <Sparkles className="h-7 w-7 text-igf-indigo" aria-hidden />
               </div>
               <div className="mt-6 font-heading text-3xl font-extrabold text-igf-ink">Page not found</div>
               <div className="mt-3 text-base text-igf-gray">The page you’re looking for doesn’t exist.</div>

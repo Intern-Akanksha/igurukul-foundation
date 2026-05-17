@@ -27,17 +27,13 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-igf-gold/20 bg-gradient-to-b from-igf-maroon via-igf-charcoal to-igf-ink text-white">
+    <footer className="igf-footer-exhibit relative z-10 overflow-hidden border-t border-white/10">
       <div
-        className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-igf-orange/25 blur-[100px]"
+        className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-cyan-500/15 blur-[100px]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-igf-magenta/20 blur-[110px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(61,43,107,0.35)_0%,transparent_45%)]"
+        className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-violet-500/15 blur-[110px]"
         aria-hidden
       />
 
@@ -54,9 +50,9 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-2 text-xs font-extrabold tracking-[0.22em] text-white">
                 {site.name.toUpperCase()}
-                <Heart className="h-3.5 w-3.5 fill-igf-orange text-igf-orange" aria-hidden />
+                <Heart className="h-3.5 w-3.5 fill-cyan-400 text-cyan-400" aria-hidden />
               </div>
-              <div className="mt-1 text-[11px] font-semibold tracking-[0.18em] text-amber-100/90">
+              <div className="mt-1 text-[11px] font-semibold tracking-[0.18em] text-slate-300/90">
                 {site.tagline.toUpperCase()}
               </div>
             </div>
@@ -68,7 +64,7 @@ export default function Footer() {
             <div>San Francisco Bay Area, California</div>
             <div>
               <a
-                className="font-semibold text-amber-200/95 underline decoration-white/25 underline-offset-4 transition hover:decoration-igf-orange"
+                className="font-semibold text-cyan-200/95 underline decoration-white/25 underline-offset-4 transition hover:decoration-cyan-400"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
@@ -78,7 +74,7 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-4">
-          <div className="text-sm font-semibold uppercase tracking-wider text-amber-200/90">Quick links</div>
+          <div className="text-sm font-semibold uppercase tracking-wider text-slate-300/90">Quick links</div>
           <div className="mt-4 grid grid-cols-2 gap-2">
             {navItems.map((item) => (
               <Link
@@ -93,12 +89,12 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <div className="text-sm font-semibold uppercase tracking-wider text-amber-200/90">Contact</div>
+          <div className="text-sm font-semibold uppercase tracking-wider text-slate-300/90">Contact</div>
           <div className="mt-4 space-y-2 text-sm text-white/85">
             <div>
               Email:{' '}
               <a
-                className="font-semibold text-white underline decoration-white/25 underline-offset-4 hover:decoration-igf-orange"
+                className="font-semibold text-white underline decoration-white/25 underline-offset-4 hover:decoration-cyan-400"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
@@ -112,7 +108,7 @@ export default function Footer() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/90 ring-1 ring-white/15 transition duration-300 hover:scale-105 hover:bg-igf-orange/25 hover:ring-igf-orange/40 hover:text-white"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/90 ring-1 ring-white/15 transition duration-300 hover:scale-105 hover:bg-cyan-500/20 hover:ring-cyan-400/40 hover:text-white"
                   >
                     <SocialIcon kind={s.kind} className="h-5 w-5" title={s.label} />
                   </a>
@@ -121,7 +117,7 @@ export default function Footer() {
             </div>
             <div className="pt-4">
               <Link to="/subscribe">
-                <Button attention className="w-full justify-center shadow-lg shadow-orange-900/30">
+                <Button attention className="w-full justify-center">
                   Subscribe Now
                 </Button>
               </Link>
@@ -131,7 +127,7 @@ export default function Footer() {
       </Container>
 
       <div className="relative border-t border-white/10 py-6">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-orange/35 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/35 to-transparent" />
         <Container className="flex flex-col gap-2 text-sm text-white/80 md:flex-row md:items-center md:justify-between">
           <div>
             © {new Date().getFullYear()} {site.name}. All rights reserved.

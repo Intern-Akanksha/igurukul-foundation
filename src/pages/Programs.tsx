@@ -70,7 +70,7 @@ const programCategories: ProgramCategory[] = [
 
 export default function Programs() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 to-transparent"
         aria-hidden
@@ -95,7 +95,7 @@ export default function Programs() {
             <Reveal key={cat.title} delayMs={90 * idx} from="scale">
               <div className="igf-glass-card p-8 sm:p-9">
                 <div className="flex flex-wrap items-center gap-4">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-igf-orange/25 to-igf-magenta/20 text-xl ring-1 ring-igf-orange/20">
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-igf-indigo/20 to-violet-500/15 text-xl ring-1 ring-igf-indigo/20">
                     <span>{cat.icon}</span>
                   </div>
                   <div className="font-heading text-xl font-extrabold text-igf-ink sm:text-2xl">{cat.title}</div>
@@ -105,15 +105,15 @@ export default function Programs() {
                   {cat.items.map((it) => (
                     <div
                       key={`${cat.title}-${it.num}`}
-                      className="rounded-2xl border border-black/5 bg-white/60 p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-igf-orange/20 hover:bg-white/90 hover:shadow-[0_16px_40px_rgba(61,43,107,0.1)]"
+                      className="rounded-sm border border-black/5 bg-white/60 p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-igf-indigo/20 hover:bg-white/90 hover:shadow-[0_16px_40px_rgba(15,39,68,0.1)]"
                     >
-                      <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-orange">
+                      <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-indigo">
                         {it.num}
                       </div>
                       <div className="mt-2 text-sm font-semibold text-igf-ink">{it.title}</div>
                       {it.artist ? <div className="mt-1 text-sm text-igf-gray">{it.artist}</div> : null}
                       {it.featured ? (
-                        <div className="mt-3 inline-flex rounded-full bg-gradient-to-r from-igf-orange/15 to-igf-magenta/10 px-3 py-1 text-xs font-semibold text-igf-orange ring-1 ring-igf-orange/25">
+                        <div className="mt-3 inline-flex rounded-full bg-gradient-to-r from-igf-indigo/12 to-violet-500/10 px-3 py-1 text-xs font-semibold text-igf-indigo ring-1 ring-igf-indigo/25">
                           Featured
                         </div>
                       ) : null}
