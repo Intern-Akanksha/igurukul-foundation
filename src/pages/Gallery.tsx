@@ -80,7 +80,7 @@ export default function Gallery() {
   }, [])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-amber-400/15 to-transparent"
         aria-hidden
@@ -105,14 +105,14 @@ export default function Gallery() {
         </Reveal>
 
         {loading ? (
-          <div className="mt-14 rounded-3xl border border-igf-orange/15 bg-white/80 p-14 text-center shadow-[0_20px_50px_rgba(61,43,107,0.08)] backdrop-blur-md">
+          <div className="igf-section-body rounded-3xl border border-igf-orange/15 bg-white/80 p-14 text-center shadow-[0_20px_50px_rgba(61,43,107,0.08)] backdrop-blur-md">
             <div className="mx-auto mb-4 flex h-12 w-12 animate-pulse items-center justify-center rounded-2xl bg-gradient-to-br from-igf-orange/20 to-igf-magenta/20">
               <ImageIcon className="h-6 w-6 text-igf-orange" aria-hidden />
             </div>
             <p className="text-sm font-semibold text-igf-gray">Loading gallery images…</p>
           </div>
         ) : items.length > 0 ? (
-          <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3">
+          <div className="igf-section-body columns-1 gap-6 sm:columns-2 lg:columns-3">
             {items.map((item, idx) => (
               <Reveal key={`${item.image}-${idx}`} delayMs={(idx % 6) * 60} from="scale">
                 <div className="group igf-glass-card mb-6 overflow-hidden break-inside-avoid">
@@ -131,7 +131,7 @@ export default function Gallery() {
             ))}
           </div>
         ) : (
-          <div className="mt-14 rounded-3xl border border-black/5 bg-white/85 p-12 text-center shadow-lg backdrop-blur-md">
+          <div className="igf-section-body rounded-3xl border border-black/5 bg-white/85 p-12 text-center shadow-lg backdrop-blur-md">
             <p className="text-base font-semibold text-igf-ink">No gallery images available yet.</p>
             <p className="mt-2 text-sm text-igf-gray">Please add images in the gallery.</p>
             {error ? <p className="mt-3 text-sm font-semibold text-igf-gray">{error}</p> : null}

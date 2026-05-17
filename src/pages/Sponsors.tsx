@@ -53,7 +53,7 @@ function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; d
 
 export default function Sponsors() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-indigo/10 to-transparent"
         aria-hidden
@@ -74,7 +74,7 @@ export default function Sponsors() {
           </div>
         </Reveal>
 
-        <section className="mt-16">
+        <section className="igf-section igf-section-band">
           <Reveal>
             <h2 className="text-center font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
               Presenting Organization
@@ -85,7 +85,7 @@ export default function Sponsors() {
           </div>
         </section>
 
-        <section className="mt-16 sm:mt-20">
+        <section className="igf-section-body">
           <Reveal>
             <h2 className="text-center font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
               Partnering Organizations
@@ -94,14 +94,14 @@ export default function Sponsors() {
               Proudly supported by these amazing organizations
             </p>
           </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="igf-section-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {partnerOrganizations.map((partner, idx) => (
               <PartnerCard key={partner.name} partner={partner} delayMs={60 * idx} />
             ))}
           </div>
         </section>
 
-        <section className="mt-20 sm:mt-24">
+        <section className="igf-section-body">
           <Reveal>
             <div className="text-center">
               <Handshake className="mx-auto h-10 w-10 text-igf-orange" aria-hidden />
@@ -113,7 +113,7 @@ export default function Sponsors() {
               </p>
             </div>
           </Reveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="igf-section-body grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {sponsorshipTiers.map((tier, idx) => (
               <Reveal key={tier.name} delayMs={80 * idx} from="scale">
                 <div

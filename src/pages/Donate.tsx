@@ -13,7 +13,7 @@ export default function Donate() {
   const donateHref = useMemo(() => `${donateUrl}?amount=${amount}`, [amount])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-igf-orange/12 to-transparent"
         aria-hidden
@@ -39,7 +39,7 @@ export default function Donate() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+        <div className="igf-section-body grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal delayMs={120}>
               <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">

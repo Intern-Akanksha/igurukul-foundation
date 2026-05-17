@@ -121,7 +121,7 @@ export default function Contact() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-indigo/12 to-transparent"
         aria-hidden
@@ -137,7 +137,7 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+        <div className="igf-section-body grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
               <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">

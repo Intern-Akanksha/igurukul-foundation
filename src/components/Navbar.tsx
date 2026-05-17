@@ -27,22 +27,12 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-all duration-500',
-        scrolled
-          ? 'igf-navbar-heritage border-b backdrop-blur-xl'
-          : 'border-b border-igf-gold/10 bg-gradient-to-b from-igf-maroon/90 via-igf-charcoal/85 to-igf-charcoal/75 text-igf-cream backdrop-blur-md',
+        'igf-nav-bar sticky top-0 z-50 text-igf-cream transition-shadow duration-500',
+        scrolled && 'shadow-[0_6px_28px_rgba(0,0,0,0.35)]',
       )}
     >
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-8 igf-tribal-stripe opacity-40 sm:w-10"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-8 scale-x-[-1] igf-tribal-stripe opacity-40 sm:w-10"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-igf-gold/50 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-gold/60 to-transparent"
         aria-hidden
       />
 
@@ -82,17 +72,15 @@ export default function Navbar() {
           className="hidden min-w-0 flex-1 justify-center lg:flex"
           aria-label="Main navigation"
         >
-          <div className="inline-flex max-w-full flex-nowrap items-center gap-0.5 rounded-full border border-igf-gold/20 bg-igf-maroon/50 px-1 py-1 shadow-[0_4px_20px_rgba(26,12,10,0.25)] ring-1 ring-igf-gold/15 backdrop-blur-sm">
+          <div className="inline-flex max-w-full flex-nowrap items-center gap-1 px-1 sm:gap-2">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
                   cn(
-                    'shrink-0 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold leading-none tracking-tight transition duration-300 xl:px-3.5 xl:text-sm',
-                    isActive
-                      ? 'bg-gradient-to-r from-igf-orange to-igf-gold text-igf-ink shadow-md shadow-orange-900/30'
-                      : 'text-igf-cream/80 hover:bg-igf-gold/15 hover:text-igf-cream',
+                    'igf-nav-link shrink-0 whitespace-nowrap px-2.5 py-2.5 text-[13px] font-semibold uppercase tracking-wide xl:px-3.5 xl:text-sm',
+                    isActive && 'igf-nav-link-active font-bold',
                   )
                 }
               >
@@ -116,8 +104,8 @@ export default function Navbar() {
           <button
             type="button"
             className={cn(
-              'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-igf-indigo/10 bg-white/80 shadow-sm transition duration-300 hover:border-igf-orange/25 hover:bg-white hover:shadow-md lg:hidden',
-              open && 'border-igf-orange/30 bg-igf-orange/5',
+              'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded border border-igf-gold/30 bg-igf-brown/80 shadow-sm transition duration-300 hover:border-igf-gold/50 hover:bg-igf-maroon lg:hidden',
+              open && 'border-igf-gold/50 bg-igf-maroon',
             )}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -126,20 +114,20 @@ export default function Navbar() {
             <span className="relative h-4 w-5">
               <span
                 className={cn(
-                  'absolute left-0 top-0 h-0.5 w-5 rounded-full bg-igf-charcoal transition-all duration-300',
-                  open && 'top-1.5 rotate-45 bg-igf-orange',
+                  'absolute left-0 top-0 h-0.5 w-5 rounded-full bg-igf-gold transition-all duration-300',
+                  open && 'top-1.5 rotate-45 bg-igf-gold',
                 )}
               />
               <span
                 className={cn(
-                  'absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-igf-charcoal transition-all duration-300',
+                  'absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-igf-gold transition-all duration-300',
                   open && 'opacity-0',
                 )}
               />
               <span
                 className={cn(
-                  'absolute left-0 top-3 h-0.5 w-5 rounded-full bg-igf-charcoal transition-all duration-300',
-                  open && 'top-1.5 -rotate-45 bg-igf-orange',
+                  'absolute left-0 top-3 h-0.5 w-5 rounded-full bg-igf-gold transition-all duration-300',
+                  open && 'top-1.5 -rotate-45 bg-igf-gold',
                 )}
               />
             </span>

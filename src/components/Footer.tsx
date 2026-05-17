@@ -27,7 +27,8 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-igf-gold/20 bg-gradient-to-b from-igf-maroon via-igf-charcoal to-igf-ink text-white">
+    <footer className="igf-footer-arch relative z-10 overflow-hidden bg-gradient-to-b from-igf-brown via-igf-charcoal to-igf-ink text-white">
+      <div className="igf-paisley-bg pointer-events-none absolute inset-0 opacity-20" aria-hidden />
       <div
         className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-igf-orange/25 blur-[100px]"
         aria-hidden
@@ -41,7 +42,8 @@ export default function Footer() {
         aria-hidden
       />
 
-      <Container className="relative grid gap-10 py-14 md:grid-cols-12 md:py-16">
+      <div className="igf-monument-divider relative mx-auto max-w-4xl" aria-hidden />
+      <Container className="relative grid gap-8 py-10 md:grid-cols-12 md:py-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
             <img

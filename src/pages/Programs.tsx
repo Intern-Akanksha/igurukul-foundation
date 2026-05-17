@@ -70,30 +70,30 @@ const programCategories: ProgramCategory[] = [
 
 export default function Programs() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 to-transparent"
         aria-hidden
       />
       <Container className="relative">
         <Reveal from="scale">
-          <div className="text-center">
+          <div className="igf-section-head">
             <p className="igf-page-eyebrow justify-center">
               <span className="tracking-[0.22em]">The Journey</span>
             </p>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
+            <h1 className="font-heading text-3xl font-extrabold tracking-tight text-igf-ink sm:text-4xl md:text-5xl">
               Program Lineup
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-igf-gray sm:text-lg">
+            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-igf-gray sm:text-base">
               An immersive cultural journey from invocation to grand finale.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-8">
+        <div className="igf-section-body grid gap-4 sm:gap-5">
           {programCategories.map((cat, idx) => (
             <Reveal key={cat.title} delayMs={90 * idx} from="scale">
-              <div className="igf-glass-card p-8 sm:p-9">
+              <div className="igf-travel-feature-card igf-card-compact">
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-igf-orange/25 to-igf-magenta/20 text-xl ring-1 ring-igf-orange/20">
                     <span>{cat.icon}</span>
@@ -101,7 +101,7 @@ export default function Programs() {
                   <div className="font-heading text-xl font-extrabold text-igf-ink sm:text-2xl">{cat.title}</div>
                 </div>
 
-                <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                   {cat.items.map((it) => (
                     <div
                       key={`${cat.title}-${it.num}`}

@@ -7,7 +7,7 @@ import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react'
 
 export default function NewsEvents() {
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 via-transparent to-transparent"
         aria-hidden
@@ -97,7 +97,7 @@ export default function NewsEvents() {
           </div>
         </section>
 
-        <section className="mt-16 sm:mt-20">
+        <section className="igf-section-body">
           <Reveal>
             <h3 className="font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">Past Events</h3>
             <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-igf-orange to-igf-magenta" />

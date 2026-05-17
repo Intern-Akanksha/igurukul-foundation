@@ -112,7 +112,7 @@ export default function Subscribe() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="relative py-20 sm:py-28">
+    <div className="igf-page-wrap relative">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/12 to-transparent"
         aria-hidden
@@ -132,7 +132,7 @@ export default function Subscribe() {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-14 max-w-2xl">
+        <div className="igf-section-body mx-auto max-w-2xl">
           <Reveal>
             <div className="igf-gradient-border-wrap shadow-[0_28px_70px_rgba(61,43,107,0.12)]">
               <div className="igf-gradient-border-inner p-6 sm:p-9">

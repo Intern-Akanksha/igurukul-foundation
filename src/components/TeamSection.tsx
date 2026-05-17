@@ -47,28 +47,28 @@ export default function TeamSection() {
   const hasMembers = teamMembers.length > 0
 
   return (
-    <section id="team" className="relative border-t border-igf-gold/15 py-20 sm:py-28">
+    <section id="team" className="igf-section igf-section-band relative border-t border-igf-gold/15">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-gold/40 to-transparent"
         aria-hidden
       />
       <Container>
         <Reveal>
-          <div className="text-center">
+          <div className="igf-section-head">
             <p className="igf-page-eyebrow justify-center">
               <span className="tracking-[0.22em]">Team</span>
             </p>
-            <h2 className="mt-5 font-heading text-3xl font-extrabold tracking-tight text-igf-ink sm:text-4xl md:text-5xl">
+            <h2 className="font-heading text-2xl font-extrabold tracking-tight text-igf-ink sm:text-3xl md:text-4xl">
               Meet Our Team
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-igf-gray sm:text-lg">
+            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-igf-gray sm:text-base">
               The volunteers and leaders who guide our programs, events, and community initiatives.
             </p>
           </div>
         </Reveal>
 
         {hasMembers ? (
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="igf-section-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {teamMembers.map((member, idx) => (
               <Reveal key={member.id} delayMs={60 * idx}>
                 <TeamMemberCard member={member} />
@@ -77,8 +77,8 @@ export default function TeamSection() {
           </div>
         ) : (
           <Reveal delayMs={120}>
-            <div className="igf-gradient-border-wrap mx-auto mt-14 max-w-2xl">
-              <div className="igf-gradient-border-inner px-8 py-12 text-center sm:px-12 sm:py-14">
+            <div className="igf-gradient-border-wrap igf-section-body mx-auto max-w-2xl">
+              <div className="igf-gradient-border-inner px-6 py-8 text-center sm:px-10 sm:py-10">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-igf-orange/10 ring-1 ring-igf-gold/25">
                   <User className="h-8 w-8 text-igf-orange/70" aria-hidden />
                 </div>

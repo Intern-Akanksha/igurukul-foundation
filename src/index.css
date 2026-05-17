@@ -15,6 +15,9 @@
   --color-igf-magenta: #8b3a2e;
   --color-igf-cream: #fdf6ed;
   --color-igf-maroon: #3d1814;
+  --color-igf-brown: #3d2817;
+  --color-igf-royal: #1e4a6e;
+  --color-igf-beige: #e8d4bc;
 }
 
 :root {
@@ -32,6 +35,9 @@
   --igf-magenta: #8b3a2e;
   --igf-cream: #fdf6ed;
   --igf-maroon: #3d1814;
+  --igf-brown: #3d2817;
+  --igf-royal: #1e4a6e;
+  --igf-beige: #e8d4bc;
 
   --font-heading: 'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times,
     serif;
@@ -219,10 +225,163 @@ body::before {
 /* ─── Heritage festival layer (ambient + texture + motion) ─── */
 .igf-ambient-base {
   background:
-    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(232, 184, 74, 0.22), transparent 55%),
-    radial-gradient(ellipse 80% 55% at 0% 50%, rgba(155, 61, 47, 0.14), transparent 50%),
-    radial-gradient(ellipse 75% 50% at 100% 70%, rgba(212, 98, 42, 0.16), transparent 52%),
-    linear-gradient(175deg, #f8ead8 0%, var(--igf-bg) 42%, #e8d4bc 100%);
+    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(19, 136, 8, 0.06), transparent 45%),
+    radial-gradient(ellipse 85% 55% at 85% 25%, rgba(212, 98, 42, 0.1), transparent 48%),
+    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(232, 184, 74, 0.2), transparent 55%),
+    radial-gradient(ellipse 80% 55% at 0% 50%, rgba(155, 61, 47, 0.12), transparent 50%),
+    linear-gradient(175deg, #faf3e8 0%, var(--igf-bg) 42%, #e8d4bc 100%);
+}
+
+.igf-paisley-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 8c6 8 14 10 14 18s-8 12-14 18c-6-6-14-10-14-18s8-10 14-18z' fill='%23d4622a' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+.igf-parchment {
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.97), rgba(245, 234, 216, 0.92)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+.igf-skyline-banner {
+  background: linear-gradient(180deg, #f0c050 0%, #e8821a 40%, #b85c20 100%);
+}
+
+.igf-nav-bar {
+  background: linear-gradient(180deg, #4a3020 0%, var(--igf-brown) 35%, #2a1810 100%);
+  border-bottom: 2px solid rgba(232, 184, 74, 0.35);
+  box-shadow: 0 4px 24px rgba(26, 12, 10, 0.4);
+}
+
+.igf-nav-link {
+  position: relative;
+  color: var(--igf-gold);
+  transition: color 0.3s ease;
+}
+
+.igf-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.15rem;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, var(--igf-gold), transparent);
+  transition:
+    width 0.35s ease,
+    left 0.35s ease;
+}
+
+.igf-nav-link:hover {
+  color: #fff8e8;
+}
+
+.igf-nav-link:hover::after,
+.igf-nav-link-active::after {
+  left: 0;
+  width: 100%;
+}
+
+.igf-nav-link-active {
+  color: #fff8e8;
+}
+
+.igf-hero-sunset {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(232, 136, 42, 0.25) 0%,
+      rgba(61, 40, 23, 0.55) 45%,
+      rgba(42, 24, 16, 0.88) 100%
+    ),
+    radial-gradient(ellipse 80% 50% at 50% 20%, rgba(245, 200, 66, 0.35), transparent 65%);
+}
+
+.igf-framed-media {
+  padding: 0.75rem;
+  background: linear-gradient(145deg, #fffef9, #f5e8d4);
+  box-shadow:
+    0 0 0 4px #fffef9,
+    0 0 0 6px rgba(232, 184, 74, 0.45),
+    0 20px 50px rgba(42, 24, 16, 0.25);
+}
+
+.igf-travel-feature-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #fffef9;
+  box-shadow:
+    0 8px 28px rgba(42, 24, 16, 0.12),
+    0 2px 0 rgba(232, 184, 74, 0.35) inset;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.igf-travel-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 40px rgba(42, 24, 16, 0.18),
+    0 2px 0 rgba(232, 184, 74, 0.5) inset;
+}
+
+.igf-travel-feature-cap {
+  background: linear-gradient(135deg, var(--igf-royal) 0%, #163a58 100%);
+  color: #f5f0e8;
+}
+
+.igf-cta-travel-card {
+  border-radius: 0.375rem;
+  border: 1px solid rgba(232, 184, 74, 0.35);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.igf-cta-travel-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 184, 74, 0.55);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.igf-footer-arch {
+  position: relative;
+  padding-top: 2.5rem;
+}
+
+.igf-footer-arch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 Q150 0 300 20 T600 15 T900 22 T1200 8 L1200 0 L0 0 Z' fill='%232a1810'/%3E%3C/svg%3E")
+    center top / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+.igf-monument-divider {
+  height: 3rem;
+  opacity: 0.5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 48' fill='none'%3E%3Cpath stroke='%23E8B84A' stroke-width='1' d='M20 40h40M80 36h24M140 38h32M220 34h28M300 36h36M380 32h30M460 38h26M540 34h40'/%3E%3Ccircle cx='60' cy='24' r='6' stroke='%23d4622a'/%3E%3Cpath d='M160 28l8-12 8 12' stroke='%23d4622a'/%3E%3Crect x='268' y='18' width='16' height='20' stroke='%23E8B84A'/%3E%3Cpath d='M400 30c0-8 12-8 12 0' stroke='%23E8B84A'/%3E%3C/svg%3E")
+    center / auto 100% no-repeat;
+}
+
+.igf-section-parchment {
+  position: relative;
+}
+
+.igf-section-parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(212, 98, 42, 0.06), transparent);
 }
 
 .igf-mesh-aurora {
@@ -377,7 +536,7 @@ body::before {
 }
 
 .igf-glass-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow:
     0 8px 32px rgba(212, 98, 42, 0.18),
     0 28px 60px rgba(42, 18, 16, 0.14);
@@ -474,7 +633,7 @@ body::before {
 }
 
 .igf-wave-divider {
-  height: 3rem;
+  height: 2rem;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40 Q300 0 600 40 T1200 40 L1200 80 L0 80 Z' fill='%23fdf6ed'/%3E%3C/svg%3E")
     center bottom / 100% 100% no-repeat;
 }
@@ -558,6 +717,84 @@ body::before {
   );
   transform: translateX(-120%);
   animation: igf-btn-sweep 3.2s ease-in-out infinite;
+}
+
+/* ─── Compact professional layout (denser sections) ─── */
+.igf-page-wrap {
+  position: relative;
+  padding-block: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .igf-page-wrap {
+    padding-block: 3rem;
+  }
+}
+
+.igf-section {
+  position: relative;
+  padding-block: 2rem;
+}
+
+@media (min-width: 640px) {
+  .igf-section {
+    padding-block: 2.75rem;
+  }
+}
+
+.igf-section-band {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 254, 249, 0.92) 0%,
+    rgba(248, 237, 220, 0.65) 50%,
+    rgba(255, 254, 249, 0.85) 100%
+  );
+  border-block: 1px solid rgba(212, 98, 42, 0.12);
+}
+
+.igf-section-head {
+  text-align: center;
+}
+
+.igf-section-head > h1,
+.igf-section-head > h2 {
+  margin-top: 0.5rem;
+  line-height: 1.15;
+}
+
+.igf-section-head > p {
+  margin-top: 0.75rem;
+}
+
+.igf-section-body {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .igf-section-body {
+    margin-top: 2rem;
+  }
+}
+
+.igf-card-compact {
+  padding: 1.15rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .igf-card-compact {
+    padding: 1.35rem 1.5rem;
+  }
+}
+
+.igf-stats-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .igf-stats-grid {
+    gap: 1rem;
+  }
 }
 
 @keyframes igf-btn-sweep {

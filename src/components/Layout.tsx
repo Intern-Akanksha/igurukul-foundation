@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import EventBackdrop from './EventBackdrop'
 import Footer from './Footer'
+import HeritageSkyline from './HeritageSkyline'
 import Navbar from './Navbar'
 
 export default function Layout() {
@@ -31,6 +32,7 @@ export default function Layout() {
   return (
     <div className="relative min-h-dvh bg-igf-bg text-igf-charcoal">
       <EventBackdrop />
+      <HeritageSkyline />
       <Navbar />
       <main className="relative z-10 min-h-[calc(100dvh-4rem)]">
         <Outlet />
