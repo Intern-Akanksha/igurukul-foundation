@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound'
 import Programs from './pages/Programs'
 import Registration from './pages/Registration'
 import Subscribe from './pages/Subscribe'
+import Sponsors from './pages/Sponsors'
 
 export default function App() {
   return (
@@ -27,6 +28,8 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/partner-with-us" element={<Registration />} />
           <Route path="/events" element={<NewsEvents />} />
+          <Route path="/partners" element={<Sponsors />} />
+          <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/news-events" element={<NewsEvents />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/subscribe" element={<Subscribe />} />

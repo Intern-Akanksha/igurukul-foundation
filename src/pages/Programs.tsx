@@ -70,43 +70,50 @@ const programCategories: ProgramCategory[] = [
 
 export default function Programs() {
   return (
-    <div className="py-20">
-      <Container>
-        <Reveal>
+    <div className="relative py-20 sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 to-transparent"
+        aria-hidden
+      />
+      <Container className="relative">
+        <Reveal from="scale">
           <div className="text-center">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-orange">
-              The Journey
-            </div>
-            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
+            <p className="igf-page-eyebrow justify-center">
+              <span className="tracking-[0.22em]">The Journey</span>
+            </p>
+            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
               Program Lineup
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-igf-gray">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-igf-gray sm:text-lg">
               An immersive cultural journey from invocation to grand finale.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-6">
+        <div className="mt-14 grid gap-8">
           {programCategories.map((cat, idx) => (
-            <Reveal key={cat.title} delayMs={90 * idx}>
-              <div className="igf-surface rounded-3xl border border-black/5 p-7 shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)]">
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/60 ring-1 ring-black/5">
-                    <span className="text-lg">{cat.icon}</span>
+            <Reveal key={cat.title} delayMs={90 * idx} from="scale">
+              <div className="igf-glass-card p-8 sm:p-9">
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-igf-orange/25 to-igf-magenta/20 text-xl ring-1 ring-igf-orange/20">
+                    <span>{cat.icon}</span>
                   </div>
-                  <div className="font-heading text-xl font-extrabold text-igf-ink">{cat.title}</div>
+                  <div className="font-heading text-xl font-extrabold text-igf-ink sm:text-2xl">{cat.title}</div>
                 </div>
 
-                <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {cat.items.map((it) => (
-                    <div key={`${cat.title}-${it.num}`} className="rounded-2xl bg-white/55 p-5 ring-1 ring-black/5 transition hover:bg-white/80">
+                    <div
+                      key={`${cat.title}-${it.num}`}
+                      className="rounded-2xl border border-black/5 bg-white/60 p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-igf-orange/20 hover:bg-white/90 hover:shadow-[0_16px_40px_rgba(61,43,107,0.1)]"
+                    >
                       <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-orange">
                         {it.num}
                       </div>
                       <div className="mt-2 text-sm font-semibold text-igf-ink">{it.title}</div>
                       {it.artist ? <div className="mt-1 text-sm text-igf-gray">{it.artist}</div> : null}
                       {it.featured ? (
-                        <div className="mt-3 inline-flex rounded-full bg-igf-orange/10 px-3 py-1 text-xs font-semibold text-igf-orange ring-1 ring-igf-orange/20">
+                        <div className="mt-3 inline-flex rounded-full bg-gradient-to-r from-igf-orange/15 to-igf-magenta/10 px-3 py-1 text-xs font-semibold text-igf-orange ring-1 ring-igf-orange/25">
                           Featured
                         </div>
                       ) : null}

@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import EventBackdrop from './EventBackdrop'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
@@ -16,6 +17,8 @@ export default function Layout() {
       '/registration': `Registration | ${base}`,
       '/partner-with-us': `Partner With Us | ${base}`,
       '/events': `Past Events | ${base}`,
+      '/partners': `Partners | ${base}`,
+      '/sponsors': `Partners | ${base}`,
       '/news-events': `Past Events | ${base}`,
       '/event-2026': `Upcoming Event 2026 | ${base}`,
       '/contact': `Contact | ${base}`,
@@ -26,9 +29,10 @@ export default function Layout() {
   }, [pathname])
 
   return (
-    <div className="min-h-dvh bg-igf-bg text-igf-charcoal">
+    <div className="relative min-h-dvh bg-igf-bg text-igf-charcoal">
+      <EventBackdrop />
       <Navbar />
-      <main className="min-h-[calc(100dvh-4rem)]">
+      <main className="relative z-10 min-h-[calc(100dvh-4rem)]">
         <Outlet />
       </main>
       <Footer />

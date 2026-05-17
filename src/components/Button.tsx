@@ -20,13 +20,13 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px disabled:pointer-events-none disabled:opacity-60'
+    'relative inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px disabled:pointer-events-none disabled:opacity-60'
 
   const variants: Record<ButtonVariant, string> = {
     primary:
-      'bg-gradient-to-b from-igf-orange/90 to-igf-orange text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md',
+      'igf-btn-shimmer overflow-hidden bg-gradient-to-b from-igf-orange via-igf-gold to-igf-ruby text-igf-cream shadow-[0_8px_28px_rgba(212,98,42,0.4)] hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(232,184,74,0.35)]',
     secondary:
-      'bg-transparent text-igf-charcoal ring-1 ring-igf-silver/70 hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-sm',
+      'bg-igf-cream/90 text-igf-charcoal ring-1 ring-igf-gold/30 backdrop-blur-sm hover:-translate-y-0.5 hover:bg-igf-cream hover:shadow-[0_12px_32px_rgba(42,18,16,0.15)]',
     ghost: 'bg-transparent text-igf-charcoal hover:bg-white/60',
   }
 

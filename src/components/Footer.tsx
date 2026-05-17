@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Heart } from 'lucide-react'
 import { navItems, site } from '../data/site'
 import Button from './Button'
 import Container from './Container'
@@ -9,12 +10,12 @@ const logoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
 const socials = [
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/search/top?q=igurukul%20foundation',
+    href: 'https://www.facebook.com/IGurukulFoundation',
     kind: 'facebook' as const,
   },
   {
     label: 'YouTube',
-    href: 'https://www.youtube.com/@iGurukulOdissi',
+    href: 'https://www.youtube.com/@igurukulfoundation8773',
     kind: 'youtube' as const,
   },
   {
@@ -26,8 +27,21 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/10 bg-igf-charcoal text-white">
-      <Container className="grid gap-10 py-12 md:grid-cols-12">
+    <footer className="relative z-10 overflow-hidden border-t border-igf-gold/20 bg-gradient-to-b from-igf-maroon via-igf-charcoal to-igf-ink text-white">
+      <div
+        className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-igf-orange/25 blur-[100px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-igf-magenta/20 blur-[110px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(61,43,107,0.35)_0%,transparent_45%)]"
+        aria-hidden
+      />
+
+      <Container className="relative grid gap-10 py-14 md:grid-cols-12 md:py-16">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
             <img
@@ -35,13 +49,14 @@ export default function Footer() {
               alt="iGurukul Foundation logo"
               loading="lazy"
               decoding="async"
-              className="h-14 w-auto shrink-0 object-contain"
+              className="h-14 w-auto shrink-0 rounded-xl object-contain ring-2 ring-white/10"
             />
             <div>
-              <div className="text-xs font-extrabold tracking-[0.22em] text-white">
+              <div className="flex items-center gap-2 text-xs font-extrabold tracking-[0.22em] text-white">
                 {site.name.toUpperCase()}
+                <Heart className="h-3.5 w-3.5 fill-igf-orange text-igf-orange" aria-hidden />
               </div>
-              <div className="mt-1 text-[11px] font-semibold tracking-[0.18em] text-white/85">
+              <div className="mt-1 text-[11px] font-semibold tracking-[0.18em] text-amber-100/90">
                 {site.tagline.toUpperCase()}
               </div>
             </div>
@@ -51,18 +66,9 @@ export default function Footer() {
             <div>Rooted in heritage, rising together through language, arts, and community.</div>
             <div>501(c)(3) Nonprofit Organization • Tax ID #45-2943477</div>
             <div>San Francisco Bay Area, California</div>
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <div>
               <a
-                href={site.website}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-igf-orange"
-              >
-                igurukulfoundation.org
-              </a>
-              <span className="text-white/45">•</span>
-              <a
-                className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-igf-orange"
+                className="font-semibold text-amber-200/95 underline decoration-white/25 underline-offset-4 transition hover:decoration-igf-orange"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
@@ -72,13 +78,13 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-4">
-          <div className="text-sm font-semibold text-white">Quick links</div>
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="text-sm font-semibold uppercase tracking-wider text-amber-200/90">Quick links</div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-lg px-2 py-1 text-sm font-semibold text-white/85 transition hover:bg-white/5 hover:text-white"
+                className="rounded-lg px-2 py-1.5 text-sm font-semibold text-white/85 transition duration-300 hover:bg-white/10 hover:text-white"
               >
                 {item.label}
               </Link>
@@ -87,12 +93,12 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <div className="text-sm font-semibold text-white">Contact</div>
-          <div className="mt-3 space-y-2 text-sm text-white/85">
+          <div className="text-sm font-semibold uppercase tracking-wider text-amber-200/90">Contact</div>
+          <div className="mt-4 space-y-2 text-sm text-white/85">
             <div>
               Email:{' '}
               <a
-                className="font-semibold text-white underline decoration-white/20 underline-offset-4 hover:decoration-igf-orange"
+                className="font-semibold text-white underline decoration-white/25 underline-offset-4 hover:decoration-igf-orange"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
@@ -106,7 +112,7 @@ export default function Footer() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/90 ring-1 ring-white/15 transition duration-300 hover:scale-105 hover:bg-igf-orange/25 hover:ring-igf-orange/40 hover:text-white"
                   >
                     <SocialIcon kind={s.kind} className="h-5 w-5" title={s.label} />
                   </a>
@@ -115,7 +121,7 @@ export default function Footer() {
             </div>
             <div className="pt-4">
               <Link to="/subscribe">
-                <Button attention className="w-full justify-center">
+                <Button attention className="w-full justify-center shadow-lg shadow-orange-900/30">
                   Subscribe Now
                 </Button>
               </Link>
@@ -124,12 +130,13 @@ export default function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-white/10 py-6">
+      <div className="relative border-t border-white/10 py-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-orange/35 to-transparent" />
         <Container className="flex flex-col gap-2 text-sm text-white/80 md:flex-row md:items-center md:justify-between">
           <div>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </div>
-          <div className="flex items-center gap-2 text-xs text-white/70">
+          <div className="flex items-center gap-2 text-xs text-white/65">
             <span>Powered by</span>
             <img
               src="https://www.kalaawishkar.com/lovable-uploads/a7abffa8-d100-4852-8b1a-258625020bbd.png"

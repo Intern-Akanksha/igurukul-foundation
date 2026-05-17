@@ -3,7 +3,7 @@ export const site = {
   shortName: 'IGF',
   tagline: 'Rooted in Heritage · Rising Together',
   location: 'San Francisco Bay Area, California',
-  email: 'igurukulfoundation@gmail.com',
+  email: 'info@igurukulfoundation.org',
   website: 'https://igurukulfoundation.org',
 }
 
@@ -15,8 +15,9 @@ export const navItems: NavItem[] = [
   // { label: 'Programs', to: '/programs' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Events', to: '/events' },
+  { label: 'Partners', to: '/partners' },
   { label: 'Event 2026', to: '/event-2026' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export const quotes = {

@@ -16,10 +16,20 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0704;
-      color: #f0e8d8;
+      background: #1a0c0a;
+      color: #f2e4d0;
       line-height: 1.7;
       overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
     }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
@@ -29,18 +39,18 @@
 
     /* ─── TOKENS ────────────────────────────────────────────────── */
     :root {
-      --saffron: #E8821A;
-      --gold: #C9943A;
-      --gold-lt: #F0C060;
-      --indigo: #2A3590;
-      --indigo-lt: #3D4EAA;
+      --saffron: #D4622A;
+      --gold: #E8B84A;
+      --gold-lt: #F5D078;
+      --indigo: #3D1814;
+      --indigo-lt: #5C2824;
       --cream: #FDF6ED;
-      --cream-dim: #F5E8D0;
-      --dark: #0a0704;
-      --dark-mid: #150E07;
-      --dark-warm: #1E1409;
-      --text-dim: #B8A080;
-      --border: rgba(201,148,58,0.25);
+      --cream-dim: #F2E4D0;
+      --dark: #1A0C0A;
+      --dark-mid: #2A1210;
+      --dark-warm: #3D1814;
+      --text-dim: #C4A882;
+      --border: rgba(232,184,74,0.28);
     }
 
     /* ─── TYPOGRAPHY ────────────────────────────────────────────── */
@@ -63,9 +73,9 @@
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--saffron), var(--gold));
-      color: #fff; box-shadow: 0 4px 20px rgba(232,130,26,0.35);
+      color: #1a0c0a; box-shadow: 0 4px 20px rgba(212,98,42,0.45);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,130,26,0.5); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,184,74,0.5); }
     .btn-outline {
       background: transparent; color: var(--gold-lt);
       border: 1.5px solid var(--gold);
@@ -95,7 +105,7 @@
     #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 0.8rem 2.5rem;
-      background: rgba(10,7,4,0.85);
+      background: linear-gradient(180deg, rgba(42,18,16,0.94), rgba(26,12,10,0.88));
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
@@ -554,9 +564,46 @@
     .flyer-showcase {
       padding: 5rem 2rem; background: var(--dark); text-align: center;
     }
+
+    /* ═══ Ambient “AI glow” overlay (GPU-friendly) ═══ */
+    .fest-aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.45;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(232, 130, 26, 0.25), transparent 50%),
+        radial-gradient(ellipse 70% 40% at 80% 30%, rgba(155, 45, 107, 0.18), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(42, 53, 144, 0.2), transparent 50%);
+      animation: fest-aurora-move 18s ease-in-out infinite alternate;
+      mix-blend-mode: screen;
+    }
+    @keyframes fest-aurora-move {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-2%, 3%) scale(1.05); }
+    }
+    .fest-noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: fest-noise-shift 0.5s steps(2) infinite;
+    }
+    @keyframes fest-noise-shift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-2%, -2%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fest-aurora, .fest-noise { animation: none; opacity: 0.25; }
+    }
   </style>
 </head>
 <body>
+<div class="fest-aurora" aria-hidden="true"></div>
+<div class="fest-noise" aria-hidden="true"></div>
 
 <!-- ═══════════════ NAVIGATION ═══════════════ -->
 <nav id="nav">
@@ -1025,7 +1072,7 @@
     </a>
   </div>
   <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-dim);" class="reveal">
-    Zelle / Contact: <a href="mailto:igurukulfoundation@gmail.com" style="color: var(--gold);">igurukulfoundation@gmail.com</a>
+    Zelle / Contact: <a href="mailto:info@igurukulfoundation.org" style="color: var(--gold);">info@igurukulfoundation.org</a>
     &nbsp;•&nbsp; Donate: <a href="https://igurukulfoundation.onwajooba.com/checkout/EjAP9eod9q" style="color: var(--gold);">Donate</a>
   </p>
 </section>
@@ -1144,19 +1191,17 @@
   </p>
   <p>501(c)(3) Nonprofit Organization &nbsp;•&nbsp; Tax ID 845-294347</p>
   <p>
-    <a href="https://igurukulfoundation.org" target="_blank">igurukulfoundation.org</a>
-    &nbsp;•&nbsp;
-    <a href="mailto:igurukulfoundation@gmail.com">igurukulfoundation@gmail.com</a>
+    <a href="mailto:info@igurukulfoundation.org">info@igurukulfoundation.org</a>
     &nbsp;•&nbsp;
     <a href="tel:+15103644163">+1-5103644163</a>
   </p>
   <div class="footer-socials">
-    <a href="https://www.facebook.com/search/top?q=igurukul%20foundation" target="_blank" rel="noreferrer" aria-label="Facebook">
+    <a href="https://www.facebook.com/IGurukulFoundation" target="_blank" rel="noreferrer" aria-label="Facebook">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.3V11H7.6v3h2.7v8h3.2z"/>
       </svg>
     </a>
-    <a href="https://www.youtube.com/@iGurukulOdissi" target="_blank" rel="noreferrer" aria-label="YouTube">
+    <a href="https://www.youtube.com/@igurukulfoundation8773" target="_blank" rel="noreferrer" aria-label="YouTube">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.6A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12c0 1.6.2 3.2.4 4.8a3 3 0 0 0 2.1 2.1c1.8.6 7.5.6 7.5.6s5.7 0 7.5-.6a3 3 0 0 0 2.1-2.1c.2-1.6.4-3.2.4-4.8 0-1.6-.2-3.2-.4-4.8ZM10 15.5V8.5L16 12l-6 3.5Z"/>
       </svg>

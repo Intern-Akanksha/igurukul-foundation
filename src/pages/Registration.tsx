@@ -25,22 +25,28 @@ export default function Registration() {
   })
 
   return (
-    <div className="py-20">
-      <Container>
-        <Reveal>
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
+    <div className="relative py-20 sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-orange/10 to-transparent"
+        aria-hidden
+      />
+      <Container className="relative">
+        <Reveal from="scale">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Collaborate</p>
+          <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
             Partner With Us
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-igf-gray">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
             Share your interest in collaborating with iGurukul Foundation through sponsorship,
             volunteering, workshops, or educational partnerships.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-12">
+        <div className="mt-14 grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="igf-surface rounded-3xl border border-black/5 p-9 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+              <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">
+                <div className="igf-gradient-border-inner p-9">
                 <div className="font-heading text-xl font-extrabold text-igf-ink">
                   Partnership interest form
                 </div>
@@ -142,20 +148,25 @@ export default function Registration() {
                     </button>
                   </form>
                 )}
+                </div>
               </div>
             </Reveal>
           </div>
 
           <div className="lg:col-span-5">
             <Reveal delayMs={140}>
-              <div className="rounded-3xl bg-igf-charcoal p-9 text-white shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
-                <div className="text-xs font-semibold uppercase tracking-wide text-white/85">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-igf-indigo via-igf-charcoal to-black p-9 text-white shadow-[0_24px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
+                <div
+                  className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-full bg-igf-magenta/25 blur-[64px]"
+                  aria-hidden
+                />
+                <div className="relative text-xs font-semibold uppercase tracking-wider text-amber-200/90">
                   Quick info
                 </div>
-                <div className="mt-3 font-heading text-2xl font-extrabold">
+                <div className="relative mt-3 font-heading text-2xl font-extrabold">
                   Contact & privacy
                 </div>
-                <div className="mt-5 space-y-3 text-sm text-white/90">
+                <div className="relative mt-5 space-y-3 text-sm text-white/90">
                   <div>
                     Email:{' '}
                     <a

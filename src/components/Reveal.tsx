@@ -1,61 +1,44 @@
 import type { ReactNode } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { cn } from '../utils/cn'
 
 type RevealProps = {
   children: ReactNode
   className?: string
   delayMs?: number
-  from?: 'up' | 'left' | 'right'
+  from?: 'up' | 'left' | 'right' | 'scale'
 }
 
-export default function Reveal({
-  children,
-  className,
-  delayMs,
-  from = 'up',
-}: RevealProps) {
+const offsets = {
+  up: { x: 0, y: 36, scale: 1 },
+  left: { x: -40, y: 0, scale: 1 },
+  right: { x: 40, y: 0, scale: 1 },
+  scale: { x: 0, y: 24, scale: 0.94 },
+}
+
+export default function Reveal({ children, className, delayMs = 0, from = 'up' }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setVisible(true)
-            observer.disconnect()
-            return
-          }
-        }
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const inView = useInView(ref, { once: true, margin: '-8% 0px -8% 0px', amount: 0.15 })
+  const offset = offsets[from]
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      style={delayMs ? { transitionDelay: `${delayMs}ms` } : undefined}
-      className={cn(
-        'transform-gpu transition-all duration-700 ease-out',
-        visible
-          ? 'translate-x-0 translate-y-0 opacity-100'
-          : from === 'left'
-            ? '-translate-x-5 opacity-0'
-            : from === 'right'
-              ? 'translate-x-5 opacity-0'
-              : 'translate-y-4 opacity-0',
-        className,
-      )}
+      initial={{ opacity: 0, x: offset.x, y: offset.y, scale: offset.scale }}
+      animate={
+        inView
+          ? { opacity: 1, x: 0, y: 0, scale: 1 }
+          : { opacity: 0, x: offset.x, y: offset.y, scale: offset.scale }
+      }
+      transition={{
+        duration: 0.75,
+        delay: delayMs / 1000,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className={cn('transform-gpu', className)}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }

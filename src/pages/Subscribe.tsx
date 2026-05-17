@@ -112,25 +112,30 @@ export default function Subscribe() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="py-20">
-      <Container>
-        <Reveal>
+    <div className="relative py-20 sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/12 to-transparent"
+        aria-hidden
+      />
+      <Container className="relative">
+        <Reveal from="scale">
           <div className="text-center">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-igf-orange">
-              Stay Connected
-            </div>
-            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl">
+            <p className="igf-page-eyebrow justify-center">
+              <span className="tracking-[0.22em]">Stay Connected</span>
+            </p>
+            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
               Join Our Community
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-igf-gray">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-igf-gray sm:text-lg">
               Receive event updates, cultural insights, volunteer opportunities, and youth leadership announcements.
             </p>
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-12 max-w-2xl">
+        <div className="mx-auto mt-14 max-w-2xl">
           <Reveal>
-            <div className="igf-surface rounded-3xl border border-black/5 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.08)] sm:p-9">
+            <div className="igf-gradient-border-wrap shadow-[0_28px_70px_rgba(61,43,107,0.12)]">
+              <div className="igf-gradient-border-inner p-6 sm:p-9">
               {sent ? (
                 <div className="rounded-2xl bg-white/60 p-6 ring-1 ring-black/5">
                   <div className="text-sm font-semibold text-igf-ink">Subscribed</div>
@@ -249,6 +254,7 @@ export default function Subscribe() {
                   </div>
                 </form>
               )}
+              </div>
             </div>
           </Reveal>
         </div>
