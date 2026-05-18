@@ -32,7 +32,7 @@ export default function Layout() {
   }, [pathname])
 
   return (
-    <div className="relative min-h-dvh bg-[var(--acta-cream)] text-[var(--acta-ink)]">
+    <div className="relative min-h-dvh overflow-x-clip bg-[var(--acta-cream)] text-[var(--acta-ink)]">
       <EventBackdrop />
       <ScrollReveal />
       <Navbar />

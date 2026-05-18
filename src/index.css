@@ -53,10 +53,14 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
+  max-width: 100%;
   font-family: var(--font-body);
   background: var(--igf-bg);
   color: var(--igf-charcoal);
@@ -64,6 +68,11 @@ body {
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body::before {

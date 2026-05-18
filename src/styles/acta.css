@@ -15,13 +15,15 @@
 .acta-page {
   background: var(--acta-cream);
   color: var(--acta-ink);
+  overflow-x: clip;
 }
 
+/* Full-bleed without 100vw (avoids horizontal scrollbar) */
 .acta-premium-bleed {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .acta-wave {
@@ -278,6 +280,7 @@
 .acta-collage {
   position: relative;
   min-height: 360px;
+  overflow: hidden;
 }
 
 .acta-collage__main {
@@ -366,6 +369,7 @@
 /* Programs with organic blob */
 .acta-programs-wrap {
   position: relative;
+  overflow: hidden;
 }
 
 .acta-programs-blob {

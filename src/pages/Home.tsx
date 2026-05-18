@@ -227,7 +227,7 @@ export default function Home() {
       </section>
 
       {/* Donate invest band */}
-      <section className="acta-invest acta-premium-bleed">
+      <section className="acta-invest">
         <Reveal className="acta-invest__visual h-full min-h-[inherit]">
           <img
             src={sitePhotos.odissi}
