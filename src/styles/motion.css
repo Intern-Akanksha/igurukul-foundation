@@ -1,0 +1,123 @@
+/* Premium motion layer — respects prefers-reduced-motion */
+
+.igf-auto-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(4px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.igf-auto-reveal.igf-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.igf-auto-reveal-scale {
+  transform: translate3d(0, 20px, 0) scale(0.96);
+}
+
+.igf-auto-reveal-scale.igf-revealed {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.igf-auto-reveal-fade {
+  transform: none;
+  filter: none;
+}
+
+.igf-auto-reveal-fade.igf-revealed {
+  opacity: 1;
+}
+
+.igf-motion-img-wrap {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.igf-motion-img-wrap img,
+main .igf-editorial-media img,
+main .igf-overlap-main img,
+main .igf-overlap-accent img,
+main .igf-cultural-tile img {
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.igf-motion-img-wrap:hover img,
+main .igf-editorial-media:hover img,
+main .igf-overlap-main:hover img,
+main .igf-cultural-tile:hover img {
+  transform: scale(1.05);
+}
+
+.igf-editorial-card,
+.igf-glass-card {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.igf-btn {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    background 0.3s ease;
+}
+
+@keyframes igf-hero-shimmer {
+  0% {
+    opacity: 0.4;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.igf-page-intro {
+  animation: igf-page-intro 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes igf-page-intro {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .igf-auto-reveal,
+  .igf-auto-reveal-scale,
+  .igf-auto-reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .igf-motion-img-wrap:hover img,
+  main .igf-editorial-media:hover img,
+  main .igf-overlap-main:hover img,
+  main .igf-cultural-tile:hover img {
+    transform: none;
+  }
+
+  .igf-page-intro {
+    animation: none;
+  }
+
+  .igf-editorial-card:hover,
+  .igf-glass-card:hover {
+    transform: none;
+  }
+}

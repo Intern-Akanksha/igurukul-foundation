@@ -1,3 +1,5 @@
+const CDN = 'https://wajweb.b-cdn.net/igurukul-foundation'
+
 export const site = {
   name: 'iGurukul Foundation',
   shortName: 'IGF',
@@ -5,13 +7,22 @@ export const site = {
   location: 'San Francisco Bay Area, California',
   email: 'info@igurukulfoundation.org',
   website: 'https://igurukulfoundation.org',
+  logoUrl: `${CDN}/igfupdatedlogo.jpg`,
 }
+
+export const sitePhotos = {
+  heroPoster: `${CDN}/iGurukul_2025_0070.jpeg`,
+  odissi: `${CDN}/iGurukul_2025_0339a.jpeg`,
+  classical: `${CDN}/iGurukul_2025_0089.jpeg`,
+  community: `${CDN}/iGurukul_2025_0001.jpeg`,
+} as const
 
 export type NavItem = { label: string; to: string }
 
 export const navItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
+  { label: 'Team', to: '/about#team' },
   // { label: 'Programs', to: '/programs' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Events', to: '/events' },

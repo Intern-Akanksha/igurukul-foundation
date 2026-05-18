@@ -1,259 +1,297 @@
-import { BookOpen, Calendar, Heart, Music, Sparkles, UsersRound } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+﻿import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import ActaWave from '../components/ActaWave'
 import Button from '../components/Button'
-import Container from '../components/Container'
+import Parallax from '../components/Parallax'
 import Reveal from '../components/Reveal'
-import TribalPattern from '../components/TribalPattern'
-import { site } from '../data/site'
+import {
+  homeDonate,
+  homeGallery,
+  homeHero,
+  homeImpact,
+  homePartner,
+  homePrograms,
+  homeSubscribe,
+  homeVision,
+  homeWhoWeAre,
+} from '../data/homeContent'
+import { sitePhotos } from '../data/site'
 
-const heroBgVideoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4'
-const heroPoster = 'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(3).jpg'
+const heroVideoUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGF2026Promo.mp4'
 
-const impactStats = [
-  { value: '26+', label: 'Years of Community Heritage' },
-  { value: '250+', label: 'Artists on Annual Stage' },
-  { value: '15+', label: 'Partner Academies' },
-  { value: '500+', label: 'Annual Attendees' },
-]
-
-const programPreview = [
-  { title: 'Odia Literacy Centre', icon: BookOpen },
-  { title: 'Odissi Dance and Music', icon: Music },
-  { title: 'Yoga and Reiki Classes', icon: Heart },
-  { title: 'Intergenerational Learning Forums', icon: UsersRound },
+const galleryPreview = [
+  { src: sitePhotos.heroPoster, alt: 'Classical dance performance' },
+  { src: sitePhotos.odissi, alt: 'Odissi welcome' },
+  { src: sitePhotos.classical, alt: 'Bharatanatyam on stage' },
 ]
 
 export default function Home() {
   const { scrollY } = useScroll()
-  const videoY = useTransform(scrollY, [0, 600], [0, 100])
+  const mediaY = useTransform(scrollY, [0, 500], [0, 80])
 
   return (
-    <motion.div className="relative">
-      <section className="relative min-h-[85vh] overflow-hidden py-28 text-white sm:py-36">
-        <motion.video
-          style={{ y: videoY }}
-          className="absolute inset-0 h-[110%] w-full object-cover"
-          src={heroBgVideoUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={heroPoster}
-          aria-hidden="true"
-        />
-        <div className="igf-festival-hero-overlay absolute inset-0" aria-hidden />
-        <TribalPattern />
-        <div className="igf-grain absolute inset-0 opacity-20" aria-hidden />
-        <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-igf-gold/25 blur-[100px] igf-float-slow" aria-hidden />
-        <div
-          className="absolute -right-16 bottom-32 h-96 w-96 rounded-full bg-igf-orange/30 blur-[110px] igf-float-slow"
-          style={{ animationDelay: '-3s' }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(232,184,74,0.32),transparent)]"
-          aria-hidden
-        />
-
-        <Container className="relative z-10">
-          <Reveal>
-            <motion.div
-              className="mx-auto max-w-4xl text-center"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="igf-hero-glow-ring mx-auto inline-flex items-center gap-2 rounded-full border border-igf-gold/35 bg-igf-maroon/40 px-5 py-2 backdrop-blur-md">
-                <Sparkles className="h-4 w-4 text-igf-gold" aria-hidden />
-                <span className="font-display text-[10px] font-bold uppercase tracking-[0.28em] text-igf-cream/95 sm:text-xs">
-                  Cultural celebration · Bay Area
-                </span>
-              </div>
-              <h1 className="igf-festival-heading mt-8 font-heading text-4xl font-extrabold uppercase leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
-                <span className="igf-shimmer-heading">Rooted in Heritage</span>
-                <br />
-                <span className="text-igf-cream">Rising Together</span>
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/88 sm:text-lg">
-                Preserving Odia language, arts, and culture through education, community programs,
-                and unforgettable events across the Bay Area.
-              </p>
-              <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
-                <Link to="/event-2026">
-                  <Button attention className="igf-btn-shimmer px-7 py-3 text-sm shadow-lg shadow-orange-900/30">
-                    <Calendar className="h-4 w-4" aria-hidden />
-                    Cultural Extravaganza 2026
-                  </Button>
-                </Link>
-                <Link to="/about">
-                  <Button
-                    variant="secondary"
-                    className="border border-igf-gold/30 bg-white/10 px-7 py-3 text-sm text-white ring-igf-gold/25 backdrop-blur-md hover:bg-white/20"
-                  >
-                    Explore Our Mission
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          </Reveal>
-        </Container>
-        <div className="igf-wave-divider absolute bottom-0 left-0 right-0 z-10" aria-hidden />
+    <motion.div className="acta-page">
+      {/* Cinematic hero image + wave into cream */}
+      <section className="acta-hero-media">
+        <motion.div style={{ y: mediaY }} className="absolute inset-0 h-[110%]">
+          <video
+            className="acta-hero-media__img"
+            src={heroVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={sitePhotos.heroPoster}
+            aria-hidden
+          />
+        </motion.div>
+        <div className="acta-hero-media__shade" aria-hidden />
+        <ActaWave fill="var(--acta-cream)" className="absolute bottom-0 left-0 right-0 z-10" />
       </section>
 
-      <section className="relative py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-orange/40 to-transparent" aria-hidden />
-        <Container>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {impactStats.map((stat, idx) => (
-              <Reveal key={stat.label} delayMs={80 * idx}>
-                <div className="igf-glass-card p-8 text-center">
-                  <div className="bg-gradient-to-br from-igf-orange to-amber-500 bg-clip-text font-heading text-4xl font-extrabold text-transparent sm:text-5xl">
-                    {stat.value}
+      <section className="acta-hero-intro">
+        <div className="acta-hero-intro__inner">
+          <div className="acta-olive-blob" aria-hidden />
+          <Reveal immediate>
+            <motion.div
+              className="acta-hero-intro__content"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p className="acta-eyebrow">{homeHero.eyebrow}</p>
+              <h1 className="acta-headline mt-4">{homeHero.headline}</h1>
+              <p className="acta-lead">{homeHero.subheadline}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/programs">
+                  <Button attention className="px-7 py-3">
+                    {homeHero.primaryCta}
+                  </Button>
+                </Link>
+                <Link to="/donate">
+                  <Button variant="secondary" className="px-7 py-3">
+                    {homeHero.secondaryCta}
+                  </Button>
+                </Link>
+              </div>
+              <p className="acta-tax-line">{homeHero.taxLine}</p>
+            </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Impact */}
+      <section className="acta-section acta-section--cream">
+        <div className="acta-inner">
+          <Reveal>
+            <h2 className="acta-section-title">{homeImpact.title}</h2>
+            <p className="acta-section-sub">{homeImpact.subtitle}</p>
+            <p className="acta-body max-w-3xl">{homeImpact.intro}</p>
+          </Reveal>
+          <ul className="acta-stat-grid">
+            {homeImpact.stats.map((s, idx) => (
+              <li key={s.label}>
+                <Reveal delayMs={60 * idx} from="up">
+                  <div className="acta-stat-item">
+                    <div className="acta-stat-item__value">{s.value}</div>
+                    <p className="acta-stat-item__label">{s.label}</p>
                   </div>
-                  <div className="mt-3 text-sm font-semibold text-igf-gray">{stat.label}</div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+          <Reveal delayMs={120}>
+            <p className="acta-body mt-8 max-w-3xl">{homeImpact.closing}</p>
+            <Link to="/events" className="mt-8 inline-flex">
+              <Button variant="rust">{homeImpact.cta}</Button>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <ActaWave fill="var(--acta-cream-deep)" />
+
+      {/* Who we are â€” collage */}
+      <section className="acta-section acta-section--warm">
+        <div className="acta-inner">
+          <div className="acta-split acta-split--reverse">
+            <Reveal from="right" className="acta-split__text">
+              <h2 className="acta-section-title">{homeWhoWeAre.title}</h2>
+              {homeWhoWeAre.paragraphs.map((p, i) => (
+                <p key={i} className={i === 0 ? 'acta-body' : 'acta-body mt-4'}>
+                  {p}
+                </p>
+              ))}
+              <ul className="acta-list">
+                {homeWhoWeAre.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+              <p className="acta-body mt-4">{homeWhoWeAre.closing}</p>
+              <Link to="/about" className="mt-8 inline-flex">
+                <Button variant="rust">{homeWhoWeAre.cta}</Button>
+              </Link>
+            </Reveal>
+            <Reveal from="left" delayMs={100} className="acta-split__visual">
+              <div className="acta-collage">
+                <Parallax offset={30} className="acta-collage__main acta-zoom-wrap">
+                  <img src={sitePhotos.community} alt="Community at Castro Valley Center for the Arts" loading="lazy" decoding="async" />
+                </Parallax>
+                <div className="acta-collage__circle acta-zoom-wrap">
+                  <img src={sitePhotos.odissi} alt="Odissi dancer" loading="lazy" decoding="async" />
+                </div>
+                <div className="acta-collage__rect acta-zoom-wrap">
+                  <img src={sitePhotos.classical} alt="" loading="lazy" decoding="async" aria-hidden />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section className="acta-section acta-section--cream">
+        <div className="acta-inner acta-programs-wrap">
+          <motion.div className="acta-programs-blob" aria-hidden />
+          <div className="acta-split">
+            <Reveal from="left" className="acta-split__visual">
+              <div className="acta-zoom-wrap rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={sitePhotos.heroPoster}
+                  alt="Cultural performance"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full aspect-[4/5] object-cover"
+                />
+              </div>
+            </Reveal>
+            <Reveal from="right" delayMs={80} className="acta-split__text">
+              <h2 className="acta-section-title">{homePrograms.title}</h2>
+              <p className="acta-section-sub">{homePrograms.subtitle}</p>
+              <p className="acta-body">{homePrograms.intro}</p>
+              <div className="acta-program-list">
+                {homePrograms.items.map((item) => (
+                  <div key={item.title} className="acta-program-item">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+              <Link to="/programs" className="mt-8 inline-flex">
+                <Button attention>{homePrograms.cta}</Button>
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="acta-section acta-section--warm">
+        <div className="acta-inner max-w-3xl">
+          <Reveal>
+            <h2 className="acta-section-title">{homeVision.title}</h2>
+            <p className="acta-section-sub">{homeVision.subtitle}</p>
+            <p className="acta-body">{homeVision.intro}</p>
+            <ul className="acta-list">
+              {homeVision.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <p className="acta-body mt-4">{homeVision.closing}</p>
+            <Link to="/contact" className="mt-8 inline-flex">
+              <Button variant="secondary">{homeVision.cta}</Button>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Partner */}
+      <section className="acta-section acta-section--warm">
+        <div className="acta-inner max-w-3xl">
+          <Reveal>
+            <h2 className="acta-section-title">{homePartner.title}</h2>
+            <p className="acta-section-sub">{homePartner.subtitle}</p>
+            <p className="acta-body">{homePartner.intro}</p>
+            <ul className="acta-list">
+              {homePartner.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <p className="acta-body mt-4">{homePartner.closing}</p>
+            <Link to="/partner-with-us" className="mt-8 inline-flex">
+              <Button variant="rust">{homePartner.cta}</Button>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Donate invest band */}
+      <section className="acta-invest acta-premium-bleed">
+        <Reveal className="acta-invest__visual h-full min-h-[inherit]">
+          <img
+            src={sitePhotos.odissi}
+            alt="Odissi dancer in traditional attire"
+            loading="lazy"
+            decoding="async"
+          />
+        </Reveal>
+        <Reveal from="right" delayMs={80} className="acta-invest__content">
+          <h2>{homeDonate.title}</h2>
+          <p>{homeDonate.intro}</p>
+          <ul className="acta-list mt-4 text-white/90">
+            {homeDonate.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-white/80">{homeDonate.taxNote}</p>
+          <Link to="/donate" className="mt-8 inline-flex">
+            <Button attention>{homeDonate.cta}</Button>
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* Gallery preview */}
+      <section className="acta-section acta-section--cream">
+        <div className="acta-inner">
+          <Reveal>
+            <h2 className="acta-section-title">{homeGallery.title}</h2>
+            <p className="acta-section-sub">{homeGallery.subtitle}</p>
+          </Reveal>
+          <div className="acta-card-grid">
+            {galleryPreview.map((img, idx) => (
+              <Reveal key={img.src} delayMs={70 * idx} from="up">
+                <div
+                  className={`acta-story-card acta-zoom-wrap${idx === 1 ? ' acta-story-card--accent' : ''}`}
+                >
+                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
                 </div>
               </Reveal>
             ))}
           </div>
-        </Container>
+          <Reveal delayMs={150}>
+            <Link to="/gallery" className="mt-10 inline-flex">
+              <Button variant="rust">{homeGallery.cta}</Button>
+            </Link>
+          </Reveal>
+        </div>
       </section>
 
-      <section className="relative py-16 sm:py-20">
-        <Container>
+      {/* Subscribe */}
+      <section className="acta-section acta-section--warm">
+        <div className="acta-inner max-w-2xl text-center">
           <Reveal>
-            <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.12)]">
-              <div className="igf-gradient-border-inner p-8 sm:p-12">
-                <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">About</p>
-                    <h2 className="mt-4 font-heading text-3xl font-extrabold text-igf-ink sm:text-4xl md:text-5xl">
-                      Cultural continuity for future generations
-                    </h2>
-                    <p className="mt-5 text-base leading-relaxed text-igf-gray sm:text-lg">
-                      {site.name} supports language literacy, performing arts, and community connection
-                      through year-round educational and cultural initiatives.
-                    </p>
-                    <Link to="/about" className="mt-8 inline-flex">
-                      <Button attention className="igf-btn-shimmer">
-                        Read Our Story
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="relative">
-                    <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-igf-orange/20 via-igf-magenta/15 to-igf-indigo/20 blur-2xl" aria-hidden />
-                    <div className="relative overflow-hidden rounded-3xl ring-1 ring-black/10">
-                      <img
-                        src={heroPoster}
-                        alt="iGurukul Foundation community celebration"
-                        loading="lazy"
-                        decoding="async"
-                        className="aspect-[4/3] w-full object-cover transition duration-700 hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-igf-indigo/50 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-black/35 px-4 py-3 text-center text-sm font-semibold text-white backdrop-blur-md">
-                        26 glorious years of arts & heritage
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h2 className="acta-section-title">{homeSubscribe.title}</h2>
+            <p className="acta-body">{homeSubscribe.intro}</p>
+            <ul className="acta-list mx-auto mt-6 max-w-md text-left">
+              {homeSubscribe.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <Link to="/subscribe" className="mt-8 inline-flex">
+              <Button attention>{homeSubscribe.cta}</Button>
+            </Link>
           </Reveal>
-        </Container>
-      </section>
-
-      <section className="relative py-16 sm:py-24">
-        <Container>
-          <Reveal>
-            <div className="text-center">
-              <p className="igf-page-eyebrow justify-center">
-                <span className="tracking-[0.22em]">Programs</span>
-              </p>
-              <h2 className="mx-auto mt-4 max-w-3xl font-heading text-3xl font-extrabold text-igf-ink sm:text-4xl md:text-5xl">
-                Learning and community programs
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base text-igf-gray">
-                From classical dance to language literacy — pathways that keep tradition alive and
-                welcoming for every generation.
-              </p>
-            </div>
-          </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2">
-            {programPreview.map((item, idx) => {
-              const Icon = item.icon
-              return (
-                <Reveal key={item.title} delayMs={80 * idx}>
-                  <div className="group igf-glass-card flex items-start gap-5 p-6 sm:p-7">
-                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-igf-orange/20 to-igf-magenta/20 ring-1 ring-igf-orange/25 transition duration-500 group-hover:scale-110 group-hover:from-igf-orange/35 group-hover:to-igf-indigo/25">
-                      <Icon className="h-7 w-7 text-igf-orange" aria-hidden />
-                    </div>
-                    <div>
-                      <div className="font-heading text-lg font-bold text-igf-ink sm:text-xl">{item.title}</div>
-                      <div className="mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-igf-orange to-igf-magenta transition-all duration-500 group-hover:w-24" />
-                    </div>
-                  </div>
-                </Reveal>
-              )
-            })}
-          </div>
-          <Reveal delayMs={220}>
-            <div className="mt-10 text-center">
-              <Link to="/programs">
-                <Button className="igf-btn-shimmer px-8">View All Programs</Button>
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      <section className="relative py-20 sm:py-24">
-        <div className="igf-cta-spectrum relative overflow-hidden rounded-none px-4 py-16 text-white sm:px-6 sm:py-20">
-          <div className="pointer-events-none absolute inset-0 opacity-30 mix-blend-overlay">
-            <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-white blur-3xl" />
-            <div className="absolute -right-10 bottom-0 h-80 w-80 rounded-full bg-amber-300 blur-3xl" />
-          </div>
-          <Container className="relative">
-            <Reveal>
-              <div className="grid gap-10 text-center md:grid-cols-3 md:gap-8 md:text-left">
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-white/30 hover:bg-white/15">
-                  <h3 className="font-heading text-2xl font-extrabold">Partner with us</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Support programs, sponsor events, and help us scale community impact.
-                  </p>
-                  <Link to="/partner-with-us" className="mt-6 inline-flex">
-                    <Button className="border-0 bg-white text-igf-indigo hover:bg-amber-50">Get Involved</Button>
-                  </Link>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-amber-200/40 hover:bg-white/15">
-                  <h3 className="font-heading text-2xl font-extrabold">Donate today</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Your contribution keeps language and arts education accessible.
-                  </p>
-                  <Link to="/donate" className="mt-6 inline-flex">
-                    <Button attention className="igf-btn-shimmer shadow-lg shadow-black/20">
-                      Donate Now
-                    </Button>
-                  </Link>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-8 backdrop-blur-md transition duration-500 hover:border-white/30 hover:bg-white/15">
-                  <h3 className="font-heading text-2xl font-extrabold">Stay connected</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Reach our team for volunteering, participation, or collaboration ideas.
-                  </p>
-                  <Link to="/contact" className="mt-6 inline-flex">
-                    <Button
-                      variant="secondary"
-                      className="border-white/40 bg-transparent text-white ring-white/30 hover:bg-white/15"
-                    >
-                      Contact Us
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-          </Container>
         </div>
       </section>
     </motion.div>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import Container from '../components/Container'
+import ActaPageShell from '../components/ActaPageShell'
+import Button from '../components/Button'
 import Reveal from '../components/Reveal'
 import { site } from '../data/site'
 
@@ -121,27 +122,15 @@ export default function Contact() {
   }, [turnstileSiteKey, widgetEl])
 
   return (
-    <div className="relative py-20 sm:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-indigo/12 to-transparent"
-        aria-hidden
-      />
-      <Container className="relative">
-        <Reveal from="scale">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Connect</p>
-          <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
-            Contact Us
-          </h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
-            Reach out for registration details, volunteering opportunities, or partnership ideas.
-          </p>
-        </Reveal>
-
-        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+    <ActaPageShell
+      eyebrow="Connect"
+      title="Contact Us"
+      lead="Reach out for registration details, volunteering opportunities, or partnership ideas."
+    >
+        <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">
-                <div className="igf-gradient-border-inner p-6 sm:p-9">
+              <div className="acta-panel acta-panel--padded">
                 <div className="font-heading text-xl font-extrabold text-igf-ink">
                   Send a message
                 </div>
@@ -302,34 +291,19 @@ export default function Contact() {
                       ) : null}
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px disabled:opacity-70"
-                    >
+                    <Button type="submit" attention disabled={submitting} className="mt-2 w-full sm:w-auto">
                       {submitting ? 'Submitting…' : 'Submit'}
-                    </button>
+                    </Button>
                   </form>
                 )}
               </div>
-            </div>
             </Reveal>
           </div>
 
           <div className="lg:col-span-5">
             <Reveal delayMs={140}>
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-igf-indigo via-igf-charcoal to-black p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/15 sm:p-9">
-                <div
-                  className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-igf-orange/25 blur-[80px]"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-igf-magenta/20 blur-[70px]"
-                  aria-hidden
-                />
-                <div className="relative text-xs font-semibold uppercase tracking-wider text-amber-200/90">
-                  Contact details
-                </div>
+              <div className="acta-aside">
+                <p className="acta-eyebrow !text-[var(--acta-mustard)]">Contact details</p>
                 <div className="mt-3 space-y-3 text-sm text-white/90">
                   <div>
                     Email:{' '}
@@ -386,7 +360,6 @@ export default function Contact() {
             </Reveal>
           </div>
         </div>
-      </Container>
-    </div>
+    </ActaPageShell>
   )
 }

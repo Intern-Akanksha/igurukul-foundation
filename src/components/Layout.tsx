@@ -1,8 +1,11 @@
+import { AnimatePresence } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import EventBackdrop from './EventBackdrop'
 import Footer from './Footer'
 import Navbar from './Navbar'
+import PageTransition from './PageTransition'
+import ScrollReveal from './ScrollReveal'
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -29,11 +32,16 @@ export default function Layout() {
   }, [pathname])
 
   return (
-    <div className="relative min-h-dvh bg-igf-bg text-igf-charcoal">
+    <div className="relative min-h-dvh bg-[var(--acta-cream)] text-[var(--acta-ink)]">
       <EventBackdrop />
+      <ScrollReveal />
       <Navbar />
       <main className="relative z-10 min-h-[calc(100dvh-4rem)]">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <PageTransition key={pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

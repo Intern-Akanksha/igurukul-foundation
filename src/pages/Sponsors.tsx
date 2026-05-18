@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Handshake } from 'lucide-react'
+import ActaPageShell from '../components/ActaPageShell'
 import Button from '../components/Button'
-import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import {
   partnerOrganizations,
@@ -21,7 +21,7 @@ const tierStyles: Record<(typeof sponsorshipTiers)[number]['accent'], string> = 
 function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; delayMs?: number }) {
   return (
     <Reveal delayMs={delayMs} from="scale">
-      <div className="igf-glass-card group flex h-full flex-col items-center p-6 text-center sm:p-8">
+      <div className="acta-panel acta-panel--padded group flex h-full flex-col items-center text-center">
         <div className="relative flex h-28 w-full items-center justify-center sm:h-32">
           <div
             className="absolute inset-4 rounded-2xl bg-gradient-to-br from-igf-orange/10 to-igf-indigo/5 opacity-0 transition duration-500 group-hover:opacity-100"
@@ -53,28 +53,12 @@ function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; d
 
 export default function Sponsors() {
   return (
-    <div className="relative py-20 sm:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-indigo/10 to-transparent"
-        aria-hidden
-      />
-      <Container className="relative">
-        <Reveal from="scale">
-          <div className="text-center">
-            <p className="igf-page-eyebrow justify-center">
-              <span className="tracking-[0.22em]">Community</span>
-            </p>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
-              Partners &amp; Sponsors
-            </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
-              Thank you to our partnering organizations and sponsors who make the Cultural
-              Extravaganza and year-round programs possible.
-            </p>
-          </div>
-        </Reveal>
-
-        <section className="mt-16">
+    <ActaPageShell
+      eyebrow="Community"
+      title="Partners & Sponsors"
+      lead="Thank you to our partnering organizations and sponsors who make the Cultural Extravaganza and year-round programs possible."
+    >
+        <section>
           <Reveal>
             <h2 className="text-center font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
               Presenting Organization
@@ -149,7 +133,6 @@ export default function Sponsors() {
             </div>
           </Reveal>
         </section>
-      </Container>
-    </div>
+    </ActaPageShell>
   )
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ImageIcon } from 'lucide-react'
-import Container from '../components/Container'
+import ActaPageShell from '../components/ActaPageShell'
 import Reveal from '../components/Reveal'
 
 const galleryApiUrl = 'https://api.onwajooba.com/plugin/gallery?page=1&limit=8'
@@ -65,7 +65,6 @@ export default function Gallery() {
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`)
         }
-
         const payload = await response.json()
         setItems(toDisplayItems(payload))
       } catch {
@@ -80,64 +79,50 @@ export default function Gallery() {
   }, [])
 
   return (
-    <div className="relative py-20 sm:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-amber-400/15 to-transparent"
-        aria-hidden
-      />
-      <Container className="relative">
-        <Reveal from="scale">
-          <div className="text-center">
-            <p className="igf-page-eyebrow justify-center">
-              <span className="tracking-[0.22em]">Gallery</span>
-            </p>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
-              Moments From Our{' '}
-              <span className="bg-gradient-to-r from-igf-orange to-igf-magenta bg-clip-text text-transparent">
-                Cultural Journey
-              </span>
-            </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
-              A visual archive of performances, learning, and community celebrations across iGurukul
-              Foundation programs and events.
-            </p>
+    <ActaPageShell
+      eyebrow="Gallery"
+      title={
+        <>
+          Moments From Our{' '}
+          <span className="text-[var(--acta-terracotta)]">Cultural Journey</span>
+        </>
+      }
+      lead="A visual archive of performances, learning, and community celebrations across iGurukul Foundation programs and events."
+    >
+      {loading ? (
+        <div className="acta-panel acta-panel--padded py-14 text-center">
+          <div className="mx-auto mb-4 flex h-12 w-12 animate-pulse items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--acta-terracotta)_20%,white)]">
+            <ImageIcon className="h-6 w-6 text-[var(--acta-terracotta)]" aria-hidden />
           </div>
-        </Reveal>
-
-        {loading ? (
-          <div className="mt-14 rounded-3xl border border-igf-orange/15 bg-white/80 p-14 text-center shadow-[0_20px_50px_rgba(61,43,107,0.08)] backdrop-blur-md">
-            <div className="mx-auto mb-4 flex h-12 w-12 animate-pulse items-center justify-center rounded-2xl bg-gradient-to-br from-igf-orange/20 to-igf-magenta/20">
-              <ImageIcon className="h-6 w-6 text-igf-orange" aria-hidden />
-            </div>
-            <p className="text-sm font-semibold text-igf-gray">Loading gallery images…</p>
-          </div>
-        ) : items.length > 0 ? (
-          <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3">
-            {items.map((item, idx) => (
-              <Reveal key={`${item.image}-${idx}`} delayMs={(idx % 6) * 60} from="scale">
-                <div className="group igf-glass-card mb-6 overflow-hidden break-inside-avoid">
-                  <div className="relative overflow-hidden">
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-igf-indigo/40 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full object-cover transition duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-14 rounded-3xl border border-black/5 bg-white/85 p-12 text-center shadow-lg backdrop-blur-md">
-            <p className="text-base font-semibold text-igf-ink">No gallery images available yet.</p>
-            <p className="mt-2 text-sm text-igf-gray">Please add images in the gallery.</p>
-            {error ? <p className="mt-3 text-sm font-semibold text-igf-gray">{error}</p> : null}
-          </div>
-        )}
-      </Container>
-    </div>
+          <p className="text-sm font-semibold text-[color-mix(in_srgb,var(--acta-ink)_65%,transparent)]">
+            Loading gallery images…
+          </p>
+        </div>
+      ) : items.length > 0 ? (
+        <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+          {items.map((item, idx) => (
+            <Reveal key={`${item.image}-${idx}`} delayMs={(idx % 6) * 60} from="scale">
+              <div className="acta-panel acta-zoom-wrap mb-6 overflow-hidden break-inside-avoid">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      ) : (
+        <div className="acta-panel acta-panel--padded py-12 text-center">
+          <p className="text-base font-semibold text-[var(--acta-brown)]">No gallery images available yet.</p>
+          <p className="mt-2 text-sm text-[color-mix(in_srgb,var(--acta-ink)_65%,transparent)]">
+            Please add images in the gallery.
+          </p>
+          {error ? <p className="mt-3 text-sm font-semibold">{error}</p> : null}
+        </div>
+      )}
+    </ActaPageShell>
   )
 }

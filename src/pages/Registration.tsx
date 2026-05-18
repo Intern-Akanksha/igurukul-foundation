@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import Container from '../components/Container'
+import ActaPageShell from '../components/ActaPageShell'
+import Button from '../components/Button'
 import Reveal from '../components/Reveal'
 import { programs, site } from '../data/site'
 
@@ -25,28 +26,15 @@ export default function Registration() {
   })
 
   return (
-    <div className="relative py-20 sm:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-igf-orange/10 to-transparent"
-        aria-hidden
-      />
-      <Container className="relative">
-        <Reveal from="scale">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-igf-orange">Collaborate</p>
-          <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
-            Partner With Us
-          </h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
-            Share your interest in collaborating with iGurukul Foundation through sponsorship,
-            volunteering, workshops, or educational partnerships.
-          </p>
-        </Reveal>
-
-        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+    <ActaPageShell
+      eyebrow="Collaborate"
+      title="Partner With Us"
+      lead="Share your interest in collaborating with iGurukul Foundation through sponsorship, volunteering, workshops, or educational partnerships."
+    >
+        <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="igf-gradient-border-wrap shadow-[0_24px_60px_rgba(61,43,107,0.1)]">
-                <div className="igf-gradient-border-inner p-9">
+              <div className="acta-panel acta-panel--padded">
                 <div className="font-heading text-xl font-extrabold text-igf-ink">
                   Partnership interest form
                 </div>
@@ -140,29 +128,19 @@ export default function Registration() {
                       />
                     </label>
 
-                    <button
-                      type="submit"
-                      className="mt-2 h-11 rounded-full bg-gradient-to-b from-igf-orange/90 to-igf-orange px-5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igf-orange/40 active:translate-y-px"
-                    >
+                    <Button type="submit" attention className="mt-2 w-full sm:w-auto">
                       Submit request
-                    </button>
+                    </Button>
                   </form>
                 )}
-                </div>
               </div>
             </Reveal>
           </div>
 
           <div className="lg:col-span-5">
             <Reveal delayMs={140}>
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-igf-indigo via-igf-charcoal to-black p-9 text-white shadow-[0_24px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
-                <div
-                  className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-full bg-igf-magenta/25 blur-[64px]"
-                  aria-hidden
-                />
-                <div className="relative text-xs font-semibold uppercase tracking-wider text-amber-200/90">
-                  Quick info
-                </div>
+              <div className="acta-aside">
+                <p className="acta-eyebrow !text-[var(--acta-mustard)]">Quick info</p>
                 <div className="relative mt-3 font-heading text-2xl font-extrabold">
                   Contact & privacy
                 </div>
@@ -198,7 +176,6 @@ export default function Registration() {
             </Reveal>
           </div>
         </div>
-      </Container>
-    </div>
+    </ActaPageShell>
   )
 }

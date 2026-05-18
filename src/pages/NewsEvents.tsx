@@ -1,36 +1,19 @@
 import { Link } from 'react-router-dom'
+import ActaPageShell from '../components/ActaPageShell'
 import Button from '../components/Button'
-import Container from '../components/Container'
 import Reveal from '../components/Reveal'
 import { featuredEvent, newsEvents } from '../data/site'
 import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react'
 
 export default function NewsEvents() {
   return (
-    <div className="relative py-20 sm:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-igf-magenta/10 via-transparent to-transparent"
-        aria-hidden
-      />
-      <Container className="relative">
-        <Reveal from="scale">
-          <div className="text-center">
-            <p className="igf-page-eyebrow justify-center">
-              <span className="tracking-[0.22em]">Events</span>
-            </p>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight text-igf-ink sm:text-5xl md:text-6xl">
-              Past Events & Community Highlights
-            </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-igf-gray sm:text-lg">
-              Explore memorable milestones from our community journey and preview the upcoming annual
-              showcase.
-            </p>
-          </div>
-        </Reveal>
-
-        <section className="mt-14">
-          <div className="igf-gradient-border-wrap shadow-[0_28px_70px_rgba(61,43,107,0.14)]">
-            <div className="igf-gradient-border-inner px-6 py-12 sm:px-10 sm:py-14">
+    <ActaPageShell
+      eyebrow="Events"
+      title="Past Events & Community Highlights"
+      lead="Explore memorable milestones from our community journey and preview the upcoming annual showcase."
+    >
+        <section>
+          <div className="acta-panel acta-panel--padded">
               <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
                 <Reveal from="left">
                   <div className="group relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/10">
@@ -94,18 +77,16 @@ export default function NewsEvents() {
                 </Reveal>
               </div>
             </div>
-          </div>
         </section>
 
         <section className="mt-16 sm:mt-20">
           <Reveal>
-            <h3 className="font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">Past Events</h3>
-            <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-igf-orange to-igf-magenta" />
+            <h3 className="acta-subsection-title">Past Events</h3>
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {newsEvents.map((event, idx) => (
               <Reveal key={event.title} delayMs={80 * idx} from="scale">
-                <div className="igf-glass-card h-full p-6 sm:p-7">
+                <div className="acta-panel acta-panel--padded h-full">
                   <div className="text-xs font-bold uppercase tracking-[0.2em] text-igf-orange">{event.date}</div>
                   <div className="mt-3 text-lg font-bold text-igf-ink">{event.title}</div>
                   <p className="mt-3 text-sm leading-relaxed text-igf-gray">{event.summary}</p>
@@ -114,7 +95,6 @@ export default function NewsEvents() {
             ))}
           </div>
         </section>
-      </Container>
-    </div>
+    </ActaPageShell>
   )
 }

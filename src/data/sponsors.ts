@@ -1,3 +1,5 @@
+import { site } from './site'
+
 const CDN_BASE = 'https://wajweb.b-cdn.net/igurukul-foundation'
 
 function assetUrl(path: string): string {
@@ -25,7 +27,7 @@ export const presentingPartner: PartnerOrganization = {
   name: 'iGurukul Foundation',
   shortName: 'Presenting Organization',
   description: '26 glorious years of heritage, arts, and community in the Bay Area.',
-  logoUrl: assetUrl('assets/Sponsors_igf26/igurukul_foundation_26years.png'),
+  logoUrl: site.logoUrl,
 }
 
 export const partnerOrganizations: PartnerOrganization[] = [
