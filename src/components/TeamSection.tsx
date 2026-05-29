@@ -1,28 +1,51 @@
-import { Mail, User } from 'lucide-react'
+import { ArrowRight, Mail, User } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Container from './Container'
 import Reveal from './Reveal'
 import { teamMembers, type TeamMember } from '../data/team'
+import { cn } from '../utils/cn'
+
+type TeamSectionProps = {
+  variant?: 'compact' | 'full'
+  members?: TeamMember[]
+}
+
+function TeamMemberImage({
+  member,
+  className,
+}: {
+  member: TeamMember
+  className?: string
+}) {
+  const imageStyle = member.photoObjectPosition ? { objectPosition: member.photoObjectPosition } : undefined
+
+  return member.photoUrl ? (
+    <img
+      src={member.photoUrl}
+      alt={member.name}
+      loading="lazy"
+      decoding="async"
+      style={imageStyle}
+      className={cn('h-full w-full object-cover', !member.photoObjectPosition && 'object-top', className)}
+    />
+  ) : (
+    <div className="flex h-full min-h-[240px] w-full items-center justify-center bg-gradient-to-br from-igf-orange/10 to-igf-gold/15">
+      <User className="h-16 w-16 text-igf-orange/45" aria-hidden />
+    </div>
+  )
+}
 
 function TeamMemberCard({ member }: { member: TeamMember }) {
   const paragraphs = member.bioParagraphs ?? (member.bio ? [member.bio] : [])
 
   return (
-    <article className="acta-panel acta-panel--padded flex h-full flex-col overflow-hidden sm:flex-row sm:text-left">
+    <article
+      id={member.id}
+      className="acta-panel acta-panel--padded scroll-mt-24 flex h-full flex-col overflow-hidden sm:flex-row sm:text-left"
+    >
       <div className="relative mx-auto shrink-0 sm:mx-0">
         <div className="igf-motion-img-wrap relative aspect-[3/4] w-full max-w-[220px] overflow-hidden rounded-xl ring-2 ring-igf-gold/25 sm:w-48 md:w-52">
-          {member.photoUrl ? (
-            <img
-              src={member.photoUrl}
-              alt={member.name}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover object-top"
-            />
-          ) : (
-            <div className="flex h-full min-h-[240px] w-full items-center justify-center bg-gradient-to-br from-igf-orange/10 to-igf-gold/15">
-              <User className="h-16 w-16 text-igf-orange/45" aria-hidden />
-            </div>
-          )}
+          <TeamMemberImage member={member} />
         </div>
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-8">
@@ -53,8 +76,31 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
   )
 }
 
-export default function TeamSection() {
-  const hasMembers = teamMembers.length > 0
+function TeamSummaryCard({ member }: { member: TeamMember }) {
+  return (
+    <article className="acta-panel flex h-full flex-col items-center px-5 py-6 text-center">
+      <div className="igf-motion-img-wrap relative aspect-[4/4.8] w-full overflow-hidden rounded-[1.25rem] ring-2 ring-igf-gold/20">
+        <TeamMemberImage member={member} />
+      </div>
+      <div className="mt-5">
+        <h3 className="font-heading text-xl font-bold text-igf-ink">{member.name}</h3>
+        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-igf-orange">{member.role}</p>
+      </div>
+      <Link
+        to={`/team#${member.id}`}
+        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-igf-charcoal transition hover:text-igf-orange"
+      >
+        Read More
+        <ArrowRight className="h-4 w-4" aria-hidden />
+      </Link>
+    </article>
+  )
+}
+
+export default function TeamSection({ variant = 'full', members }: TeamSectionProps) {
+  const displayedMembers = members ?? teamMembers
+  const hasMembers = displayedMembers.length > 0
+  const isCompact = variant === 'compact'
 
   return (
     <section id="team" className="acta-section acta-section--warm relative border-t border-black/5 py-16 sm:py-20">
@@ -68,19 +114,31 @@ export default function TeamSection() {
             <p className="acta-eyebrow">Team</p>
             <h2 className="acta-section-title mt-4">Meet Our Team</h2>
             <p className="acta-body mx-auto mt-4 max-w-2xl text-center">
-              The volunteers and leaders who guide our programs, events, and community initiatives.
+              {isCompact
+                ? 'Meet the leaders and volunteers behind iGurukul Foundation. Open each profile to view the full biography.'
+                : 'The volunteers and leaders who guide our programs, events, and community initiatives.'}
             </p>
           </div>
         </Reveal>
 
         {hasMembers ? (
-          <div className="mx-auto mt-14 flex max-w-5xl flex-col gap-10">
-            {teamMembers.map((member, idx) => (
-              <Reveal key={member.id} delayMs={80 * idx} from={idx % 2 === 0 ? 'left' : 'right'}>
-                <TeamMemberCard member={member} />
-              </Reveal>
-            ))}
-          </div>
+          isCompact ? (
+            <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+              {displayedMembers.map((member, idx) => (
+                <Reveal key={member.id} delayMs={60 * idx} from="scale">
+                  <TeamSummaryCard member={member} />
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <div className="mx-auto mt-14 flex max-w-5xl flex-col gap-10">
+              {displayedMembers.map((member, idx) => (
+                <Reveal key={member.id} delayMs={80 * idx} from={idx % 2 === 0 ? 'left' : 'right'}>
+                  <TeamMemberCard member={member} />
+                </Reveal>
+              ))}
+            </div>
+          )
         ) : (
           <Reveal delayMs={120}>
             <div className="igf-editorial-card mx-auto mt-14 max-w-2xl px-8 py-12 text-center sm:px-12 sm:py-14">

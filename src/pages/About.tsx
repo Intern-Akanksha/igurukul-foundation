@@ -38,7 +38,7 @@ export default function About() {
           </p>
         </Reveal>
       </ActaPageShell>
-      <TeamSection />
+      <TeamSection variant="compact" />
     </>
   )
 }

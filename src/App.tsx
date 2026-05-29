@@ -13,6 +13,7 @@ import Programs from './pages/Programs'
 import Registration from './pages/Registration'
 import Subscribe from './pages/Subscribe'
 import Sponsors from './pages/Sponsors'
+import Team from './pages/Team'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/donate" element={<Donate />} />

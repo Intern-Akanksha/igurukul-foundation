@@ -15,6 +15,7 @@ export default function Layout() {
     const map: Record<string, string> = {
       '/': base,
       '/about': `About | ${base}`,
+      '/team': `Team | ${base}`,
       '/programs': `Programs | ${base}`,
       '/gallery': `Gallery | ${base}`,
       '/registration': `Registration | ${base}`,

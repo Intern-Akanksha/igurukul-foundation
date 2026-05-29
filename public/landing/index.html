@@ -643,7 +643,7 @@
     <div class="hero-buttons reveal">
       <a href="https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1" class="btn btn-primary">🎟️ Get Tickets — $15</a>
       <a href="#program" class="btn btn-outline">View Program</a>
-      <a href="https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure_0417.pdf" class="btn btn-outline" onclick="downloadBrochure(event)">Download Brochure</a>
+      <a href="https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf" class="btn btn-outline" download="iGurukul-Cultural-Extravaganza-2026-Brochure.pdf" onclick="downloadBrochure(event)">Download Brochure</a>
     </div>
   </div>
 </section>
@@ -1220,34 +1220,38 @@
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
-  const brochureUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure_0417.pdf';
+  const brochureUrl = 'https://wajweb.b-cdn.net/igurukul-foundation/iGurukul%20Cultural%20Extravaganza%202026%20Brochure%20-%20Web%20Version.pdf';
   const brochureFilename = 'iGurukul-Cultural-Extravaganza-2026-Brochure.pdf';
 
-  function downloadBrochure(event) {
+  async function downloadBrochure(event) {
     if (event) event.preventDefault();
 
-    const ua = navigator.userAgent.toLowerCase();
-    const isSafari = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('chromium') && !ua.includes('android');
-    const isIOS = /iphone|ipad|ipod/.test(ua);
-
-    const link = document.createElement('a');
-    link.href = brochureUrl;
-    link.rel = 'noopener noreferrer';
-
-    // Safari/iOS do not reliably honor programmatic downloads for cross-origin PDFs.
-    // Open the file directly so users can still access/save it in every browser.
-    if (isSafari || isIOS) {
-      link.target = '_blank';
+    const triggerDownload = (url, filename) => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.rel = 'noopener noreferrer';
+      if (filename) link.download = filename;
       document.body.appendChild(link);
       link.click();
       link.remove();
-      return;
-    }
+    };
 
-    link.download = brochureFilename;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    try {
+      const response = await fetch(brochureUrl, { mode: 'cors', credentials: 'omit' });
+      if (!response.ok) throw new Error('Failed to fetch brochure');
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      triggerDownload(blobUrl, brochureFilename);
+      window.setTimeout(() => window.URL.revokeObjectURL(blobUrl), 60000);
+    } catch (error) {
+      const fallbackLink = document.createElement('a');
+      fallbackLink.href = brochureUrl;
+      fallbackLink.target = '_blank';
+      fallbackLink.rel = 'noopener noreferrer';
+      document.body.appendChild(fallbackLink);
+      fallbackLink.click();
+      fallbackLink.remove();
+    }
   }
 
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
