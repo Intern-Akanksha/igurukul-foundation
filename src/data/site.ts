@@ -140,7 +140,7 @@ export const currentEvent: CurrentEvent = {
     'Odia Yearly Exams are designed to evaluate students’ knowledge and understanding of the Odia language at different learning levels. These exams help students strengthen their reading, writing, and language skills while encouraging continuous learning and academic growth in Odia studies.',
   imageUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/odia%20exam.jpeg',
   registerUrl: 'https://igurukulfoundation.onwajooba.com/checkout/odia-yearly-exams-56800174/YEAorLz0L5/1',
-  date: '30th May 2026',
+  date: '31st May 2026',
   time: '4:00 PM - 5:00 PM',
   locationName: 'iGurukul Fremont Center',
   locationAddress: ['5500 Stewart Ave', 'Fremont, California (CA), 94538'],
