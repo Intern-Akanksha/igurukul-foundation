@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ActaPageShell from '../components/ActaPageShell'
 import Button from '../components/Button'
+import CurrentEventSpotlight from '../components/CurrentEventSpotlight'
 import Reveal from '../components/Reveal'
 import { featuredEvent, newsEvents } from '../data/site'
 import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react'
@@ -9,10 +10,20 @@ export default function NewsEvents() {
   return (
     <ActaPageShell
       eyebrow="Events"
-      title="Past Events & Community Highlights"
-      lead="Explore memorable milestones from our community journey and preview the upcoming annual showcase."
+      title="Current Event & Community Highlights"
+      lead="See the latest iGurukul event first, then explore upcoming highlights and memorable milestones from our community journey."
     >
         <section>
+          <Reveal>
+            <CurrentEventSpotlight primaryLabel="Register - $25" />
+          </Reveal>
+
+        </section>
+
+        <section>
+          <Reveal>
+            <h3 className="acta-subsection-title mb-8">Upcoming Highlight</h3>
+          </Reveal>
           <div className="acta-panel acta-panel--padded">
               <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
                 <Reveal from="left">
@@ -32,7 +43,7 @@ export default function NewsEvents() {
                   <div>
                     <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-igf-orange/15 to-igf-magenta/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-igf-orange ring-1 ring-igf-orange/25">
                       <Sparkles className="h-4 w-4" aria-hidden />
-                      Highlighted Event
+                      Upcoming Event
                     </div>
                     <h2 className="mt-5 font-heading text-3xl font-extrabold tracking-tight text-igf-ink sm:text-4xl">
                       Cultural Extravaganza 2026

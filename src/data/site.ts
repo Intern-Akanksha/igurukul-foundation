@@ -109,6 +109,18 @@ export type FeaturedEvent = {
   time: string
 }
 
+export type CurrentEvent = {
+  title: string
+  description: string
+  imageUrl: string
+  registerUrl: string
+  date: string
+  time: string
+  locationName: string
+  locationAddress: string[]
+  fee: string
+}
+
 export const featuredEvent: FeaturedEvent = {
   title: 'IGF 2026 Cultural Program & Community Learning Day',
   flyerImageUrl:
@@ -120,6 +132,19 @@ export const featuredEvent: FeaturedEvent = {
   venueAddress: '1700 W Hillsdale Blvd, San Mateo, CA 94402',
   date: 'Sunday, April 12, 2026',
   time: '10:00 AM – 7:00 PM',
+}
+
+export const currentEvent: CurrentEvent = {
+  title: 'Odia Yearly Exams',
+  description:
+    'Odia Yearly Exams are designed to evaluate students’ knowledge and understanding of the Odia language at different learning levels. These exams help students strengthen their reading, writing, and language skills while encouraging continuous learning and academic growth in Odia studies.',
+  imageUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/odia%20exam.jpeg',
+  registerUrl: 'https://igurukulfoundation.onwajooba.com/checkout/odia-yearly-exams-56800174/YEAorLz0L5/1',
+  date: '30th May 2026',
+  time: '4:00 PM - 5:00 PM',
+  locationName: 'iGurukul Fremont Center',
+  locationAddress: ['5500 Stewart Ave', 'Fremont, California (CA), 94538'],
+  fee: '$25',
 }
 
 export const newsEvents: NewsEvent[] = [

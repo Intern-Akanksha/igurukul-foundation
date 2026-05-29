@@ -1,7 +1,8 @@
-﻿import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import ActaWave from '../components/ActaWave'
 import Button from '../components/Button'
+import CurrentEventSpotlight from '../components/CurrentEventSpotlight'
 import Parallax from '../components/Parallax'
 import Reveal from '../components/Reveal'
 import {
@@ -77,6 +78,14 @@ export default function Home() {
               </div>
               <p className="acta-tax-line">{homeHero.taxLine}</p>
             </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="acta-section acta-section--cream pt-8 sm:pt-10">
+        <div className="acta-inner">
+          <Reveal immediate>
+            <CurrentEventSpotlight secondaryTo="/events" secondaryLabel="View Event Details" />
           </Reveal>
         </div>
       </section>
