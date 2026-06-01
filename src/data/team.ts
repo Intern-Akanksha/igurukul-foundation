@@ -50,7 +50,7 @@ export const teamMembers: TeamMember[] = [
     id: 'mita-moharana',
     name: 'Mita Moharana',
     role: 'Secretary',
-    photoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/mita_moharana.jpeg',
+    photoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/mita%20moharana.jpeg',
     photoObjectPosition: 'center 18%',
     bioParagraphs: [
       'Mita Moharana is a dedicated educator, community leader, and founding member of both iGurukul Foundation and the Jagannath Cultural and Educational Center.',
