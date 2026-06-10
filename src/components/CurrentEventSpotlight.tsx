@@ -1,7 +1,7 @@
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
-import { ArrowRight, Calendar, MapPin, Sparkles, Ticket } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { currentEvent } from '../data/site'
+import { foundationHero, joinUs } from '../data/foundationContent'
 import { cn } from '../utils/cn'
 import Button from './Button'
 
@@ -14,7 +14,7 @@ type CurrentEventSpotlightProps = {
 }
 
 export default function CurrentEventSpotlight({
-  label = 'Current Event',
+  label = 'iGurukul Foundation',
   primaryLabel,
   secondaryTo,
   secondaryLabel,
@@ -85,27 +85,24 @@ export default function CurrentEventSpotlight({
   return (
     <div className={cn('mx-auto max-w-5xl', className)}>
       <motion.div
-        className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(135deg,rgba(255,252,248,0.98),rgba(246,237,226,0.98))] shadow-[0_28px_90px_rgba(75,45,25,0.12)]"
+        className="lux-panel relative overflow-hidden shadow-[var(--lux-shadow-card)]"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.18 }}
-        whileHover={prefersReducedMotion ? undefined : { y: -4, boxShadow: '0 34px 110px rgba(75,45,25,0.16)' }}
+        whileHover={
+          prefersReducedMotion ? undefined : { y: -4, boxShadow: '0 34px 110px rgba(212, 175, 55, 0.18)' }
+        }
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
-        <div
-          className="pointer-events-none absolute -left-20 top-8 h-48 w-48 rounded-full bg-igf-orange/10 blur-3xl"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-igf-magenta/10 blur-3xl"
-          aria-hidden
-        />
+        <div className="lux-glow lux-glow--gold pointer-events-none absolute -left-20 top-8 h-48 w-48" aria-hidden />
+        <div className="lux-glow lux-glow--burgundy pointer-events-none absolute -right-20 bottom-0 h-56 w-56" aria-hidden />
 
         <div className="relative grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10 lg:p-10">
           <motion.div className="relative" variants={itemVariants}>
             <motion.div
-              className="absolute inset-3 rounded-[1.75rem] bg-gradient-to-br from-igf-orange/25 via-igf-magenta/10 to-igf-indigo/20 blur-2xl"
+              className="absolute inset-3 rounded-[1.75rem] bg-gradient-to-br from-[color-mix(in_srgb,var(--lux-gold)_25%,transparent)] via-[color-mix(in_srgb,var(--lux-burgundy)_12%,transparent)] to-[color-mix(in_srgb,var(--lux-walnut)_20%,transparent)] blur-2xl"
+              
               animate={
                 prefersReducedMotion
                   ? undefined
@@ -116,17 +113,24 @@ export default function CurrentEventSpotlight({
               }
             />
             <motion.div
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/70 p-3 shadow-[0_18px_55px_rgba(40,20,10,0.16)] backdrop-blur"
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/82 p-6 shadow-[0_18px_55px_rgba(31,41,55,0.12)] backdrop-blur"
               whileHover={prefersReducedMotion ? undefined : { rotate: -0.4, scale: 1.015 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
             >
-              <img
-                src={currentEvent.imageUrl}
-                alt={currentEvent.title}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[4/5] w-full rounded-[1.15rem] object-cover"
-              />
+              <div className="flex aspect-[4/5] flex-col justify-between rounded-[1.15rem] bg-[linear-gradient(160deg,var(--lux-burgundy-deep)_0%,var(--lux-burgundy)_55%,var(--lux-black)_100%)] p-6 text-[var(--lux-ivory)]">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                  <Sparkles className="h-3.5 w-3.5" aria-hidden />
+                  Learning & Human Development
+                </div>
+                <div>
+                  <div className="font-heading text-3xl leading-tight sm:text-4xl">
+                    {foundationHero.title}
+                  </div>
+                  <div className="mt-4 font-display text-2xl italic leading-snug text-white/90">
+                    {foundationHero.subtitle}
+                  </div>
+                </div>
+              </div>
             </motion.div>
             <motion.div
               className="absolute -bottom-4 left-4 right-4 rounded-2xl border border-white/70 bg-white/92 px-4 py-3 shadow-xl backdrop-blur sm:left-auto sm:right-5 sm:w-[220px]"
@@ -134,12 +138,14 @@ export default function CurrentEventSpotlight({
               whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
             >
               <div className="flex items-start gap-3">
-                <Ticket className="mt-0.5 h-5 w-5 shrink-0 text-igf-orange" aria-hidden />
+                <Sparkles className="mt-0.5 h-5 w-5 shrink-0 lux-text-gold" aria-hidden />
                 <div>
-                  <div className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-igf-orange/80">
-                    Registration Fee
+                  <div className="text-[0.7rem] font-bold uppercase tracking-[0.18em] lux-text-gold/80">
+                    Featured Quote
                   </div>
-                  <div className="mt-1 text-xl font-bold text-igf-ink">{currentEvent.fee}</div>
+                  <div className="mt-1 text-sm font-semibold leading-6 lux-text-ink">
+                    {foundationHero.highlights[3]}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -147,12 +153,12 @@ export default function CurrentEventSpotlight({
 
           <div className="relative lg:py-2">
             <motion.div
-              className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-igf-orange ring-1 ring-igf-orange/15 backdrop-blur"
+              className="lux-badge-pill text-xs font-bold"
               variants={itemVariants}
               animate={
                 prefersReducedMotion
                   ? undefined
-                  : { y: [0, -2, 0], boxShadow: ['0 0 0 rgba(0,0,0,0)', '0 10px 24px rgba(232,130,26,0.12)', '0 0 0 rgba(0,0,0,0)'] }
+                  : { y: [0, -2, 0], boxShadow: ['0 0 0 rgba(0,0,0,0)', '0 10px 24px rgba(212, 175, 55, 0.14)', '0 0 0 rgba(0,0,0,0)'] }
               }
               transition={prefersReducedMotion ? undefined : { duration: 3.8, repeat: Infinity, ease: 'easeInOut' }}
             >
@@ -161,55 +167,47 @@ export default function CurrentEventSpotlight({
             </motion.div>
 
             <motion.h2
-              className="mt-5 font-heading text-3xl font-extrabold tracking-tight text-igf-ink sm:text-4xl"
+              className="mt-5 font-heading text-3xl font-extrabold tracking-tight lux-text-ink sm:text-4xl"
               variants={itemVariants}
             >
-              {currentEvent.title}
+              {foundationHero.title}
             </motion.h2>
 
             <motion.p
-              className="mt-4 max-w-2xl text-base leading-relaxed text-igf-gray sm:text-lg"
+              className="mt-4 max-w-2xl text-base leading-relaxed lux-text-walnut sm:text-lg"
               variants={itemVariants}
             >
-              {currentEvent.description}
+              {foundationHero.quote}
             </motion.p>
 
             <motion.div className="mt-6 grid gap-3 sm:grid-cols-2" variants={itemVariants}>
               <motion.div
-                className="rounded-2xl border border-black/5 bg-white/70 p-4 shadow-sm backdrop-blur"
+                className="lux-card lux-card--glass p-4"
                 variants={popupVariants}
                 whileHover={prefersReducedMotion ? undefined : { y: -5, scale: 1.02 }}
                 transition={{ duration: 0.28, ease: 'easeOut' }}
               >
                 <div className="flex items-start gap-3">
-                  <Calendar className="mt-0.5 h-5 w-5 shrink-0 text-igf-orange" aria-hidden />
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-[0.16em] text-igf-orange/80">
-                      Date & Time
+                    <div className="text-xs font-bold uppercase tracking-[0.16em] lux-text-gold">
+                      Website
                     </div>
-                    <div className="mt-1 text-sm font-semibold text-igf-ink">{currentEvent.date}</div>
-                    <div className="text-sm font-semibold text-igf-ink">{currentEvent.time}</div>
+                    <div className="mt-1 text-sm font-semibold lux-text-ink">{joinUs.website}</div>
                   </div>
                 </div>
               </motion.div>
               <motion.div
-                className="rounded-2xl border border-black/5 bg-white/70 p-4 shadow-sm backdrop-blur"
+                className="lux-card lux-card--glass p-4"
                 variants={popupVariants}
                 whileHover={prefersReducedMotion ? undefined : { y: -5, scale: 1.02 }}
                 transition={{ duration: 0.28, ease: 'easeOut' }}
               >
                 <div className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-igf-orange" aria-hidden />
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-[0.16em] text-igf-orange/80">
-                      Location
+                    <div className="text-xs font-bold uppercase tracking-[0.16em] lux-text-gold">
+                      Email
                     </div>
-                    <div className="mt-1 text-sm font-semibold text-igf-ink">{currentEvent.locationName}</div>
-                    {currentEvent.locationAddress.map((line) => (
-                      <div key={line} className="text-sm text-igf-gray">
-                        {line}
-                      </div>
-                    ))}
+                    <div className="mt-1 text-sm font-semibold lux-text-ink">{joinUs.email}</div>
                   </div>
                 </div>
               </motion.div>
@@ -221,8 +219,8 @@ export default function CurrentEventSpotlight({
                 whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
               >
-                <Button href={currentEvent.registerUrl} attention>
-                  {primaryLabel ?? `Register Now - ${currentEvent.fee}`}
+                <Button href={joinUs.website} attention>
+                  {primaryLabel ?? 'Visit Website'}
                 </Button>
               </motion.span>
               {secondaryTo && secondaryLabel ? (
@@ -246,3 +244,4 @@ export default function CurrentEventSpotlight({
     </div>
   )
 }
+

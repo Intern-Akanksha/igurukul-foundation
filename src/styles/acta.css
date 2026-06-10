@@ -1,15 +1,15 @@
 /* ACTA-inspired cultural nonprofit storytelling */
 
 :root {
-  --acta-cream: #fdf6ed;
-  --acta-cream-deep: #f5ebe0;
-  --acta-terracotta: #c45c26;
-  --acta-terracotta-deep: #a84328;
-  --acta-brown: #3d2817;
-  --acta-ink: #2a1210;
-  --acta-olive: #6b7c4a;
-  --acta-mustard: #e8b84a;
-  --acta-mustard-hover: #f0c960;
+  --acta-cream: #f8f4ee;
+  --acta-cream-deep: #efe8dc;
+  --acta-terracotta: #7b1e26;
+  --acta-terracotta-deep: #5c1419;
+  --acta-brown: #121212;
+  --acta-ink: #1a1410;
+  --acta-olive: #6b4f3a;
+  --acta-mustard: #d4af37;
+  --acta-mustard-hover: #e8c96a;
 }
 
 .acta-page {

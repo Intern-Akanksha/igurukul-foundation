@@ -1,138 +1,116 @@
-import { Link } from 'react-router-dom'
-import { Handshake } from 'lucide-react'
-import ActaPageShell from '../components/ActaPageShell'
-import Button from '../components/Button'
-import Reveal from '../components/Reveal'
 import {
-  partnerOrganizations,
-  presentingPartner,
-  sponsorshipTiers,
-  type PartnerOrganization,
-} from '../data/sponsors'
-import { cn } from '../utils/cn'
-
-const tierStyles: Record<(typeof sponsorshipTiers)[number]['accent'], string> = {
-  gold: 'border-amber-400/50 bg-gradient-to-br from-amber-50 to-white ring-amber-300/40',
-  silver: 'border-slate-300/60 bg-gradient-to-br from-slate-50 to-white ring-slate-300/40',
-  bronze: 'border-orange-300/50 bg-gradient-to-br from-orange-50/80 to-white ring-orange-200/50',
-  popular: 'border-igf-magenta/30 bg-gradient-to-br from-purple-50/80 to-white ring-igf-magenta/20',
-}
-
-function PartnerCard({ partner, delayMs = 0 }: { partner: PartnerOrganization; delayMs?: number }) {
-  return (
-    <Reveal delayMs={delayMs} from="scale">
-      <div className="acta-panel acta-panel--padded group flex h-full flex-col items-center text-center">
-        <div className="relative flex h-28 w-full items-center justify-center sm:h-32">
-          <div
-            className="absolute inset-4 rounded-2xl bg-gradient-to-br from-igf-orange/10 to-igf-indigo/5 opacity-0 transition duration-500 group-hover:opacity-100"
-            aria-hidden
-          />
-          <img
-            src={partner.logoUrl}
-            alt={`${partner.name} logo`}
-            loading="lazy"
-            decoding="async"
-            className="relative max-h-24 max-w-[85%] object-contain transition duration-500 group-hover:scale-105 sm:max-h-28"
-          />
-        </div>
-        <h3 className="mt-5 font-heading text-base font-bold leading-snug text-igf-ink sm:text-lg">
-          {partner.name}
-        </h3>
-        {partner.shortName && !partner.name.startsWith(partner.shortName) ? (
-          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-igf-orange">
-            {partner.shortName}
-          </p>
-        ) : null}
-        {partner.description ? (
-          <p className="mt-3 text-sm leading-relaxed text-igf-gray">{partner.description}</p>
-        ) : null}
-      </div>
-    </Reveal>
-  )
-}
+  JoinUsSection,
+  PhilosophySection,
+} from '../components/FoundationSections'
+import GsapRevealBlock from '../components/GsapRevealBlock'
+import { partnerOrganizations, presentingPartner } from '../data/sponsors'
 
 export default function Sponsors() {
+  const marqueePartners = [...partnerOrganizations, ...partnerOrganizations]
+
   return (
-    <ActaPageShell
-      eyebrow="Community"
-      title="Partners & Sponsors"
-      lead="Thank you to our partnering organizations and sponsors who make the Cultural Extravaganza and year-round programs possible."
-    >
-        <section>
-          <Reveal>
-            <h2 className="text-center font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
-              Presenting Organization
-            </h2>
-          </Reveal>
-          <div className="mx-auto mt-8 max-w-md">
-            <PartnerCard partner={presentingPartner} />
-          </div>
-        </section>
-
-        <section className="mt-16 sm:mt-20">
-          <Reveal>
-            <h2 className="text-center font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
-              Partnering Organizations
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-igf-gray sm:text-base">
-              Proudly supported by these amazing organizations
+    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
+      <section className="px-4 pb-6 pt-24 sm:px-6 lg:px-8 lg:pt-28">
+        <div className="mx-auto max-w-7xl">
+          <GsapRevealBlock className="text-center">
+            <div className="igf-page-eyebrow justify-center">Partners</div>
+            <h1 className="mt-4 font-heading text-4xl font-bold tracking-[-0.03em] lux-text-ink sm:text-5xl">
+              Partners & Sponsors
+            </h1>
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-8 lux-text-ink/76 sm:text-lg">
+              The foundation grows through artistic collaboration, educational participation,
+              and trusted community partnerships.
             </p>
-          </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {partnerOrganizations.map((partner, idx) => (
-              <PartnerCard key={partner.name} partner={partner} delayMs={60 * idx} />
-            ))}
-          </div>
-        </section>
+          </GsapRevealBlock>
 
-        <section className="mt-20 sm:mt-24">
-          <Reveal>
-            <div className="text-center">
-              <Handshake className="mx-auto h-10 w-10 text-igf-orange" aria-hidden />
-              <h2 className="mt-4 font-heading text-2xl font-extrabold text-igf-ink sm:text-3xl">
-                Sponsorship Opportunities
-              </h2>
-              <p className="mx-auto mt-3 max-w-2xl text-sm text-igf-gray sm:text-base">
-                Help us celebrate and preserve Indian classical arts for the next generation
-              </p>
-            </div>
-          </Reveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {sponsorshipTiers.map((tier, idx) => (
-              <Reveal key={tier.name} delayMs={80 * idx} from="scale">
-                <div
-                  className={cn(
-                    'flex h-full flex-col rounded-2xl border p-6 shadow-sm ring-1',
-                    tierStyles[tier.accent],
-                  )}
-                >
-                  <h3 className="font-heading text-lg font-bold text-igf-ink">{tier.name}</h3>
-                  <p className="mt-2 font-heading text-3xl font-extrabold text-igf-orange">{tier.amount}</p>
-                  <ul className="mt-4 flex-1 space-y-2 text-sm text-igf-gray">
-                    {tier.benefits.map((benefit) => (
-                      <li key={benefit} className="flex gap-2">
-                        <span className="text-igf-orange" aria-hidden>
-                          •
-                        </span>
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
+          <div className="lux-panel lux-panel--padded relative mt-12 overflow-hidden">
+            <div className="lux-glow lux-glow--gold pointer-events-none absolute left-[-3rem] top-[-2rem] h-36 w-36" />
+            <div className="lux-glow lux-glow--burgundy pointer-events-none absolute right-[-2rem] top-[24%] h-32 w-32" />
+            <div className="lux-glow lux-glow--gold pointer-events-none absolute bottom-[-2rem] left-[40%] h-32 w-32" />
+
+            <GsapRevealBlock>
+              <div className="mx-auto max-w-3xl text-center">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] lux-text-gold">
+                  Presenting Organization
                 </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delayMs={200}>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link to="/donate">
-                <Button attention>Donate</Button>
-              </Link>
-              <Link to="/partner-with-us">
-                <Button variant="secondary">Become a Partner</Button>
-              </Link>
+                <div className="mt-5 flex justify-center">
+                  <div className="overflow-hidden rounded-[1.1rem] border border-[color-mix(in_srgb,var(--lux-gold)_20%,transparent)] bg-white/90 p-1.5 shadow-[var(--lux-shadow-gold)]">
+                    <img
+                      src="https://wajweb.b-cdn.net/igurukul-foundation/igfupdatedlogo.jpg"
+                      alt={presentingPartner.name}
+                      className="h-16 w-16 rounded-[0.9rem] object-cover"
+                    />
+                  </div>
+                </div>
+                <h2 className="mt-6 font-display text-3xl font-semibold lux-text-ink">
+                  {presentingPartner.name}
+                </h2>
+                <p className="mt-3 text-base leading-8 lux-text-ink/76">
+                  {presentingPartner.description}
+                </p>
+              </div>
+            </GsapRevealBlock>
+
+            <div className="mt-10 space-y-5">
+              <GsapRevealBlock delay={0.05}>
+                <div className="igf-partner-marquee">
+                  <div className="igf-partner-track">
+                    {marqueePartners.map((partner, index) => (
+                      <div key={`${partner.name}-forward-${index}`} className="igf-partner-chip">
+                        <div className="igf-partner-orb">
+                          {partner.logoUrl ? (
+                            <img
+                              src={partner.logoUrl}
+                              alt={partner.name}
+                              loading="lazy"
+                              decoding="async"
+                              className="max-h-14 w-auto max-w-[92px] object-contain"
+                            />
+                          ) : null}
+                        </div>
+                        <h3 className="mt-4 text-center font-display text-[1.28rem] leading-tight lux-text-ink">
+                          {partner.name}
+                        </h3>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </GsapRevealBlock>
+
+              <GsapRevealBlock delay={0.12}>
+                <div className="igf-partner-marquee">
+                  <div className="igf-partner-track igf-partner-track-reverse">
+                    {marqueePartners
+                      .slice()
+                      .reverse()
+                      .map((partner, index) => (
+                        <div key={`${partner.name}-reverse-${index}`} className="igf-partner-chip">
+                          <div className="igf-partner-orb">
+                            {partner.logoUrl ? (
+                              <img
+                                src={partner.logoUrl}
+                                alt={partner.name}
+                                loading="lazy"
+                                decoding="async"
+                                className="max-h-14 w-auto max-w-[92px] object-contain"
+                              />
+                            ) : null}
+                          </div>
+                          <h3 className="mt-4 text-center font-display text-[1.28rem] leading-tight lux-text-ink">
+                            {partner.name}
+                          </h3>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </GsapRevealBlock>
             </div>
-          </Reveal>
-        </section>
-    </ActaPageShell>
+          </div>
+        </div>
+      </section>
+      <PhilosophySection />
+      <JoinUsSection />
+    </div>
   )
 }
+

@@ -8,9 +8,10 @@ import { cn } from '../utils/cn'
 type TeamSectionProps = {
   variant?: 'compact' | 'full'
   members?: TeamMember[]
+  selectedMemberId?: string
 }
 
-function TeamMemberImage({
+export function TeamMemberImage({
   member,
   className,
 }: {
@@ -29,8 +30,8 @@ function TeamMemberImage({
       className={cn('h-full w-full object-cover', !member.photoObjectPosition && 'object-top', className)}
     />
   ) : (
-    <div className="flex h-full min-h-[240px] w-full items-center justify-center bg-gradient-to-br from-igf-orange/10 to-igf-gold/15">
-      <User className="h-16 w-16 text-igf-orange/45" aria-hidden />
+    <div className="flex h-full min-h-[240px] w-full items-center justify-center bg-[color-mix(in_srgb,var(--lux-gold)_12%,var(--lux-ivory))]">
+      <User className="h-16 w-16 text-[color-mix(in_srgb,var(--lux-gold)_45%,transparent)]" aria-hidden />
     </div>
   )
 }
@@ -41,22 +42,22 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
     <article
       id={member.id}
-      className="acta-panel acta-panel--padded scroll-mt-24 flex h-full flex-col overflow-hidden sm:flex-row sm:text-left"
+      className="scroll-mt-24 lux-panel flex h-full flex-col overflow-hidden sm:flex-row sm:text-left"
     >
       <div className="relative mx-auto shrink-0 sm:mx-0">
-        <div className="igf-motion-img-wrap relative aspect-[3/4] w-full max-w-[220px] overflow-hidden rounded-xl ring-2 ring-igf-gold/25 sm:w-48 md:w-52">
+        <div className="igf-motion-img-wrap relative aspect-[3/4] w-full max-w-[220px] overflow-hidden rounded-[1.35rem] ring-2 ring-[color-mix(in_srgb,var(--lux-gold)_22%,transparent)] sm:w-48 md:w-52">
           <TeamMemberImage member={member} />
         </div>
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-8">
-        <h3 className="font-heading text-xl font-bold text-igf-ink sm:text-2xl">{member.name}</h3>
-        <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-igf-orange">
+        <h3 className="font-heading text-xl font-bold lux-text-ink sm:text-2xl">{member.name}</h3>
+        <p className="mt-1 text-sm font-semibold uppercase tracking-wide lux-text-gold">
           {member.role}
         </p>
         {paragraphs.length > 0 ? (
           <div className="mt-4 space-y-3">
             {paragraphs.map((paragraph, i) => (
-              <p key={i} className="text-sm leading-relaxed text-igf-gray sm:text-[0.9375rem]">
+              <p key={i} className="text-sm leading-relaxed lux-text-walnut sm:text-[0.9375rem]">
                 {paragraph}
               </p>
             ))}
@@ -65,7 +66,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
         {member.email ? (
           <a
             href={`mailto:${member.email}`}
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-igf-charcoal transition hover:text-igf-orange"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold lux-text-gold transition hover:lux-text-gold"
           >
             <Mail className="h-4 w-4 shrink-0" aria-hidden />
             {member.email}
@@ -77,43 +78,59 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 }
 
 function TeamSummaryCard({ member }: { member: TeamMember }) {
+  const initials = member.name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+
   return (
-    <article className="acta-panel flex h-full flex-col items-center px-5 py-6 text-center">
-      <div className="igf-motion-img-wrap relative aspect-[4/4.8] w-full overflow-hidden rounded-[1.25rem] ring-2 ring-igf-gold/20">
-        <TeamMemberImage member={member} />
+    <article className="group lux-card relative overflow-hidden px-4 py-4 text-left sm:px-5">
+      <div className="lux-glow lux-glow--gold pointer-events-none absolute -right-6 -top-6 h-20 w-20 transition duration-500 group-hover:scale-125" />
+      <div className="relative flex h-full items-center gap-4 sm:gap-5">
+        <div className="igf-motion-img-wrap relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-[color-mix(in_srgb,var(--lux-gold)_22%,transparent)] transition duration-500 group-hover:scale-[1.04] sm:h-24 sm:w-24">
+          <TeamMemberImage member={member} className="object-top" />
+          <div className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[10px] font-bold tracking-[0.18em] lux-text-gold shadow-md">
+            {initials}
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-heading text-lg font-bold lux-text-ink sm:text-xl">{member.name}</h3>
+          <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] lux-text-gold sm:text-xs">
+            {member.role}
+          </p>
+          <div className="mt-4">
+            <Link
+              to={`/team#${member.id}`}
+              className="inline-flex items-center gap-2 text-sm font-semibold lux-text-ink transition duration-300 group-hover:lux-text-gold hover:lux-text-gold"
+            >
+              Read More
+              <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-1" aria-hidden />
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="mt-5">
-        <h3 className="font-heading text-xl font-bold text-igf-ink">{member.name}</h3>
-        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-igf-orange">{member.role}</p>
-      </div>
-      <Link
-        to={`/team#${member.id}`}
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-igf-charcoal transition hover:text-igf-orange"
-      >
-        Read More
-        <ArrowRight className="h-4 w-4" aria-hidden />
-      </Link>
     </article>
   )
 }
 
-export default function TeamSection({ variant = 'full', members }: TeamSectionProps) {
+export default function TeamSection({ variant = 'full', members, selectedMemberId }: TeamSectionProps) {
   const displayedMembers = members ?? teamMembers
   const hasMembers = displayedMembers.length > 0
   const isCompact = variant === 'compact'
 
   return (
-    <section id="team" className="acta-section acta-section--warm relative border-t border-black/5 py-16 sm:py-20">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-igf-gold/40 to-transparent"
-        aria-hidden
-      />
+    <section id="team" className="lux-section-surface py-16 sm:py-20">
+      <div className="lux-glow lux-glow--gold pointer-events-none absolute left-[-5rem] top-12 h-40 w-40" />
+      <div className="lux-glow lux-glow--burgundy pointer-events-none absolute bottom-8 right-[-5rem] h-44 w-44" />
       <Container>
         <Reveal>
           <div className="text-center">
-            <p className="acta-eyebrow">Team</p>
-            <h2 className="acta-section-title mt-4">Meet Our Team</h2>
-            <p className="acta-body mx-auto mt-4 max-w-2xl text-center">
+            <p className="igf-page-eyebrow justify-center">Team</p>
+            <h2 className="mt-4 font-heading text-4xl font-bold tracking-[-0.03em] lux-text-ink sm:text-5xl">
+              Meet Our Team
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-8 lux-text-ink/76">
               {isCompact
                 ? 'Meet the leaders and volunteers behind iGurukul Foundation. Open each profile to view the full biography.'
                 : 'The volunteers and leaders who guide our programs, events, and community initiatives.'}
@@ -123,10 +140,17 @@ export default function TeamSection({ variant = 'full', members }: TeamSectionPr
 
         {hasMembers ? (
           isCompact ? (
-            <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
               {displayedMembers.map((member, idx) => (
                 <Reveal key={member.id} delayMs={60 * idx} from="scale">
-                  <TeamSummaryCard member={member} />
+                  <div
+                    className={cn(
+                      'transition duration-300',
+                      selectedMemberId === member.id && 'lux-ring-selected scale-[1.01]',
+                    )}
+                  >
+                    <TeamSummaryCard member={member} />
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -141,14 +165,14 @@ export default function TeamSection({ variant = 'full', members }: TeamSectionPr
           )
         ) : (
           <Reveal delayMs={120}>
-            <div className="igf-editorial-card mx-auto mt-14 max-w-2xl px-8 py-12 text-center sm:px-12 sm:py-14">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-igf-orange/10 ring-1 ring-igf-gold/25">
-                <User className="h-8 w-8 text-igf-orange/70" aria-hidden />
+            <div className="lux-panel lux-panel--padded mx-auto mt-14 max-w-2xl text-center">
+              <div className="lux-icon-wrap mx-auto h-16 w-16">
+                <User className="h-8 w-8 opacity-70" aria-hidden />
               </div>
-              <p className="mt-6 font-heading text-lg font-bold text-igf-ink">
+              <p className="mt-6 font-heading text-lg font-bold lux-text-ink">
                 Team profiles coming soon
               </p>
-              <p className="mt-2 text-sm text-igf-gray">
+              <p className="mt-2 text-sm lux-text-walnut">
                 Photos and member details will be added here.
               </p>
             </div>

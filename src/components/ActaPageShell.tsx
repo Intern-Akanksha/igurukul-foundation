@@ -20,20 +20,18 @@ export default function ActaPageShell({
   className,
 }: ActaPageShellProps) {
   return (
-    <div className={cn('acta-page', className)}>
-      <header className={cn('acta-page-hero', align === 'center' && 'acta-page-hero--center')}>
-        <div className="acta-page-hero__blob" aria-hidden />
-        <div className="acta-inner acta-page-hero__inner">
+    <div className={cn('lux-page', className)}>
+      <header className={cn('lux-page-hero', align === 'center' && 'lux-page-hero--center')}>
+        <div className="lux-page-hero__blob" aria-hidden />
+        <div className="lux-container lux-page-hero__inner">
           <Reveal immediate from="scale">
-            <p className="acta-eyebrow">{eyebrow}</p>
-            <h1 className="acta-page-hero__title mt-4">{title}</h1>
-            {lead ? <p className="acta-page-hero__lead">{lead}</p> : null}
+            <p className="lux-eyebrow">{eyebrow}</p>
+            <h1 className="lux-page-hero__title mt-4">{title}</h1>
+            {lead ? <p className="lux-page-hero__lead">{lead}</p> : null}
           </Reveal>
         </div>
       </header>
-      <div className="acta-page-body">
-        <div className="acta-inner pb-16 sm:pb-20 md:pb-24">{children}</div>
-      </div>
+      <div className="lux-container pb-16 sm:pb-20 md:pb-24">{children}</div>
     </div>
   )
 }

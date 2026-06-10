@@ -1,29 +1,19 @@
-const CDN = 'https://wajweb.b-cdn.net/igurukul-foundation'
-
 export const site = {
   name: 'iGurukul Foundation',
   shortName: 'IGF',
-  tagline: 'Rooted in Heritage · Rising Together',
+  tagline: 'A Centre of Excellence in Learning & Human Development',
   location: 'San Francisco Bay Area, California',
   email: 'info@igurukulfoundation.org',
   website: 'https://igurukulfoundation.org',
-  logoUrl: `${CDN}/igfupdatedlogo.jpg`,
+  logoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/igfupdatedlogo.jpg',
 }
-
-export const sitePhotos = {
-  heroPoster: `${CDN}/iGurukul_2025_0070.jpeg`,
-  odissi: `${CDN}/iGurukul_2025_0339a.jpeg`,
-  classical: `${CDN}/iGurukul_2025_0089.jpeg`,
-  community: `${CDN}/iGurukul_2025_0001.jpeg`,
-} as const
 
 export type NavItem = { label: string; to: string }
 
 export const navItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Team', to: '/about#team' },
-  // { label: 'Programs', to: '/programs' },
+  { label: 'Team', to: '/team' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Events', to: '/events' },
   { label: 'Partners', to: '/partners' },
@@ -33,137 +23,15 @@ export const navItems: NavItem[] = [
 
 export const quotes = {
   einstein: {
-    text: 'Learn from Yesterday, Live for Today, Hope for Future, and Never Stop Questioning.',
+    text: 'Learn from Yesterday. Live for Today. Hope for Tomorrow. Never Stop Questioning.',
     author: 'Albert Einstein',
   },
-  gandhi: {
-    text: 'Be the change that you wish to see in the world.',
-    author: 'Mahatma Gandhi',
+  meher: {
+    text: 'If you know your roots deeply, your branches can touch the sky.',
+    author: 'Gangadhar Meher',
   },
-  huxley: {
-    text: 'That men do not learn very much from the lessons of history is the most important of all the lessons of history.',
-    author: 'Julian Huxley',
+  carter: {
+    text: 'There are only two lasting bequests we can hope to give our children — one is roots, the other is wings.',
+    author: 'Hodding Carter',
   },
 }
-
-export type Program = {
-  title: string
-  description: string
-  emphasis?: string
-}
-
-export const programs: Program[] = [
-  {
-    title: 'Odia Literacy Centre',
-    description:
-      'Language classes that build reading, writing, and cultural confidence for youth and adults.',
-    emphasis: 'Why learn Odia? Connect across generations and preserve identity.',
-  },
-  {
-    title: 'Odissi Dance and Music',
-    description:
-      'Training and performance opportunities rooted in classical tradition and community celebration.',
-  },
-  {
-    title: 'Yoga and Reiki Classes',
-    description:
-      'Well-being sessions that support balance, mindfulness, and holistic health.',
-  },
-  {
-    title: 'IG Oriental Forum',
-    description:
-      'A platform for dialogue, ideas, and cultural exchange through talks and community learning.',
-  },
-  {
-    title: 'Meet Your Parents & Grandparents',
-    description:
-      'Intergenerational storytelling and connection experiences that strengthen family roots.',
-  },
-  {
-    title: 'Online Learning Portal (Future)',
-    description:
-      'A future-ready space for online classes and resources for learners anywhere.',
-  },
-  {
-    title: 'Development Learning & Extension Programs',
-    description:
-      'Community programs focused on social learning, human development, and outreach.',
-  },
-]
-
-export type NewsEvent = {
-  title: string
-  date: string
-  summary: string
-  location?: string
-}
-
-export type FeaturedEvent = {
-  title: string
-  flyerImageUrl: string
-  flyerImageAlt: string
-  registerUrl: string
-  venueName: string
-  venueAddress: string
-  date: string
-  time: string
-}
-
-export type CurrentEvent = {
-  title: string
-  description: string
-  imageUrl: string
-  registerUrl: string
-  date: string
-  time: string
-  locationName: string
-  locationAddress: string[]
-  fee: string
-}
-
-export const featuredEvent: FeaturedEvent = {
-  title: 'IGF 2026 Cultural Program & Community Learning Day',
-  flyerImageUrl:
-    'https://wajweb.b-cdn.net/igurukul-foundation/Image%20(5).png',
-  flyerImageAlt: 'iGurukul Foundation event flyer',
-  registerUrl:
-    'https://igurukulfoundation.onwajooba.com/checkout/igurukul-cultural-extravaganza-2026-88000246/Jr0XaegAq9/1',
-  venueName: 'College of San Mateo Theater',
-  venueAddress: '1700 W Hillsdale Blvd, San Mateo, CA 94402',
-  date: 'Sunday, April 12, 2026',
-  time: '10:00 AM – 7:00 PM',
-}
-
-export const currentEvent: CurrentEvent = {
-  title: 'Odia Yearly Exams',
-  description:
-    'Odia Yearly Exams are designed to evaluate students’ knowledge and understanding of the Odia language at different learning levels. These exams help students strengthen their reading, writing, and language skills while encouraging continuous learning and academic growth in Odia studies.',
-  imageUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/odia%20exam.jpeg',
-  registerUrl: 'https://igurukulfoundation.onwajooba.com/checkout/odia-yearly-exams-56800174/YEAorLz0L5/1',
-  date: '31st May 2026',
-  time: '4:00 PM - 5:00 PM',
-  locationName: 'iGurukul Fremont Center',
-  locationAddress: ['5500 Stewart Ave', 'Fremont, California (CA), 94538'],
-  fee: '$25',
-}
-
-export const newsEvents: NewsEvent[] = [
-  {
-    title: 'Odia Literacy Workshop: Reading & Writing Essentials',
-    date: 'Past Event',
-    summary:
-      'A practical workshop for learners and parents focused on foundational scripts and pronunciation.',
-  },
-  {
-    title: 'Odissi Showcase & Community Gathering',
-    date: 'Past Event',
-    summary:
-      'An evening of dance, music, and community celebration featuring students and mentors.',
-  },
-  {
-    title: 'Yoga for Everyday Balance',
-    date: 'Past Series',
-    summary:
-      'Weekly sessions designed to support posture, breath, and calm focus for all experience levels.',
-  },
-]
