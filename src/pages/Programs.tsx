@@ -1,15 +1,24 @@
 import {
+  ClosingQuoteSection,
   ProgramsSection,
   VisionSection,
   WhyLearnOdiaSection,
 } from '../components/FoundationSections'
+import LuxPageHeader from '../components/LuxPageHeader'
+import LuxPageShell from '../components/LuxPageShell'
 
 export default function Programs() {
   return (
-    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
+    <LuxPageShell>
+      <LuxPageHeader
+        eyebrow="Programs"
+        title="Our Programs"
+        lead="Programs that connect language, heritage, wellness, service, and human growth."
+      />
       <VisionSection />
       <ProgramsSection />
       <WhyLearnOdiaSection />
-    </div>
+      <ClosingQuoteSection />
+    </LuxPageShell>
   )
 }

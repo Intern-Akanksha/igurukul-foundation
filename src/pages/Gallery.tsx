@@ -1,9 +1,17 @@
-import { MissionSection } from '../components/FoundationSections'
+import { ClosingQuoteSection, MissionSection } from '../components/FoundationSections'
+import LuxPageHeader from '../components/LuxPageHeader'
+import LuxPageShell from '../components/LuxPageShell'
 
 export default function Gallery() {
   return (
-    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
+    <LuxPageShell>
+      <LuxPageHeader
+        eyebrow="Gallery"
+        title="Moments of Learning & Heritage"
+        lead="A mission expressed through purposeful, human-centered action across our community."
+      />
       <MissionSection />
-    </div>
+      <ClosingQuoteSection />
+    </LuxPageShell>
   )
 }

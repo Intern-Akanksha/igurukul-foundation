@@ -34,11 +34,6 @@ export const partnerOrganizations: PartnerOrganization[] = [
       'https://wajweb.b-cdn.net/igurukul-foundation/assets/Sponsors_igf26/Movements%20in%20Motion_logo%20final-01.png',
   },
   {
-    name: 'Jyoti Kala Mandir',
-    shortName: 'JKM',
-    logoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/assets/Sponsors_igf26/JKM-color-logo.jpg',
-  },
-  {
     name: 'California Nupur Dance Academy',
     shortName: 'CNDA',
     logoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/assets/Sponsors_igf26/CNDA_LOGO.jpg',
@@ -51,10 +46,6 @@ export const partnerOrganizations: PartnerOrganization[] = [
   {
     name: 'iG Achiever',
     logoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/assets/Sponsors_igf26/igachieverlogo.jpeg',
-  },
-  {
-    name: 'Urban MoMo',
-    logoUrl: 'https://wajweb.b-cdn.net/igurukul-foundation/assets/Sponsors_igf26/Urban%20MoMo%20Logo.jpg',
   },
 ]
 

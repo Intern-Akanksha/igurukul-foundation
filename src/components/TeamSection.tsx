@@ -9,6 +9,7 @@ type TeamSectionProps = {
   variant?: 'compact' | 'full'
   members?: TeamMember[]
   selectedMemberId?: string
+  hideHeader?: boolean
 }
 
 export function TeamMemberImage({
@@ -114,7 +115,12 @@ function TeamSummaryCard({ member }: { member: TeamMember }) {
   )
 }
 
-export default function TeamSection({ variant = 'full', members, selectedMemberId }: TeamSectionProps) {
+export default function TeamSection({
+  variant = 'full',
+  members,
+  selectedMemberId,
+  hideHeader = false,
+}: TeamSectionProps) {
   const displayedMembers = members ?? teamMembers
   const hasMembers = displayedMembers.length > 0
   const isCompact = variant === 'compact'
@@ -124,19 +130,19 @@ export default function TeamSection({ variant = 'full', members, selectedMemberI
       <div className="lux-glow lux-glow--gold pointer-events-none absolute left-[-5rem] top-12 h-40 w-40" />
       <div className="lux-glow lux-glow--burgundy pointer-events-none absolute bottom-8 right-[-5rem] h-44 w-44" />
       <Container>
-        <Reveal>
-          <div className="text-center">
-            <p className="igf-page-eyebrow justify-center">Team</p>
-            <h2 className="mt-4 font-heading text-4xl font-bold tracking-[-0.03em] lux-text-ink sm:text-5xl">
-              Meet Our Team
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-8 lux-text-ink/76">
-              {isCompact
-                ? 'Meet the leaders and volunteers behind iGurukul Foundation. Open each profile to view the full biography.'
-                : 'The volunteers and leaders who guide our programs, events, and community initiatives.'}
-            </p>
-          </div>
-        </Reveal>
+        {!hideHeader ? (
+          <Reveal>
+            <div className="text-center">
+              <p className="igf-page-eyebrow justify-center">Team</p>
+              <h2 className="lux-section-title mt-4">Meet Our Team</h2>
+              <p className="lux-body-lg mx-auto mt-4 max-w-2xl text-center">
+                {isCompact
+                  ? 'Meet the leaders and volunteers behind iGurukul Foundation. Open each profile to view the full biography.'
+                  : 'The volunteers and leaders who guide our programs, events, and community initiatives.'}
+              </p>
+            </div>
+          </Reveal>
+        ) : null}
 
         {hasMembers ? (
           isCompact ? (

@@ -9,9 +9,23 @@ export const foundationTheme = {
   },
 } as const
 
+export const sectionTitles = {
+  whoWeAre: 'Who We Are',
+  journey: 'From a Small Garage to a Global Community',
+  vision: 'Four Pillars of Human Development',
+  mission: 'What Drives Us',
+  programs: 'Programs Creating Impact',
+  whyOdia: 'Why Language Matters',
+  strength: 'Powered by a Diverse Community',
+  philosophy: 'Participation • Partnership • Peace • Progress',
+  joinUs: 'Become Part of Our Journey',
+} as const
+
 export const foundationHero = {
-  title: 'iGurukul Foundation',
+  title: 'Empowering Learning, Culture & Human Development',
   subtitle: 'A Centre of Excellence in Learning & Human Development',
+  mission:
+    'The International Gurukul (iGurukul Foundation) is a California-based nonprofit inspired by the ancient Gurukul tradition — where teachers and learners grew together in wisdom, discipline, and service.',
   quote: 'Learn from Yesterday. Live for Today. Hope for Tomorrow. Never Stop Questioning.',
   quoteAuthor: 'Albert Einstein',
   highlights: [
@@ -157,6 +171,18 @@ export const joinUs = {
   email: 'info@igurukulfoundation.org',
   ctas: ['Visit Website', 'Email iGurukul'],
 } as const
+
+export const whoWeAreKeywords = [
+  'Learning',
+  'Cultural Preservation',
+  'Community Engagement',
+  'Human Development',
+] as const
+
+export const journeyFounders = [
+  { id: 'kuku-das', name: 'Kuku Das', role: 'Co-Founder & Past President' },
+  { id: 'gayatri-joshi', name: 'Gayatri Joshi', role: 'President & Co-Founder' },
+] as const
 
 export const closingQuote = {
   text: 'There are only two lasting bequests we can hope to give our children — one is roots, the other is wings.',

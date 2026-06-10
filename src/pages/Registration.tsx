@@ -1,13 +1,22 @@
 import {
+  ClosingQuoteSection,
   JoinUsSection,
   PhilosophySection,
 } from '../components/FoundationSections'
+import LuxPageHeader from '../components/LuxPageHeader'
+import LuxPageShell from '../components/LuxPageShell'
 
 export default function Registration() {
   return (
-    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
+    <LuxPageShell>
+      <LuxPageHeader
+        eyebrow="Join Us"
+        title="Partner With Us"
+        lead="Take part in a growing cultural and educational ecosystem shaped by learning, service, and human development."
+      />
       <PhilosophySection />
       <JoinUsSection />
-    </div>
+      <ClosingQuoteSection />
+    </LuxPageShell>
   )
 }

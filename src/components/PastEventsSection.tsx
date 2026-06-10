@@ -6,20 +6,16 @@ import { pastEvents } from '../data/events'
 
 export default function PastEventsSection() {
   return (
-    <section className="px-4 pb-18 sm:px-6 lg:px-8">
+    <section className="lux-section px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <GsapRevealBlock className="max-w-3xl">
+        <GsapRevealBlock className="mb-10 max-w-3xl">
           <div className="igf-page-eyebrow">Past Events</div>
-          <h2 className="mt-4 font-heading text-4xl font-bold tracking-[-0.03em] lux-text-ink sm:text-5xl">
-            Celebrations, gatherings, and milestones from our community.
-          </h2>
-          <p className="mt-5 text-base leading-8 lux-text-ink/76 sm:text-lg">
-            Browse recent foundation events — from cultural showcases and traditional observances to
-            language and learning programs across the Bay Area.
+          <p className="lux-body-lg mt-4">
+            Celebrations, gatherings, and milestones from our community across the Bay Area.
           </p>
         </GsapRevealBlock>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-3">
           {pastEvents.map((event, index) => (
             <GsapRevealBlock key={event.id} delay={index * 0.08} className="h-full">
               <article className="lux-card flex h-full flex-col overflow-hidden">

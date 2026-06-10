@@ -1,13 +1,17 @@
-import {
-  ClosingQuoteSection,
-  JoinUsSection,
-} from '../components/FoundationSections'
+import { ClosingQuoteSection, JoinUsSection } from '../components/FoundationSections'
+import LuxPageHeader from '../components/LuxPageHeader'
+import LuxPageShell from '../components/LuxPageShell'
 
 export default function Donate() {
   return (
-    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
+    <LuxPageShell>
+      <LuxPageHeader
+        eyebrow="Support"
+        title="Support the Mission"
+        lead="Take part in a growing cultural and educational ecosystem shaped by learning, service, and human development."
+      />
       <JoinUsSection />
       <ClosingQuoteSection />
-    </div>
+    </LuxPageShell>
   )
 }

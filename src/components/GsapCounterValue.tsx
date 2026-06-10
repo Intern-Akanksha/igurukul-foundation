@@ -5,9 +5,10 @@ import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 type GsapCounterValueProps = {
   end: number
   suffix?: string
+  immediate?: boolean
 }
 
-export default function GsapCounterValue({ end, suffix = '' }: GsapCounterValueProps) {
+export default function GsapCounterValue({ end, suffix = '', immediate = false }: GsapCounterValueProps) {
   const ref = useRef<HTMLSpanElement | null>(null)
   const reduced = usePrefersReducedMotion()
 
@@ -24,11 +25,13 @@ export default function GsapCounterValue({ end, suffix = '' }: GsapCounterValueP
       value: end,
       duration: 1.8,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        once: true,
-      },
+      scrollTrigger: immediate
+        ? undefined
+        : {
+            trigger: el,
+            start: 'top 88%',
+            once: true,
+          },
       onUpdate: () => {
         el.textContent = `${Math.round(target.value)}${suffix}`
       },
@@ -37,7 +40,7 @@ export default function GsapCounterValue({ end, suffix = '' }: GsapCounterValueP
       anim.scrollTrigger?.kill()
       anim.kill()
     }
-  }, [end, reduced, suffix])
+  }, [end, immediate, reduced, suffix])
 
   return <span ref={ref}>{`${end}${suffix}`}</span>
 }

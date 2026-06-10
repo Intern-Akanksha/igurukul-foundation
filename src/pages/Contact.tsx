@@ -3,6 +3,8 @@ import { Mail, MapPin, SendHorizonal, ShieldCheck, Sparkles } from 'lucide-react
 import Button from '../components/Button'
 import GsapRevealBlock from '../components/GsapRevealBlock'
 import { ClosingQuoteSection } from '../components/FoundationSections'
+import LuxPageHeader from '../components/LuxPageHeader'
+import LuxPageShell from '../components/LuxPageShell'
 import TurnstileField from '../components/TurnstileField'
 import { site } from '../data/site'
 
@@ -63,23 +65,17 @@ export default function Contact() {
   }
 
   return (
-    <div className="relative overflow-x-clip bg-[var(--igf-bg)] text-[var(--igf-ink)]">
-      <section className="relative px-4 pb-18 pt-24 sm:px-6 lg:px-8 lg:pb-24 lg:pt-28">
-        <div className="lux-glow lux-glow--gold pointer-events-none absolute left-[-6rem] top-12 h-40 w-40" />
-        <div className="lux-glow lux-glow--burgundy pointer-events-none absolute right-[-5rem] top-24 h-44 w-44" />
+    <LuxPageShell>
+      <LuxPageHeader
+        eyebrow="Contact"
+        title="Send a Message"
+        lead="Share your interest, questions, or ideas for collaboration through a thoughtful conversation channel."
+      />
+      <section className="lux-section relative px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
             <GsapRevealBlock className="relative">
-              <div className="igf-page-eyebrow">Contact</div>
-              <h1 className="mt-4 font-heading text-5xl font-bold leading-[0.96] tracking-[-0.04em] lux-text-ink sm:text-6xl">
-                Send a message to the foundation.
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-8 lux-text-ink/76 sm:text-lg">
-                Share your interest, questions, or ideas for collaboration through a more
-                personal and thoughtful conversation channel.
-              </p>
-
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div className="lux-panel lux-panel--sm">
                   <div className="lux-icon-wrap h-11 w-11">
                     <Mail className="h-5 w-5" aria-hidden />
@@ -239,7 +235,7 @@ export default function Contact() {
         </div>
       </section>
       <ClosingQuoteSection />
-    </div>
+    </LuxPageShell>
   )
 }
 
