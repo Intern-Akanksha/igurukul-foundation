@@ -66,6 +66,28 @@
   .way p{font-size:14px;color:#5b4d3c}
   .way .hl{font-weight:600;color:var(--maroon)}
   .tax-note{max-width:680px;margin:26px auto 0;text-align:center;font-size:13px;color:var(--muted)}
+  /* ---------- rsvp ---------- */
+  .rsvp-card{max-width:640px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;box-shadow:0 6px 24px rgba(74,17,19,.08)}
+  .choice-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+  .choice{flex:1;min-width:150px;border:1.5px solid var(--line);background:#fdfaf3;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:#5b4d3c;transition:all .15s ease}
+  .choice .big-ic{display:block;font-size:22px;margin-bottom:4px}
+  .choice:hover{border-color:var(--gold)}
+  .choice.sel{border-color:var(--maroon);background:var(--maroon);color:#f7ecd9;box-shadow:0 4px 14px rgba(74,17,19,.25)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#a3803c;margin-bottom:6px;font-weight:600}
+  .field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;font-family:'Poppins',sans-serif;font-size:15px;color:var(--ink);background:#fdfaf3;outline:none}
+  .field input:focus,.field select:focus{border-color:var(--gold)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:520px){.field-row{grid-template-columns:1fr}}
+  .rsvp-submit{width:100%;border:0;cursor:pointer;background:var(--maroon);color:#f7ecd9;border-radius:30px;padding:15px;font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;margin-top:6px;transition:background .15s}
+  .rsvp-submit:hover{background:#5d1719}
+  .rsvp-submit:disabled{opacity:.55;cursor:default}
+  .rsvp-msg{text-align:center;font-size:15px;margin-top:14px;display:none}
+  .rsvp-msg.ok{display:block;color:#2f6b2f}
+  .rsvp-msg.err{display:block;color:#8c1d1d}
+  .rsvp-done{display:none;text-align:center;padding:20px 6px}
+  .rsvp-done .serif{font-size:30px;color:var(--maroon);font-weight:600;margin-bottom:8px}
+  .rsvp-done p{color:#4c3f30}
   /* ---------- venue ---------- */
   .venue-card{max-width:680px;margin:30px auto 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;text-align:center;box-shadow:0 4px 18px rgba(74,17,19,.06)}
   .venue-card .name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--maroon);font-weight:600}
@@ -92,7 +114,8 @@
     <div class="fact"><div class="k">Venue</div><div class="v">WellnessByAllMeans, Fremont</div></div>
   </div>
   <div class="cta-row">
-    <a class="btn btn-gold" href="#donate">Support the Musicians</a>
+    <a class="btn btn-gold" href="#rsvp">RSVP</a>
+    <a class="btn btn-ghost" href="#donate">Support the Musicians</a>
     <a class="btn btn-ghost" href="#artists">Meet the Maestros</a>
   </div>
 </header>
@@ -104,6 +127,50 @@
   <hr class="divider">
   <p class="lead">Every year, the iGurukul Foundation family gathers for one unhurried evening of live Indian classical music — sitar, mardala, bansuri, and voices that have graced the great stages of Odisha and All India Radio — here in our own center in Fremont.</p>
   <p class="body">This evening is also our annual <strong>fundraiser in support of the visiting musicians from India</strong> whose artistry makes our dance productions, festivals, and gatherings possible. Your generosity directly supports their travel, stay, and honorarium — and keeps this rare, living tradition of guru-shishya music thriving in the Bay Area. Come for the music; stay for the satsang, the chai, and the company.</p>
+</section>
+
+<!-- ===================== RSVP ===================== -->
+<section class="wrap" id="rsvp" style="padding-top:10px">
+  <div class="section-tag">Will You Join Us?</div>
+  <h2 class="section-title">RSVP</h2>
+  <hr class="divider">
+  <p class="lead">Kindly let us know you're coming so we can arrange seating and refreshments. Bring the whole family — just tell us how many.</p>
+  <div class="rsvp-card">
+    <form id="rsvpForm">
+      <div class="choice-row" role="radiogroup" aria-label="Your response">
+        <button type="button" class="choice" data-val="yes"><span class="big-ic">🎶</span>Joyfully Yes</button>
+        <button type="button" class="choice" data-val="maybe"><span class="big-ic">🌙</span>Maybe</button>
+        <button type="button" class="choice" data-val="no"><span class="big-ic">🙏</span>Can't Make It</button>
+      </div>
+      <div class="field">
+        <label for="rName">Your name</label>
+        <input id="rName" type="text" required autocomplete="name" placeholder="Full name">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="rEmail">Email or phone</label>
+          <input id="rEmail" type="text" autocomplete="email" placeholder="So we can confirm">
+        </div>
+        <div class="field">
+          <label for="rGuests">Guests (including you)</label>
+          <select id="rGuests">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rNote">A note for the hosts (optional)</label>
+        <input id="rNote" type="text" placeholder="Anything we should know?">
+      </div>
+      <button class="rsvp-submit" id="rsvpBtn" type="submit">Send RSVP</button>
+      <p class="rsvp-msg" id="rsvpMsg"></p>
+    </form>
+    <div class="rsvp-done" id="rsvpDone">
+      <p class="serif" id="doneTitle">You're on the list! 🎶</p>
+      <p id="doneBody">Thank you — we look forward to sharing the evening with you. If you'd like, you can also <a href="#donate" style="color:#7a1f1f;font-weight:600">support the visiting musicians</a> ahead of the evening.</p>
+    </div>
+  </div>
 </section>
 
 <!-- ===================== ARTISTS ===================== -->
@@ -197,5 +264,56 @@
   <p style="margin-top:10px"><a href="https://igurukulfoundation.org">igurukulfoundation.org</a> · <a href="mailto:igurukulfoundation@gmail.com">igurukulfoundation@gmail.com</a></p>
 </footer>
 
+<script>
+(function(){
+  var SB_URL = "https://zmgqohsulhukbjdwonrc.supabase.co/rest/v1/igf_musicalnight_rsvps";
+  var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZ3FvaHN1bGh1a2JqZHdvbnJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MjI1NzEsImV4cCI6MjA5MDQ5ODU3MX0.TV2ZszLbCD693YQhWZRY3U-Tp-JUbBNiNF_Ec6KCT44";
+  var sel = "yes";
+  var choices = document.querySelectorAll(".choice");
+  function mark(){ choices.forEach(function(c){ c.classList.toggle("sel", c.dataset.val===sel); }); }
+  choices.forEach(function(c){ c.addEventListener("click", function(){ sel=c.dataset.val; mark(); }); });
+  mark();
+  var form = document.getElementById("rsvpForm");
+  var btn = document.getElementById("rsvpBtn");
+  var msg = document.getElementById("rsvpMsg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("rName").value.trim();
+    if(!name){ msg.className="rsvp-msg err"; msg.textContent="Please tell us your name."; return; }
+    var contact = document.getElementById("rEmail").value.trim();
+    var payload = {
+      name: name,
+      email: contact.indexOf("@")>-1 ? contact : null,
+      phone: contact.indexOf("@")>-1 ? null : (contact||null),
+      response: sel,
+      guests: sel==="no" ? 0 : parseInt(document.getElementById("rGuests").value,10),
+      note: document.getElementById("rNote").value.trim()||null
+    };
+    btn.disabled = true; btn.textContent = "Sending…"; msg.className="rsvp-msg";
+    fetch(SB_URL, {
+      method:"POST",
+      headers:{ "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json", "Prefer":"return=minimal" },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      form.style.display="none";
+      var done = document.getElementById("rsvpDone");
+      if(sel==="no"){
+        document.getElementById("doneTitle").textContent = "We'll miss you 🙏";
+        document.getElementById("doneBody").innerHTML = "Thank you for letting us know. If you'd still like to <a href='#donate' style='color:#7a1f1f;font-weight:600'>support the visiting musicians</a>, it would mean the world.";
+      } else if(sel==="maybe"){
+        document.getElementById("doneTitle").textContent = "Hope to see you! 🌙";
+      }
+      done.style.display="block";
+    }).catch(function(){
+      btn.disabled=false; btn.textContent="Send RSVP";
+      msg.className="rsvp-msg err";
+      msg.textContent="Something went wrong — please try again, or simply email igurukulfoundation@gmail.com.";
+    });
+  });
+  // bfcache: reset button if user comes Back
+  window.addEventListener("pageshow", function(){ btn.disabled=false; btn.textContent="Send RSVP"; });
+})();
+</script>
 </body>
 </html>
